@@ -1,10 +1,10 @@
 #pragma once
 #include "Object.h"
 #include "stdafx.h"
-class Work : Object
+class Work : public Object
 {
 public:
-	Work(std::string name, int id);
+	Work(std::wstring name, int id);
 	~Work();
 };
 

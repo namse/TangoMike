@@ -1,10 +1,10 @@
 #pragma once
 #include "stdafx.h"
 #include "Object.h"
-class Feel : Object
+class Feel : public Object
 {
 public:
-	Feel(std::string name, int id);
+	Feel(std::wstring name, int id);
 	~Feel();
 };
 

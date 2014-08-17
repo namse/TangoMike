@@ -3,7 +3,7 @@
 
 
 
-Work::Work(std::string name, int id) :Object()
+Work::Work(std::wstring name, int id) :Object()
 {
 	name_ = name;
 	id_ = id;

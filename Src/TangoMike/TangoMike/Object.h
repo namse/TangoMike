@@ -7,8 +7,8 @@ public:
 	virtual ~Object();
 
 	int GetId(){ return id_; }
-	
+	std::wstring GetName() { return name_; }
 protected:
 	int id_;
-	std::string name_;
+	std::wstring name_;
 };

@@ -25,6 +25,9 @@ public:
 
 	bool LoadDataFromFile(std::string filename);
 
+	std::vector<Feel*> GetFeels()		{ return feels_; }
+	std::vector<Work*> GetWorks()		{ return works_; }
+
 private:
 	Relationship();
 	~Relationship();

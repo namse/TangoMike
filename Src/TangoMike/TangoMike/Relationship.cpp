@@ -17,13 +17,13 @@ bool Relationship::LoadDataFromFile(std::string filename)
 	feels_.clear();
 	works_.clear();
 
-	std::ifstream ifs(filename);
-
+	std::wifstream ifs(filename);
+	ifs.imbue(std::locale("kor"));
 	if (ifs.eof())
 		return false;
 
 	int feelCount, workCount;
-	std::string nameTemp;
+	std::wstring nameTemp;
 	ifs >> feelCount >> workCount;
 	for (int i = 0; i < feelCount; i++)
 	{

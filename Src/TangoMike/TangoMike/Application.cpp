@@ -29,6 +29,28 @@ static const float sc_srcLoupeRingThickness = 2.0f;
 
 static const float sc_destLoupeRingThickness = 5.0f;
 
+
+
+//Device-Dependent Resources
+ID3D10Device *m_pDevice= NULL;
+IDXGISwapChain *m_pSwapChain= NULL;
+ID3D10RasterizerState *m_pState= NULL;
+ID3D10RenderTargetView *m_pRenderTargetView= NULL;
+ID3D10Texture2D *m_pLoupeTexture= NULL;
+ID2D1Bitmap *m_pLoupeBitmap= NULL;
+
+ID2D1RenderTarget *m_pBackBufferRT= NULL;
+
+ID2D1SolidColorBrush *m_pTextBrush= NULL;
+ID2D1SolidColorBrush *m_pLoupeBrush= NULL;
+
+// Device-Independent Resources
+ID2D1Factory *m_pD2DFactory= NULL;
+IDWriteFactory *m_pDWriteFactory= NULL;
+IDWriteTextFormat *m_pTextFormat= NULL;
+
+
+
 /******************************************************************
 *                                                                 *
 *  Application::Application                                   *
@@ -45,20 +67,20 @@ m_paused(false),
 m_pausedTime(0),
 m_drawLoupe(true),
 m_numSquares(sc_defaultNumSquares),
-m_logZoom(sc_loupeDefaultLogZoom*WHEEL_DELTA),
-m_pDevice(NULL),
-m_pSwapChain(NULL),
-m_pState(NULL),
-m_pRenderTargetView(NULL),
-m_pLoupeTexture(NULL),
-m_pLoupeBitmap(NULL),
-m_pBackBufferRT(NULL),
-m_pTextBrush(NULL),
-m_pLoupeBrush(NULL),
-m_pD2DFactory(NULL),
-m_pDWriteFactory(NULL),
-m_pTextFormat(NULL)
+m_logZoom(sc_loupeDefaultLogZoom*WHEEL_DELTA)
 {
+	m_pDevice = NULL;
+	m_pSwapChain = NULL;
+	m_pState = NULL;
+	m_pRenderTargetView = NULL;
+	m_pLoupeTexture = NULL;
+	m_pLoupeBitmap = NULL;
+	m_pBackBufferRT = NULL;
+	m_pTextBrush = NULL;
+	m_pLoupeBrush = NULL;
+	m_pD2DFactory = NULL;
+	m_pDWriteFactory = NULL;
+	m_pTextFormat = NULL;
 	LARGE_INTEGER time;
 	QueryPerformanceCounter(&time);
 
@@ -1236,4 +1258,15 @@ HRESULT Application::CreateD3DDevice(
 	}
 
 	return hr;
+}
+
+
+void Application::Update(float dTime)
+{
+
+}
+
+void Application::Render()
+{
+
 }

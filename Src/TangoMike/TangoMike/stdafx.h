@@ -69,6 +69,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <list>
 
 
 
@@ -132,3 +133,24 @@ namespace SampleType
 		Count
 	};
 }
+
+
+
+
+//Device-Dependent Resources
+extern ID3D10Device *m_pDevice;
+extern IDXGISwapChain *m_pSwapChain;
+extern ID3D10RasterizerState *m_pState;
+extern ID3D10RenderTargetView *m_pRenderTargetView;
+extern ID3D10Texture2D *m_pLoupeTexture;
+extern ID2D1Bitmap *m_pLoupeBitmap;
+
+extern ID2D1RenderTarget *m_pBackBufferRT;
+
+extern ID2D1SolidColorBrush *m_pTextBrush;
+extern ID2D1SolidColorBrush *m_pLoupeBrush;
+
+// Device-Independent Resources
+extern ID2D1Factory *m_pD2DFactory;
+extern IDWriteFactory *m_pDWriteFactory;
+extern IDWriteTextFormat *m_pTextFormat;

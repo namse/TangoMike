@@ -1,4 +1,6 @@
 #pragma once
+#include "stdafx.h"
+#include "Component.h"
 /******************************************************************
 *                                                                 *
 *  Application                                                  *
@@ -6,6 +8,7 @@
 ******************************************************************/
 
 class Application
+	: public Component
 {
 public:
 	Application();
@@ -63,6 +66,8 @@ private:
 		LPARAM lParam
 		);
 
+	void virtual Render();
+	void virtual Update(float dTime);
 private:
 	HWND m_hwnd;
 
@@ -77,22 +82,6 @@ private:
 	LONGLONG m_timeDelta;
 	RingBuffer<LONGLONG, TIME_RING_BUFFER_SIZE> m_times;
 
-	//Device-Dependent Resources
-	ID3D10Device *m_pDevice;
-	IDXGISwapChain *m_pSwapChain;
-	ID3D10RasterizerState *m_pState;
-	ID3D10RenderTargetView *m_pRenderTargetView;
-	ID3D10Texture2D *m_pLoupeTexture;
-	ID2D1Bitmap *m_pLoupeBitmap;
 
-	ID2D1RenderTarget *m_pBackBufferRT;
-
-	ID2D1SolidColorBrush *m_pTextBrush;
-	ID2D1SolidColorBrush *m_pLoupeBrush;
-
-	// Device-Independent Resources
-	ID2D1Factory *m_pD2DFactory;
-	IDWriteFactory *m_pDWriteFactory;
-	IDWriteTextFormat *m_pTextFormat;
 };
 

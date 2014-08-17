@@ -21,16 +21,25 @@
       <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="Feel.h">
-      <Filter>Object\Feel</Filter>
+      <Filter>Data\Object\Feel</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
-      <Filter>Object</Filter>
+      <Filter>Data\Object</Filter>
     </ClInclude>
     <ClInclude Include="Work.h">
-      <Filter>Object\Work</Filter>
+      <Filter>Data\Object\Work</Filter>
     </ClInclude>
     <ClInclude Include="Relationship.h">
-      <Filter>Relationship</Filter>
+      <Filter>Data\Relationship</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Word.h">
+      <Filter>Components\Word</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -44,39 +53,84 @@
       <Filter>util</Filter>
     </ClCompile>
     <ClCompile Include="Feel.cpp">
-      <Filter>Object\Feel</Filter>
+      <Filter>Data\Object\Feel</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
-      <Filter>Object</Filter>
+      <Filter>Data\Object</Filter>
     </ClCompile>
     <ClCompile Include="Work.cpp">
-      <Filter>Object\Work</Filter>
+      <Filter>Data\Object\Work</Filter>
     </ClCompile>
     <ClCompile Include="Relationship.cpp">
-      <Filter>Relationship</Filter>
+      <Filter>Data\Relationship</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Word.cpp">
+      <Filter>Components\Word</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Application">
-      <UniqueIdentifier>{f2253c71-1a51-4f62-98c6-2abbf0be8885}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Main">
       <UniqueIdentifier>{2d25a7b1-b71e-44c5-82b9-8dc25eadb899}</UniqueIdentifier>
     </Filter>
     <Filter Include="util">
       <UniqueIdentifier>{24b1ed08-bcbe-4d9d-a15a-c35c281904ff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object">
+    <Filter Include="Application">
+      <UniqueIdentifier>{f2253c71-1a51-4f62-98c6-2abbf0be8885}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{1791f390-019c-4a12-a14e-63761fa624b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data\Relationship">
+      <UniqueIdentifier>{4d582a80-b5db-4e42-bdf7-384f26d6d559}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data\Object">
       <UniqueIdentifier>{5da31c4c-42b2-4176-9853-ca6409f46937}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Feel">
+    <Filter Include="Data\Object\Feel">
       <UniqueIdentifier>{8e495983-1c89-4bad-9cad-b1d3b42f3131}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Work">
+    <Filter Include="Data\Object\Work">
       <UniqueIdentifier>{efd0e682-1ef9-42b9-9324-b1a7a83a3ebb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Relationship">
-      <UniqueIdentifier>{4d582a80-b5db-4e42-bdf7-384f26d6d559}</UniqueIdentifier>
+    <Filter Include="ShowItems">
+      <UniqueIdentifier>{65c52c34-9180-41d9-aed1-42048a5f5c75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShowItems\RightSide">
+      <UniqueIdentifier>{1570c85b-95c3-455c-a2cb-bcc494e0a891}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShowItems\LeftSide">
+      <UniqueIdentifier>{839a5673-a752-4cb8-903e-571bc915bfe7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShowItems\LeftSide\MainTitle">
+      <UniqueIdentifier>{f43e0031-bb4a-4d38-afb1-4876a457b66a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShowItems\LeftSide\SelectedInfo">
+      <UniqueIdentifier>{5f744e8e-6869-4042-985b-3c3744b071fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShowItems\LeftSide\TotalCount">
+      <UniqueIdentifier>{728de836-aa30-4f00-a0e8-a3a7508ab881}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{d766a8fc-8424-48dc-97de-bab427bf3d00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Line">
+      <UniqueIdentifier>{b967709f-46db-4731-9934-9f1792bf2409}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Word">
+      <UniqueIdentifier>{25bb8b72-d316-4ea7-a871-7cd5785f4b2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Number">
+      <UniqueIdentifier>{fb1b4600-0cdc-40a9-a201-0b6cd232fa39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{68e70f11-7f9b-4486-a119-75aff27a7d05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

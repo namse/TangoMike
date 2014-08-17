@@ -4,16 +4,17 @@
 class Word : public Component
 {
 public:
-	Word(std::string contents, D2D_VECTOR_2F position);
+	Word(std::wstring contents, D2D_VECTOR_2F position);
 	~Word();
 
 	void virtual Render();
 	void virtual Update(float dTime);
 
 private:
-	std::string contents_;
-
-	DWRITE_TEXT_ALIGNMENT textAlignment;
-	DWRITE_PARAGRAPH_ALIGNMENT paragraphAlignment;
+	std::wstring contents_;
+	PCWSTR fontName_;
+	float fontSize_;
+	DWRITE_TEXT_ALIGNMENT textAlignment_;
+	DWRITE_PARAGRAPH_ALIGNMENT paragraphAlignment_;
 };
 

@@ -634,8 +634,9 @@ HRESULT Application::OnRender()
 
 					if (SUCCEEDED(hr))
 					{
-						hr = RenderTextInfo();
+						//hr = RenderTextInfo();
 					}
+					Render();
 				}
 
 			}
@@ -1263,10 +1264,10 @@ HRESULT Application::CreateD3DDevice(
 
 void Application::Update(float dTime)
 {
-
+	Component::Update(dTime);
 }
 
 void Application::Render()
 {
-
+	Component::Render();
 }

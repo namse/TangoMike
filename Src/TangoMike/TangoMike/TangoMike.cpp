@@ -8,7 +8,7 @@
 #include "stdafx.h"
 #include "TangoMike.h"
 #include "Relationship.h"
-
+#include "Word.h"
 /******************************************************************
 *                                                                 *
 *  WinMain                                                        *
@@ -36,6 +36,10 @@ int WINAPI WinMain(
 
 			if (SUCCEEDED(app.Initialize()))
 			{
+				D2D_VECTOR_2F pos;
+				pos.x = 0.f;
+				pos.y = 0.f;
+				app.AddChild(new Word(L"³²¼¼Çö",pos));
 				app.RunMessageLoop();
 			}
 		}

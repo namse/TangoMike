@@ -136,7 +136,6 @@ namespace SampleType
 
 
 
-
 //Device-Dependent Resources
 extern ID3D10Device *m_pDevice;
 extern IDXGISwapChain *m_pSwapChain;

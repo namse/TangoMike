@@ -8,6 +8,7 @@ public:
 
 	void AddChild(Component* child);
 	void RemoveChild(Component* child);
+	void SetParent(Component* parent) { parent_ = parent; }
 
 	virtual void Update(float dTime);
 	virtual void Render();
@@ -27,7 +28,9 @@ public:
 
 	bool IsVisible()									{ return isVisible_; }
 	void SetVisible(bool isVisible)					{ isVisible_ = isVisible_; }
-private:
+
+
+protected:
 	Component* parent_;
 	std::list<Component*> childs_;
 	

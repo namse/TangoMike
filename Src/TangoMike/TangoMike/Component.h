@@ -23,7 +23,10 @@ public:
 	float GetRotation()								{ return rotation_; }
 	D2D_VECTOR_2F GetScale()					{ return scale_; }
 
+	D2D1_MATRIX_3X2_F GetMatrix()				{ return matrix_; }
 
+	bool IsVisible()									{ return isVisible_; }
+	void SetVisible(bool isVisible)					{ isVisible_ = isVisible_; }
 private:
 	Component* parent_;
 	std::list<Component*> childs_;
@@ -32,6 +35,8 @@ private:
 	D2D_VECTOR_2F center_;
 	float rotation_;
 	D2D_VECTOR_2F scale_;
+	D2D_MATRIX_3X2_F matrix_;
 
+	bool isVisible_;
 };
 

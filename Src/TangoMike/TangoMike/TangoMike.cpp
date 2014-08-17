@@ -7,7 +7,7 @@
 
 #include "stdafx.h"
 #include "TangoMike.h"
-
+#include "Relationship.h"
 
 /******************************************************************
 *                                                                 *
@@ -24,6 +24,7 @@ int WINAPI WinMain(
 	int /* nCmdShow */
 	)
 {
+	Relationship::GetInstance()->LoadDataFromFile("data.txt");
 	// Ignoring the return value because we want to continue running even in the
 	// unlikely event that HeapSetInformation fails.
 	HeapSetInformation(NULL, HeapEnableTerminationOnCorruption, NULL, 0);

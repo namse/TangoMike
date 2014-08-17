@@ -2,26 +2,81 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="data.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="TangoMike.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="RingBuffer.h" />
     <ClInclude Include="Application.h">
       <Filter>Application</Filter>
     </ClInclude>
+    <ClInclude Include="TangoMike.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="RingBuffer.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Feel.h">
+      <Filter>Object\Feel</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Work.h">
+      <Filter>Object\Work</Filter>
+    </ClInclude>
+    <ClInclude Include="Relationship.h">
+      <Filter>Relationship</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TangoMike.cpp" />
-    <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Application.cpp">
       <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="TangoMike.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="Feel.cpp">
+      <Filter>Object\Feel</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Work.cpp">
+      <Filter>Object\Work</Filter>
+    </ClCompile>
+    <ClCompile Include="Relationship.cpp">
+      <Filter>Relationship</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
       <UniqueIdentifier>{f2253c71-1a51-4f62-98c6-2abbf0be8885}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{2d25a7b1-b71e-44c5-82b9-8dc25eadb899}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{24b1ed08-bcbe-4d9d-a15a-c35c281904ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{5da31c4c-42b2-4176-9853-ca6409f46937}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Feel">
+      <UniqueIdentifier>{8e495983-1c89-4bad-9cad-b1d3b42f3131}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Work">
+      <UniqueIdentifier>{efd0e682-1ef9-42b9-9324-b1a7a83a3ebb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Relationship">
+      <UniqueIdentifier>{4d582a80-b5db-4e42-bdf7-384f26d6d559}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

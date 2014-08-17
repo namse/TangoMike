@@ -77,22 +77,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="data.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Feel.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="Relationship.h" />
     <ClInclude Include="RingBuffer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TangoMike.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Work.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Feel.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Relationship.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TangoMike.cpp" />
+    <ClCompile Include="Work.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

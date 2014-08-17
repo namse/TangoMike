@@ -64,6 +64,11 @@
 #include <wincodec.h>
 
 #include <strsafe.h>
+#include <string>
+#include<map>
+#include <iostream>
+#include <fstream>
+#include <vector>
 
 
 

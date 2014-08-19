@@ -85,12 +85,14 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="Feel.h" />
     <ClInclude Include="Line.h" />
+    <ClInclude Include="MainTitle.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Relationship.h" />
     <ClInclude Include="RingBuffer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TangoMike.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Word.h" />
     <ClInclude Include="Work.h" />
   </ItemGroup>
@@ -99,6 +101,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Feel.cpp" />
     <ClCompile Include="Line.cpp" />
+    <ClCompile Include="MainTitle.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Relationship.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -106,6 +109,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TangoMike.cpp" />
+    <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Word.cpp" />
     <ClCompile Include="Work.cpp" />
   </ItemGroup>

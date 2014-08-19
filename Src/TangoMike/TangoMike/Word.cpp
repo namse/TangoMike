@@ -1,7 +1,15 @@
 #include "stdafx.h"
 #include "Word.h"
 
-
+Word::Word()
+	: textAlignment_(DWRITE_TEXT_ALIGNMENT_LEADING),//DWRITE_TEXT_ALIGNMENT_LEADING
+	paragraphAlignment_(DWRITE_PARAGRAPH_ALIGNMENT_NEAR),
+	contents_(L""),
+	fontName_(L"¸¼Àº °íµñ"),
+	fontSize_(20.f)
+{
+	position_ = D2D1::Point2F();
+}
 Word::Word(std::wstring contents, D2D_POINT_2F position)
 	: textAlignment_(DWRITE_TEXT_ALIGNMENT_LEADING),//DWRITE_TEXT_ALIGNMENT_LEADING
 	paragraphAlignment_(DWRITE_PARAGRAPH_ALIGNMENT_NEAR),

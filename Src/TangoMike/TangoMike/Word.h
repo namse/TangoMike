@@ -4,12 +4,16 @@
 class Word : public Component
 {
 public:
+	Word();
 	Word(std::wstring contents, D2D_POINT_2F position);
 	~Word();
 
 	void virtual Render();
 	void virtual Update(float dTime);
-
+	
+	void SetContents(std::wstring contents){
+		contents_ = contents;
+	}
 private:
 	
 private:

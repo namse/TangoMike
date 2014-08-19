@@ -723,9 +723,10 @@ HRESULT Application::RenderD2DContentIntoSurface(float time)
 		D2D1::ColorF(0, 0, 0),
 		&pBrush
 		);
+	
 	if (SUCCEEDED(hr))
 	{
-		
+		/*
 		if (m_sampleType == SampleType::Filled)
 		{
 			for (UINT i = 0; i < m_numSquares; ++i)
@@ -781,7 +782,7 @@ HRESULT Application::RenderD2DContentIntoSurface(float time)
 			}
 
 		}
-		
+		*/
 		hr = m_pBackBufferRT->EndDraw();
 
 		pBrush->Release();

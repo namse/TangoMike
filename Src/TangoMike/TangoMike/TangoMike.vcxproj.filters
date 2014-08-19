@@ -41,6 +41,12 @@
     <ClInclude Include="Line.h">
       <Filter>Components\Line</Filter>
     </ClInclude>
+    <ClInclude Include="MainTitle.h">
+      <Filter>ShowItems\LeftSide\MainTitle</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -72,6 +78,12 @@
     </ClCompile>
     <ClCompile Include="Line.cpp">
       <Filter>Components\Line</Filter>
+    </ClCompile>
+    <ClCompile Include="MainTitle.cpp">
+      <Filter>ShowItems\LeftSide\MainTitle</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

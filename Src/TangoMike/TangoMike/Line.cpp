@@ -63,7 +63,7 @@ void Line::Render()
 		D2D1::BrushProperties(),
 		m_pGradientStops,
 		&m_pLGBrush
-	);*/
+	);*/ // ->한번만 호출되게 하자.
 
 	ID2D1SolidColorBrush *pBrush = NULL;
 	hr = m_pBackBufferRT->CreateSolidColorBrush(

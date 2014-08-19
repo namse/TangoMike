@@ -31,18 +31,6 @@ static const float sc_destLoupeRingThickness = 5.0f;
 
 
 
-//Device-Dependent Resources
-ID3D10Device *m_pDevice= NULL;
-IDXGISwapChain *m_pSwapChain= NULL;
-ID3D10RasterizerState *m_pState= NULL;
-ID3D10RenderTargetView *m_pRenderTargetView= NULL;
-ID3D10Texture2D *m_pLoupeTexture= NULL;
-ID2D1Bitmap *m_pLoupeBitmap= NULL;
-
-ID2D1RenderTarget *m_pBackBufferRT= NULL;
-
-ID2D1SolidColorBrush *m_pTextBrush= NULL;
-ID2D1SolidColorBrush *m_pLoupeBrush= NULL;
 
 // Device-Independent Resources
 ID2D1Factory *m_pD2DFactory= NULL;
@@ -737,6 +725,7 @@ HRESULT Application::RenderD2DContentIntoSurface(float time)
 		);
 	if (SUCCEEDED(hr))
 	{
+		/*
 		if (m_sampleType == SampleType::Filled)
 		{
 			for (UINT i = 0; i < m_numSquares; ++i)
@@ -792,7 +781,7 @@ HRESULT Application::RenderD2DContentIntoSurface(float time)
 			}
 
 		}
-
+		*/
 		hr = m_pBackBufferRT->EndDraw();
 
 		pBrush->Release();

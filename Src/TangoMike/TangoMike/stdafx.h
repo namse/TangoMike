@@ -70,6 +70,8 @@
 #include <fstream>
 #include <vector>
 #include <list>
+#include <cstdlib>
+#include <ctime>
 
 
 
@@ -153,3 +155,10 @@ extern ID2D1SolidColorBrush *m_pLoupeBrush;
 extern ID2D1Factory *m_pD2DFactory;
 extern IDWriteFactory *m_pDWriteFactory;
 extern IDWriteTextFormat *m_pTextFormat;
+extern IDWriteTextLayout* m_pTextLayout;
+
+extern ID2D1PathGeometry *m_pPathGeometry;
+
+extern ID2D1GeometrySink *m_pGeometrySink;
+extern ID2D1GradientStopCollection *m_pGradientStops;
+extern ID2D1LinearGradientBrush *m_pLGBrush;

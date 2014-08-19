@@ -84,6 +84,7 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Feel.h" />
+    <ClInclude Include="Line.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Relationship.h" />
     <ClInclude Include="RingBuffer.h" />
@@ -97,6 +98,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Feel.cpp" />
+    <ClCompile Include="Line.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Relationship.cpp" />
     <ClCompile Include="stdafx.cpp">

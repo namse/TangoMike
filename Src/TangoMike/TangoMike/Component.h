@@ -14,15 +14,15 @@ public:
 	virtual void Render();
 
 	// about Transforms : http://msdn.microsoft.com/en-us/library/windows/desktop/ff684172(v=vs.85).aspx
-	void SetPosition(D2D_VECTOR_2F position)	{ position_ = position; }
-	void SetCenter(D2D_VECTOR_2F center)		{ center_ = center; }
+	void SetPosition(D2D_POINT_2F position)	{ position_ = position; }
+	void SetCenter(D2D_POINT_2F center)		{ center_ = center; }
 	void SetRotation(float rotation)				{ rotation_ = rotation; }
-	void SetScale(D2D_VECTOR_2F scale)			{ scale_ = scale; }
+	void SetScale(D2D_POINT_2F scale)			{ scale_ = scale; }
 
-	D2D_VECTOR_2F GetPosition()					{ return position_; }
-	D2D_VECTOR_2F GetCenter()					{ return center_; }
+	D2D_POINT_2F* GetPosition()					{ return &position_; }
+	D2D_POINT_2F GetCenter()					{ return center_; }
 	float GetRotation()								{ return rotation_; }
-	D2D_VECTOR_2F GetScale()					{ return scale_; }
+	D2D_POINT_2F GetScale()					{ return scale_; }
 
 	D2D1_MATRIX_3X2_F GetMatrix()				{ return matrix_; }
 
@@ -34,10 +34,10 @@ protected:
 	Component* parent_;
 	std::list<Component*> childs_;
 	
-	D2D_VECTOR_2F position_;
-	D2D_VECTOR_2F center_;
+	D2D_POINT_2F position_;
+	D2D_POINT_2F center_;
 	float rotation_;
-	D2D_VECTOR_2F scale_;
+	D2D_POINT_2F scale_;
 	D2D_MATRIX_3X2_F matrix_;
 
 	bool isVisible_;

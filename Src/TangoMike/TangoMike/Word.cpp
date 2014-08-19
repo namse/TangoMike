@@ -24,7 +24,7 @@ void Word::Render()
 
 	HRESULT hr;
 
-
+	/*
 	hr = m_pDWriteFactory->CreateTextFormat(
 		fontName_,
 		NULL,
@@ -45,7 +45,7 @@ void Word::Render()
 		m_pTextFormat,
 		1000.f, 1000.f,
 		&m_pTextLayout);
-
+		*/
 	m_pBackBufferRT->BeginDraw();
 
 	m_pBackBufferRT->SetTransform(matrix_);
@@ -62,8 +62,11 @@ void Word::Render()
 		);
 
 	hr = m_pBackBufferRT->EndDraw();
-	SafeRelease(&m_pTextLayout);
-	SafeRelease(&m_pTextFormat);
+	
+	//m_pTextLayout->Release();
+	//m_pTextFormat->Release();
+	//SafeRelease(&m_pTextLayout);
+	//SafeRelease(&m_pTextFormat);
 
 }
 

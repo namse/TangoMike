@@ -93,7 +93,8 @@ int WINAPI WinMain(
 				{
 					for (auto workPosition : worksPositions)
 					{
-						app.AddChild(new Line(feelPositoin, workPosition));
+						//for (int i = 0; i < rand() % 5; i++)
+							app.AddChild(new Line(feelPositoin, workPosition));
 					}
 				}
 

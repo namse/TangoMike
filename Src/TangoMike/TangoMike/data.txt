@@ -1,7 +1,21 @@
-3 3
-abcabac
-차가운
-더러운1
-컵
-물컵
-생수통
+10	10
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a

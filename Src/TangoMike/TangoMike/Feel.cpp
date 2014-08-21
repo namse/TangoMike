@@ -2,13 +2,13 @@
 #include "Feel.h"
 
 
-Feel::Feel(int id, std::wstring name, float fontSize, std::wstring englishName, float englishFontSize)
+Feel::Feel(int id, std::wstring name, float width, std::wstring englishName, float englishWidth)
 	:Object()
 {
 	name_ = name;
 	englishName_ = englishName;
-	englishFontSize_ = englishFontSize;
-	fontSize_ = fontSize;
+	englishWidth_ = englishWidth;
+	width_ = width;
 	id_ = id;
 }
 

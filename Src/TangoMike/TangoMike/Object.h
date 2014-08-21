@@ -11,14 +11,14 @@ public:
 	std::wstring GetName() { return name_; }
 	std::wstring GetEnglishName() { return englishName_; }
 
-	float getFontSize() { return fontSize_; }
-	float getEnglishFontSize() { return englishFontSize_; }
+	float GetWidth() { return width_; }
+	float GetEnglishWidth() { return englishWidth_; }
 
 protected:
 	int id_;
 	std::wstring name_;
-	float fontSize_;
+	float width_;
 
 	std::wstring englishName_;
-	float englishFontSize_;
+	float englishWidth_;
 };

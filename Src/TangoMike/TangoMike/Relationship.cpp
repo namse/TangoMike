@@ -36,18 +36,18 @@ bool Relationship::LoadDataFromFile(std::string filename)
 	int feelCount, workCount;
 	std::wstring nameTemp;
 	std::wstring englishNameTemp;
-	float fontSizeTemp;
-	float englishFontSizeTemp;
+	float fontWidth;
+	float englishFontWidth;
 	ifs >> feelCount >> workCount;
 	for (int i = 0; i < feelCount; i++)
 	{
-		ifs >> nameTemp >> fontSizeTemp >> englishNameTemp >> englishFontSizeTemp;
-		feels_.push_back(new Feel(feels_.size(), nameTemp, fontSizeTemp, englishNameTemp, englishFontSizeTemp));
+		ifs >> nameTemp >> fontWidth >> englishNameTemp >> englishFontWidth;
+		feels_.push_back(new Feel(feels_.size(), nameTemp, fontWidth, englishNameTemp, englishFontWidth));
 	}
 	for (int i = 0; i < workCount; i++)
 	{
-		ifs >> nameTemp >> fontSizeTemp >> englishNameTemp >> englishFontSizeTemp;
-		works_.push_back(new Work(works_.size(), nameTemp, fontSizeTemp, englishNameTemp, englishFontSizeTemp));
+		ifs >> nameTemp >> fontWidth >> englishNameTemp >> englishFontWidth;
+		works_.push_back(new Work(works_.size(), nameTemp, fontWidth, englishNameTemp, englishFontWidth));
 	}
 
 

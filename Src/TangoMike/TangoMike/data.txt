@@ -1,4 +1,4 @@
-18 15
+18	15
 소통	27	Communication	75.624
 참여	27	Participation	60.796
 초월	27	Transcendence	72.753
@@ -21,10 +21,10 @@
 디에고_좌상	71.999	Diego_Seated	63.843
 마크로스코-무제	103.049	Mark_Rothko_-_Untitled	108.546
 일련의_의도된_전개	116.999	Directed_Development_Array	136.661
-픽셀-중첩된_사슴_#6	126.403	PixCell-Double_Deer #6	110.746
+픽셀-중첩된_사슴_#6	126.403	PixCell-Double_Deer_#6	110.746
 q0	14.91	q0	12.672
-고려청자_유약 #1#2	118.709	Goryeo_Green_Glaze #1#2	122.626
-심비오인테스튜브타임 	139.499	Symbiointestubetime	103.409
+고려청자_유약_#1#2	118.709	Goryeo_Green_Glaze_#1#2	122.626
+심비오인테스튜브타임	139.499	Symbiointestubetime	103.409
 F#_단조_실험	78.989	Experiment_in_F#_Minor	111.729
 데모_스테이션_No.5	119.474	Demo_Station_No.5	90.188
 추상적_움직임	85.499	Abstract_Weave	76.13

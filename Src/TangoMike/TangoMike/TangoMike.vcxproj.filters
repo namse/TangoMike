@@ -53,6 +53,12 @@
     <ClInclude Include="WordSprite.h">
       <Filter>ShowItems\RightSide\WordSprite</Filter>
     </ClInclude>
+    <ClInclude Include="RightSide.h">
+      <Filter>ShowItems\RightSide</Filter>
+    </ClInclude>
+    <ClInclude Include="WordSpriteCollection.h">
+      <Filter>ShowItems\RightSide\WordSpriteCollection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -93,6 +99,12 @@
     </ClCompile>
     <ClCompile Include="WordSprite.cpp">
       <Filter>ShowItems\RightSide\WordSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="RightSide.cpp">
+      <Filter>ShowItems\RightSide</Filter>
+    </ClCompile>
+    <ClCompile Include="WordSpriteCollection.cpp">
+      <Filter>ShowItems\RightSide\WordSpriteCollection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

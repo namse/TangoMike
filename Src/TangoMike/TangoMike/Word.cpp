@@ -5,7 +5,7 @@ Word::Word()
 	: textAlignment_(DWRITE_TEXT_ALIGNMENT_LEADING),//DWRITE_TEXT_ALIGNMENT_LEADING
 	paragraphAlignment_(DWRITE_PARAGRAPH_ALIGNMENT_NEAR),
 	contents_(L""),
-	fontName_(L"À±°íµñ"),
+	fontName_(L"Calibri"),
 	fontSize_(20.f)
 {
 	position_ = D2D1::Point2F();
@@ -14,7 +14,7 @@ Word::Word(std::wstring contents, D2D_POINT_2F position)
 	: textAlignment_(DWRITE_TEXT_ALIGNMENT_LEADING),//DWRITE_TEXT_ALIGNMENT_LEADING
 	paragraphAlignment_(DWRITE_PARAGRAPH_ALIGNMENT_NEAR),
 	contents_(contents),
-	fontName_(L"À±°íµñ"),
+	fontName_(L"Calibri"),
 	fontSize_(20.f)
 {
 	position_ = position;
@@ -32,7 +32,6 @@ void Word::Render()
 
 	HRESULT hr;
 
-	/*
 	hr = m_pDWriteFactory->CreateTextFormat(
 		fontName_,
 		NULL,
@@ -43,17 +42,12 @@ void Word::Render()
 		L"", // locale
 		&m_pTextFormat
 		);
+
+	//hr = m_pTextFormat->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 	hr = m_pTextFormat->SetTextAlignment(textAlignment_);
-	hr = m_pTextFormat->SetParagraphAlignment(paragraphAlignment_);
 
 
-	hr = m_pDWriteFactory->CreateTextLayout(
-		contents_.c_str(),
-		contents_.length(),
-		m_pTextFormat,
-		1000.f, 1000.f,
-		&m_pTextLayout);
-		*/
+
 	m_pBackBufferRT->BeginDraw();
 
 	m_pBackBufferRT->SetTransform(matrix_);
@@ -64,7 +58,7 @@ void Word::Render()
 		contents_.c_str(),
 		contents_.length(),
 		m_pTextFormat,
-		D2D1::RectF(0.f, 0.f , 100.f, fontSize_),
+		D2D1::RectF(0.f, 0.f, maxWidthAndHeight.x, maxWidthAndHeight.y),
 		m_pTextBrush,
 		D2D1_DRAW_TEXT_OPTIONS_NONE
 		);

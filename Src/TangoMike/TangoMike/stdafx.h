@@ -118,6 +118,12 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 
 #define TIME_RING_BUFFER_SIZE 10
 
+#define KOREAN_IDLE_FONT_SIZE 13.f
+#define KOREAN_FOCUS_FONT_SIZE 22.f
+
+#define ENGLISH_IDLE_FONT_SIZE 13.f
+#define ENGLISH_FOCUS_FONT_SIZE 22.f
+
 #include "ringbuffer.h"
 
 namespace MyAntialiasMode

@@ -11,6 +11,7 @@
 #include "Word.h"
 #include "Line.h"
 #include "MainTitle.h"
+#include "RightSide.h"
 /******************************************************************
 *                                                                 *
 *  WinMain                                                        *
@@ -43,9 +44,11 @@ int WINAPI WinMain(
 			if (SUCCEEDED(app.Initialize()))
 			{
 				MainTitle mainTitle;
+				RightSide rightSide;
 				app.AddChild(&mainTitle);
-
-				auto feels = Relationship::GetInstance()->GetFeels();
+				app.AddChild(&rightSide);
+				
+				/*auto feels = Relationship::GetInstance()->GetFeels();
 				auto works = Relationship::GetInstance()->GetWorks();
 				std::vector<D2D_POINT_2F*>feelsPositions;
 				std::vector<D2D_POINT_2F*>worksPositions;
@@ -102,6 +105,7 @@ int WINAPI WinMain(
 							app.AddChild(new Line(feelPositoin, workPosition));
 					}
 				}
+*/
 
 				app.RunMessageLoop();
 			}

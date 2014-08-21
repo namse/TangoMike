@@ -18,6 +18,14 @@ public:
 		fontSize_ = size;
 	}
 
+	void SetTextAlignment(DWRITE_TEXT_ALIGNMENT align){
+		textAlignment_ = align;
+	}
+
+	void SetMaxWidthAndHeight(D2D1_POINT_2F size){
+		maxWidthAndHeight = size;
+	}
+
 private:
 	
 private:
@@ -26,6 +34,7 @@ private:
 	float fontSize_;
 	DWRITE_TEXT_ALIGNMENT textAlignment_;
 	DWRITE_PARAGRAPH_ALIGNMENT paragraphAlignment_;
+	D2D1_POINT_2F maxWidthAndHeight;
 };
 
 float DetermineMinWidth(float maxWidth, float maxHeight, IDWriteTextLayout * pTextLayout);

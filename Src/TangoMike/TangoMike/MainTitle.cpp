@@ -44,18 +44,21 @@ void MainTitle::LoadTextFromXml()
 		word1_.SetPosition(
 			D2D1::Point2F(xmlWord1.attribute(L"Left").as_int(), xmlWord1.attribute(L"Top").as_int()));
 		word1_.SetFontSize(xmlWord1.attribute(L"FontSize").as_float());
+		word1_.SetMaxWidthAndHeight(D2D1::Point2F(1000.f, 1000.f));
 
 		auto xmlWord2 = xmlMainTitle.child(L"Word2");
 		word2_.SetContents(xmlWord2.attribute(L"Contents").value());
 		word2_.SetPosition(
 			D2D1::Point2F(xmlWord2.attribute(L"Left").as_int(), xmlWord2.attribute(L"Top").as_int()));
 		word2_.SetFontSize(xmlWord2.attribute(L"FontSize").as_float());
+		word2_.SetMaxWidthAndHeight(D2D1::Point2F(1000.f, 1000.f));
 
 		auto xmlWord3 = xmlMainTitle.child(L"Word3");
 		word3_.SetContents(xmlWord3.attribute(L"Contents").value());
 		word3_.SetPosition(
 			D2D1::Point2F(xmlWord3.attribute(L"Left").as_int(), xmlWord3.attribute(L"Top").as_int()));
 		word3_.SetFontSize(xmlWord3.attribute(L"FontSize").as_float());
+		word3_.SetMaxWidthAndHeight(D2D1::Point2F(1000.f, 1000.f));
 
 	}
 	else

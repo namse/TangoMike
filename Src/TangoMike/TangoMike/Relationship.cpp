@@ -10,6 +10,17 @@ Relationship::Relationship()
 
 Relationship::~Relationship()
 {
+	for each (auto& feel in feels_)
+	{
+		delete feel;
+	}
+	for each(auto& work in works_)
+	{
+		delete work;
+	}
+
+	feels_.clear();
+	works_.clear();
 }
 
 bool Relationship::LoadDataFromFile(std::string filename)
@@ -24,16 +35,19 @@ bool Relationship::LoadDataFromFile(std::string filename)
 
 	int feelCount, workCount;
 	std::wstring nameTemp;
+	std::wstring englishNameTemp;
+	float fontSizeTemp;
+	float englishFontSizeTemp;
 	ifs >> feelCount >> workCount;
 	for (int i = 0; i < feelCount; i++)
 	{
-		ifs >> nameTemp;
-		feels_.push_back(new Feel(nameTemp, feels_.size()));
+		ifs >> nameTemp >> fontSizeTemp >> englishNameTemp >> englishFontSizeTemp;
+		feels_.push_back(new Feel(feels_.size(), nameTemp, fontSizeTemp, englishNameTemp, englishFontSizeTemp));
 	}
-	for (int i = 0; i < feelCount; i++)
+	for (int i = 0; i < workCount; i++)
 	{
-		ifs >> nameTemp;
-		works_.push_back(new Work(nameTemp, works_.size()));
+		ifs >> nameTemp >> fontSizeTemp >> englishNameTemp >> englishFontSizeTemp;
+		works_.push_back(new Work(works_.size(), nameTemp, fontSizeTemp, englishNameTemp, englishFontSizeTemp));
 	}
 
 

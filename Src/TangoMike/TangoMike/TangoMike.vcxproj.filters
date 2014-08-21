@@ -44,8 +44,14 @@
     <ClInclude Include="MainTitle.h">
       <Filter>ShowItems\LeftSide\MainTitle</Filter>
     </ClInclude>
-    <ClInclude Include="tinyxml2.h">
+    <ClInclude Include="pugiconfig.hpp">
       <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="pugixml.hpp">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="WordSprite.h">
+      <Filter>ShowItems\RightSide\WordSprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -82,8 +88,11 @@
     <ClCompile Include="MainTitle.cpp">
       <Filter>ShowItems\LeftSide\MainTitle</Filter>
     </ClCompile>
-    <ClCompile Include="tinyxml2.cpp">
+    <ClCompile Include="pugixml.cpp">
       <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="WordSprite.cpp">
+      <Filter>ShowItems\RightSide\WordSprite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -141,5 +150,14 @@
     <Filter Include="Components\Number">
       <UniqueIdentifier>{fb1b4600-0cdc-40a9-a201-0b6cd232fa39}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ShowItems\RightSide\WordSprite">
+      <UniqueIdentifier>{b2e8f584-63c3-411c-a608-d196d09421e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShowItems\RightSide\WordSpriteCollection">
+      <UniqueIdentifier>{493a0571-f984-4cca-a7e2-2a618e22e496}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="positionInfo.xml" />
   </ItemGroup>
 </Project>

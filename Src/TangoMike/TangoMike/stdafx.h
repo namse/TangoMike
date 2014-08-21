@@ -36,6 +36,7 @@
 
 #define WIN32_LEAN_AND_MEAN     // Exclude rarely-used stuff from Windows headers
 
+#define _CRT_SECURE_NO_WARNINGS
 // Windows 헤더 파일:
 #include <windows.h>
 
@@ -72,7 +73,12 @@
 #include <list>
 #include <cstdlib>
 #include <ctime>
+#include <atlconv.h>
 
+
+////
+#include "pugiconfig.hpp"
+#include "pugixml.hpp"
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -136,6 +142,7 @@ namespace SampleType
 	};
 }
 
+#define XML_FILE_NAME L"positionInfo.xml"
 
 
 //Device-Dependent Resources

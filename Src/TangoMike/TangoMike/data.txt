@@ -1,21 +1,34 @@
-10	10
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+18 15
+소통	27	Communication	75.624
+참여	27	Participation	60.796
+초월	27	Transcendence	72.753
+일상	27	Everydayness	66.703
+창조	27	Creativity	46.387
+확장	27	Expansion	48.84
+경계	27	Boundary	46.397
+관계	27	Relationship	59.355
+시선	27	Perspective	56.198
+공감	27	Understanding	70.784
+대중	27	Public	28.907
+접촉	27	Contact	37.103
+이동	27	Movement	51.766
+변화	27	Change	36.047
+조화	27	Harmony	44.153
+만남	27	Encounter	48.586
+연결	27	Connection	54.186
+대화	27	Dialogue	42.053
+우리_나라	58.499	My/Our_Country	77.362
+디에고_좌상	71.999	Diego_Seated	63.843
+마크로스코-무제	103.049	Mark_Rothko_-_Untitled	108.546
+일련의_의도된_전개	116.999	Directed_Development_Array	136.661
+픽셀-중첩된_사슴_#6	126.403	PixCell-Double_Deer #6	110.746
+q0	14.91	q0	12.672
+고려청자_유약 #1#2	118.709	Goryeo_Green_Glaze #1#2	122.626
+심비오인테스튜브타임 	139.499	Symbiointestubetime	103.409
+F#_단조_실험	78.989	Experiment_in_F#_Minor	111.729
+데모_스테이션_No.5	119.474	Demo_Station_No.5	90.188
+추상적_움직임	85.499	Abstract_Weave	76.13
+카펫_위의_머리카락	116.999	Hair_on_Carpet	68.859
+잇!태원_44.145	It!Taewon	47.079
+연금술	40.5	Alchemy	41.909
+중력의_계단	71.999	Gravity_Stairs	64.833

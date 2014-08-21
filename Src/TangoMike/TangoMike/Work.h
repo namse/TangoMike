@@ -4,7 +4,7 @@
 class Work : public Object
 {
 public:
-	Work(std::wstring name, int id);
+	Work(int id, std::wstring name, float fontSize, std::wstring englishName, float englishFontSize);
 	~Work();
 };
 

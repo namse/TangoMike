@@ -4,7 +4,7 @@
 class Feel : public Object
 {
 public:
-	Feel(std::wstring name, int id);
+	Feel(int id, std::wstring name, float fontSize, std::wstring englishName, float englishFontSize);
 	~Feel();
 };
 

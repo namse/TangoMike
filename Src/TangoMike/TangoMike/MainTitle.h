@@ -12,8 +12,10 @@ public:
 	void Update(float dTime);
 	void Render();
 
+private:
+	void LoadTextFromXml();
 
 private:
-	Word word1, word2, word3;
+	Word word1_, word2_, word3_;
 };
 

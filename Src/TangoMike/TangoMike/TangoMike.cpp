@@ -10,6 +10,7 @@
 #include "Relationship.h"
 #include "Word.h"
 #include "Line.h"
+#include "MainTitle.h"
 /******************************************************************
 *                                                                 *
 *  WinMain                                                        *
@@ -18,6 +19,7 @@
 *                                                                 *
 ******************************************************************/
 
+void DevConsoleCreate();
 int WINAPI WinMain(
 	HINSTANCE /* hInstance */,
 	HINSTANCE /* hPrevInstance */,
@@ -25,6 +27,7 @@ int WINAPI WinMain(
 	int /* nCmdShow */
 	)
 {
+	DevConsoleCreate();
 	std::srand(unsigned(std::time(0)));
 	Relationship::GetInstance()->LoadDataFromFile("data.txt");
 
@@ -39,6 +42,8 @@ int WINAPI WinMain(
 
 			if (SUCCEEDED(app.Initialize()))
 			{
+				MainTitle mainTitle;
+				app.AddChild(&mainTitle);
 
 				auto feels = Relationship::GetInstance()->GetFeels();
 				auto works = Relationship::GetInstance()->GetWorks();
@@ -105,4 +110,41 @@ int WINAPI WinMain(
 	}
 
 	return 0;
+}
+void DevConsoleCreate(){
+
+	CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+	int consoleHandleR, consoleHandleW;
+	long stdioHandle;
+	FILE *fptr;
+
+	AllocConsole();
+	std::wstring strW = L"Dev Console";
+	SetConsoleTitle(strW.c_str());
+
+	EnableMenuItem(GetSystemMenu(GetConsoleWindow(), FALSE), SC_CLOSE, MF_GRAYED);
+	DrawMenuBar(GetConsoleWindow());
+
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &consoleInfo);
+	
+	freopen("conin$", "r", stdin);
+	freopen("conout$", "w", stdout);
+	freopen("conout$", "w", stderr);
+	/*
+	stdioHandle = (long)GetStdHandle(STD_INPUT_HANDLE);
+	consoleHandleR = _open_osfhandle(stdioHandle, _O_TEXT);
+	fptr = _fdopen(consoleHandleR, "r");
+	*stdin = *fptr;
+	setvbuf(stdin, NULL, _IONBF, 0);
+
+	stdioHandle = (long)GetStdHandle(STD_OUTPUT_HANDLE);
+	consoleHandleW = _open_osfhandle(stdioHandle, _O_TEXT);
+	fptr = _fdopen(consoleHandleW, "w");
+	*stdout = *fptr;
+	setvbuf(stdout, NULL, _IONBF, 0);
+
+	stdioHandle = (long)GetStdHandle(STD_ERROR_HANDLE);
+	*stderr = *fptr;
+	setvbuf(stderr, NULL, _IONBF, 0);*/
+
 }

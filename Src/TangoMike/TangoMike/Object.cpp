@@ -3,6 +3,7 @@
 
 
 Object::Object()
+	:name_(L""), englishName_(L"")
 {
 }
 

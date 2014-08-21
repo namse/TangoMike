@@ -3,8 +3,12 @@
 
 
 
-Work::Work(std::wstring name, int id) :Object()
+Work::Work(int id, std::wstring name, float fontSize, std::wstring englishName, float englishFontSize)
+	:Object()
 {
+	englishName_ = englishName;
+	englishFontSize_ = englishFontSize;
+	fontSize_ = fontSize;
 	name_ = name;
 	id_ = id;
 }

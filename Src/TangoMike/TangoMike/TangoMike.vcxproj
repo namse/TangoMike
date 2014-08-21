@@ -87,13 +87,15 @@
     <ClInclude Include="Line.h" />
     <ClInclude Include="MainTitle.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="pugiconfig.hpp" />
+    <ClInclude Include="pugixml.hpp" />
     <ClInclude Include="Relationship.h" />
     <ClInclude Include="RingBuffer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TangoMike.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Word.h" />
+    <ClInclude Include="WordSprite.h" />
     <ClInclude Include="Work.h" />
   </ItemGroup>
   <ItemGroup>
@@ -103,15 +105,19 @@
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="MainTitle.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="pugixml.cpp" />
     <ClCompile Include="Relationship.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TangoMike.cpp" />
-    <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Word.cpp" />
+    <ClCompile Include="WordSprite.cpp" />
     <ClCompile Include="Work.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="positionInfo.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

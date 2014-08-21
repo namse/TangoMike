@@ -14,6 +14,10 @@ public:
 	void SetContents(std::wstring contents){
 		contents_ = contents;
 	}
+	void SetFontSize(float size) {
+		fontSize_ = size;
+	}
+
 private:
 	
 private:

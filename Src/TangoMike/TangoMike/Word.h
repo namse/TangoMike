@@ -26,6 +26,9 @@ public:
 		maxWidthAndHeight = size;
 	}
 
+	void DoFontSizeAnimate(float fontSize, float duration);
+
+	std::wstring GetContents(){ return contents_; }
 private:
 	
 private:
@@ -35,6 +38,8 @@ private:
 	DWRITE_TEXT_ALIGNMENT textAlignment_;
 	DWRITE_PARAGRAPH_ALIGNMENT paragraphAlignment_;
 	D2D1_POINT_2F maxWidthAndHeight;
+
+	Animation<float> fontSizeAnimation_;
 };
 
 float DetermineMinWidth(float maxWidth, float maxHeight, IDWriteTextLayout * pTextLayout);

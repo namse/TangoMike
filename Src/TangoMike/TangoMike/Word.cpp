@@ -6,7 +6,8 @@ Word::Word()
 	paragraphAlignment_(DWRITE_PARAGRAPH_ALIGNMENT_NEAR),
 	contents_(L""),
 	fontName_(L"Calibri"),
-	fontSize_(20.f)
+	fontSize_(20.f),
+	fontSizeAnimation_(&fontSize_)
 {
 	position_ = D2D1::Point2F();
 }
@@ -15,7 +16,8 @@ Word::Word(std::wstring contents, D2D_POINT_2F position)
 	paragraphAlignment_(DWRITE_PARAGRAPH_ALIGNMENT_NEAR),
 	contents_(contents),
 	fontName_(L"Calibri"),
-	fontSize_(20.f)
+	fontSize_(20.f),
+	fontSizeAnimation_(&fontSize_)
 {
 	position_ = position;
 }
@@ -75,4 +77,9 @@ void Word::Render()
 void Word::Update(float dTime)
 {
 	Component::Update(dTime);
+}
+
+void Word::DoFontSizeAnimate(float fontSize, float duration)
+{
+	fontSizeAnimation_.DoAnimate(fontSize, duration);
 }

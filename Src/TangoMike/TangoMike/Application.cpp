@@ -639,7 +639,7 @@ HRESULT Application::OnRender()
 				//hr = RenderD2DContentIntoSurface();
 				if (SUCCEEDED(hr))
 				{
-					if (m_drawLoupe)
+					/*if (m_drawLoupe)
 					{
 						hr = RenderLoupe();
 					}
@@ -647,7 +647,7 @@ HRESULT Application::OnRender()
 					if (SUCCEEDED(hr))
 					{
 						//hr = RenderTextInfo();
-					}
+					}*/
 					Render();
 				}
 
@@ -714,7 +714,7 @@ PCWSTR Application::GetAntialiasModeString()
 HRESULT Application::RenderD2DContentIntoSurface(float time)
 {
 	HRESULT hr = S_OK;
-	static DWORD dwTimeStart = 0;
+	/*static DWORD dwTimeStart = 0;
 	static DWORD dwTimeLast = 0;
 
 	D2D1_SIZE_F rtSize = m_pBackBufferRT->GetSize();
@@ -750,7 +750,7 @@ HRESULT Application::RenderD2DContentIntoSurface(float time)
 	
 	if (SUCCEEDED(hr))
 	{
-		/*
+		
 		if (m_sampleType == SampleType::Filled)
 		{
 			for (UINT i = 0; i < m_numSquares; ++i)
@@ -806,12 +806,12 @@ HRESULT Application::RenderD2DContentIntoSurface(float time)
 			}
 
 		}
-		*/
+		
 		hr = m_pBackBufferRT->EndDraw();
 
 		pBrush->Release();
 	}
-
+	*/
 	return hr;
 }
 
@@ -828,6 +828,7 @@ HRESULT Application::RenderLoupe()
 {
 	HRESULT hr = S_OK;
 
+	/*
 	//
 	// Read back the current contents of the swap chain buffer.
 	//
@@ -920,7 +921,7 @@ HRESULT Application::RenderLoupe()
 		}
 
 		pBackBufferResource->Release();
-	}
+	}*/
 
 	return hr;
 }
@@ -1121,12 +1122,12 @@ void Application::OnMouseMove(LPARAM lParam)
 
 void Application::OnWheel(WPARAM wParam)
 {
-	m_logZoom += static_cast<float>(GET_WHEEL_DELTA_WPARAM(wParam));
+	/*m_logZoom += static_cast<float>(GET_WHEEL_DELTA_WPARAM(wParam));
 
 	m_logZoom = min(
 		max(m_logZoom, sc_loupeMinLogZoom*WHEEL_DELTA),
 		sc_loupeMaxLogZoom*WHEEL_DELTA
-		);
+		);*/
 }
 
 /******************************************************************

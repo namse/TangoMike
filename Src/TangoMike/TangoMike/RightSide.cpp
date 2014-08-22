@@ -31,6 +31,7 @@ void RightSide::Update(float dTime)
 
 void RightSide::SetArrange()
 {
+	OffFocus();
 	float angle = 0.f;
 	float initAngle = M_PI_2;
 	float dAngle = M_PI * 2.f / wordSpriteCollection_.GetWordSprites().size();
@@ -73,10 +74,51 @@ void RightSide::SetArrange()
 
 void RightSide::SetIdle()
 {
+	OffFocus();
 	for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
 	{
 		float wordAngle = 0.f;// M_PI_2;
 		wordSprite->SetShuffle(true);
 		wordSprite->DoAnimate(ROTATION, &(wordAngle), 2.f);
+	}
+}
+
+void RightSide::SetFocus()
+{
+	for (auto &selectedObject : selectedObjects_)
+	{
+		WordSprite* selectedWordSprite = nullptr;
+		for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
+		{
+			if (wordSprite->GetKoreanWord()->GetContents().compare(selectedObject->GetName()) == 0)
+			{
+				selectedWordSprite = wordSprite;
+				break;
+			}
+		}
+		if (selectedWordSprite != nullptr)
+		{
+			selectedWordSprite->SetFocus(true);
+		}
+	}
+}
+
+void RightSide::OffFocus()
+{
+	for (auto &selectedObject : selectedObjects_)
+	{
+		WordSprite* selectedWordSprite = nullptr;
+		for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
+		{
+			if (wordSprite->GetKoreanWord()->GetContents().compare(selectedObject->GetName()) == 0)
+			{
+				selectedWordSprite = wordSprite;
+				break;
+			}
+		}
+		if (selectedWordSprite != nullptr)
+		{
+			selectedWordSprite->SetFocus(false);
+		}
 	}
 }

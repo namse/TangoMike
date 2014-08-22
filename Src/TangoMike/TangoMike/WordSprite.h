@@ -31,8 +31,16 @@ public:
 		isShuffle_ = isShuffle;
 		shuffleVelocity_ = D2D1::Point2F();
 	}
+
+	Word* GetKoreanWord(){ return &koreanWord_; }
+	Word* GetEnglishWord(){ return &englishWord_; }
+
+	void SetFocus(bool isFocus){
+		isFocus_ = isFocus;
+	}
 private:
 	void OnShuffle();
+	void OnFocus();
 private:
 	Word koreanWord_;
 	Word englishWord_;
@@ -42,5 +50,7 @@ private:
 
 	bool isShuffle_;
 	D2D_POINT_2F shuffleVelocity_;
+
+	bool isFocus_;
 };
 

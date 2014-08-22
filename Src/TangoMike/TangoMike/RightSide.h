@@ -17,7 +17,11 @@ public:
 	void SetFocus();
 	void SetIdle();
 
+	void OffFocus();
+	void OffShuffle();
 private:
 	WordSpriteCollection wordSpriteCollection_;
+
+	std::vector<Object*> selectedObjects_;
 };
 

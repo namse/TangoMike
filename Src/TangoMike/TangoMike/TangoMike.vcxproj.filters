@@ -65,6 +65,9 @@
     <ClInclude Include="d2dPointOperator.h">
       <Filter>Components\Operator</Filter>
     </ClInclude>
+    <ClInclude Include="d2dColorOperator.h">
+      <Filter>Components\Operator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -113,6 +116,9 @@
       <Filter>ShowItems\RightSide\WordSpriteCollection</Filter>
     </ClCompile>
     <ClCompile Include="d2dPointoperator.cpp">
+      <Filter>Components\Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="d2dColorOperator.cpp">
       <Filter>Components\Operator</Filter>
     </ClCompile>
   </ItemGroup>

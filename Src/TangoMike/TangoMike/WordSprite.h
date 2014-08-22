@@ -37,10 +37,25 @@ public:
 
 	void SetFocus(bool isFocus){
 		isFocus_ = isFocus;
+		if (isFocus == true)
+			OnFocus();
+		else
+			OffFocus();
+	}
+
+	bool IsFeel()
+	{
+		return isFeel_;
+	}
+
+	bool IsWork()
+	{
+		return !IsFeel();
 	}
 private:
 	void OnShuffle();
 	void OnFocus();
+	void OffFocus();
 private:
 	Word koreanWord_;
 	Word englishWord_;
@@ -52,5 +67,7 @@ private:
 	D2D_POINT_2F shuffleVelocity_;
 
 	bool isFocus_;
+
+	bool isFeel_;
 };
 

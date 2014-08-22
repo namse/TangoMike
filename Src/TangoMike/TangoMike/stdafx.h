@@ -128,6 +128,10 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 #define SHUFFLE_ACCELERATION 1.f
 #define SHUFFLE_MAX_VELOCITY 5.f
 
+#define FONTCOLOR_FEEL_FOCUS D2D1::ColorF( 0x84d3a2)
+#define FONTCOLOR_WORK_FOCUS D2D1::ColorF( 0x84d3a2)
+#define FONTCOLOR_FEEL_UNFOCUS D2D1::ColorF( 0x84d3a2, 0.35f)
+#define FONTCOLOR_WORK_UNFOCUS D2D1::ColorF( 0x84d3a2, 0.35f)
 #include "ringbuffer.h"
 
 namespace MyAntialiasMode

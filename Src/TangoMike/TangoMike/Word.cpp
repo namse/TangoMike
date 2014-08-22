@@ -7,7 +7,8 @@ Word::Word()
 	contents_(L""),
 	fontName_(L"Calibri"),
 	fontSize_(20.f),
-	fontSizeAnimation_(&fontSize_)
+	fontSizeAnimation_(&fontSize_),
+	fontColorAnimation_(&fontColor_)
 {
 	position_ = D2D1::Point2F();
 }
@@ -17,7 +18,8 @@ Word::Word(std::wstring contents, D2D_POINT_2F position)
 	contents_(contents),
 	fontName_(L"Calibri"),
 	fontSize_(20.f),
-	fontSizeAnimation_(&fontSize_)
+	fontSizeAnimation_(&fontSize_),
+	fontColorAnimation_(&fontColor_)
 {
 	position_ = position;
 }
@@ -82,4 +84,9 @@ void Word::Update(float dTime)
 void Word::DoFontSizeAnimate(float fontSize, float duration)
 {
 	fontSizeAnimation_.DoAnimate(fontSize, duration);
+}
+
+void Word::DoFontColorAnimate(D2D_COLOR_F color, float duration)
+{
+	fontColorAnimation_.DoAnimate(color, duration);
 }

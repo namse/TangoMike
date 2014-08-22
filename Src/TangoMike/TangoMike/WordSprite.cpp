@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "WordSprite.h"
+#include "Relationship.h"
 
 
 
@@ -19,6 +20,10 @@ WordSprite::WordSprite(Object& object)
 	englishWord_.SetMaxWidthAndHeight(D2D1::Point2F(maxWidth, ENGLISH_IDLE_FONT_SIZE));
 	englishSize_ = D2D1::Point2F(object.GetEnglishWidth(), ENGLISH_IDLE_FONT_SIZE);
 
+	if (object.GetId() <= Relationship::GetInstance()->GetFeels().size())
+		isFeel_ = true;
+	else
+		isFeel_ = false;
 
 	AddChild(&koreanWord_);
 	AddChild(&englishWord_);
@@ -55,5 +60,39 @@ void WordSprite::OnShuffle()
 		}
 
 		DoAnimate(POSITION, &(position_ + shuffleVelocity_), 1.f);
+	}
+}
+
+void WordSprite::OnFocus()
+{
+	if (isFocus_ == true)
+	{
+		if (IsFeel() == true)
+		{
+			koreanWord_.DoFontColorAnimate(FONTCOLOR_FEEL_FOCUS, 1.f);
+			englishWord_.DoFontColorAnimate(FONTCOLOR_FEEL_FOCUS, 1.f);
+		}
+		else
+		{
+			koreanWord_.DoFontColorAnimate(FONTCOLOR_WORK_FOCUS, 1.f);
+			englishWord_.DoFontColorAnimate(FONTCOLOR_WORK_FOCUS, 1.f);
+		}
+	}
+}
+
+void WordSprite::OffFocus()
+{
+	if (isFocus_ == true)
+	{
+		if (IsFeel() == true)
+		{
+			koreanWord_.DoFontColorAnimate(FONTCOLOR_FEEL_UNFOCUS, 1.f);
+			englishWord_.DoFontColorAnimate(FONTCOLOR_FEEL_UNFOCUS, 1.f);
+		}
+		else
+		{
+			koreanWord_.DoFontColorAnimate(FONTCOLOR_WORK_UNFOCUS, 1.f);
+			englishWord_.DoFontColorAnimate(FONTCOLOR_WORK_UNFOCUS, 1.f);
+		}
 	}
 }

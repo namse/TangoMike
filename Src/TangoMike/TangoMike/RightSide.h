@@ -13,9 +13,9 @@ public:
 	void Render();
 	void Update(float dTime);
 
-	void OnArrange();
-	void OnFocus();
-	void OnIdle();
+	void SetArrange();
+	void SetFocus();
+	void SetIdle();
 
 private:
 	WordSpriteCollection wordSpriteCollection_;

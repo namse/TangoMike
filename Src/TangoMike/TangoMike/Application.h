@@ -1,6 +1,8 @@
 #pragma once
 #include "stdafx.h"
 #include "Component.h"
+#include "RightSide.h"
+#include "MainTitle.h"
 /******************************************************************
 *                                                                 *
 *  Application                                                  *
@@ -84,5 +86,9 @@ private:
 
 	float m_prevTime;
 	std::clock_t m_prevClock;
+
+
+	MainTitle m_MainTitle;
+	RightSide m_RightSide;
 };
 

@@ -27,6 +27,12 @@ public:
 		return max(koreanSize_.x, englishSize_.x);
 	}
 
+	void SetShuffle(bool isShuffle){
+		isShuffle_ = isShuffle;
+		shuffleVelocity_ = D2D1::Point2F();
+	}
+private:
+	void OnShuffle();
 private:
 	Word koreanWord_;
 	Word englishWord_;
@@ -34,5 +40,7 @@ private:
 	D2D1_POINT_2F koreanSize_;
 	D2D1_POINT_2F englishSize_;
 
+	bool isShuffle_;
+	D2D_POINT_2F shuffleVelocity_;
 };
 

@@ -74,6 +74,10 @@ m_prevTime(0.f)
 	QueryPerformanceCounter(&time);
 
 	m_timeDelta = -time.QuadPart;
+
+
+	AddChild(&m_MainTitle);
+	AddChild(&m_RightSide);
 }
 
 /******************************************************************
@@ -567,12 +571,9 @@ void Application::RunMessageLoop()
 			DispatchMessage(&msg);
 		}
 
-		auto nowClock = std::clock();
-		float dTime = (float)(nowClock - m_prevClock) / (float)CLOCKS_PER_SEC;
-		Update(dTime);
-		m_prevClock = nowClock;
 
-		/*LARGE_INTEGER time;
+
+		LARGE_INTEGER time;
 		LARGE_INTEGER frequency;
 		QueryPerformanceCounter(&time);
 		QueryPerformanceFrequency(&frequency);
@@ -587,8 +588,15 @@ void Application::RunMessageLoop()
 		{
 			floatTime = static_cast<float>(m_pausedTime + m_timeDelta) / static_cast<float>(frequency.QuadPart);
 		}
+		Update(floatTime);
 
-		m_times.Add(time.QuadPart);*/
+		//m_times.Add(time.QuadPart);
+/*
+
+		auto nowClock = std::clock();
+		float dTime = (float)(nowClock - m_prevClock) / (float)CLOCKS_PER_SEC;
+		Update(dTime);
+		m_prevClock = nowClock;*/
 	}
 }
 
@@ -992,25 +1000,27 @@ void Application::OnKeyDown(SHORT vkey)
 	{
 	case 'A':
 	case VK_RIGHT:
-		m_antialiasMode =
+		m_RightSide.SetIdle();
+	/*	m_antialiasMode =
 			static_cast<MyAntialiasMode::Enum>(
 			(m_antialiasMode + 1) % MyAntialiasMode::Count
 			);
 
 		// This sample could be smarter about only discarding resources it doesn't
 		// need in order to make transitions from one state to another more quickly.
-		DiscardDeviceResources();
-		break;
+		DiscardDeviceResources();*/
+			break;
 
 	case VK_LEFT:
-		m_antialiasMode =
+		m_RightSide.SetArrange();
+		/*m_antialiasMode =
 			static_cast<MyAntialiasMode::Enum>(
 			(m_antialiasMode + MyAntialiasMode::Count - 1) % MyAntialiasMode::Count
 			);
 
 		// This sample could be smarter about only discarding resources it doesn't
 		// need in order to make transitions from one state to another more quickly.
-		DiscardDeviceResources();
+		DiscardDeviceResources();*/
 		break;
 
 	case VK_SPACE:

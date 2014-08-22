@@ -43,10 +43,6 @@ int WINAPI WinMain(
 
 			if (SUCCEEDED(app.Initialize()))
 			{
-				MainTitle mainTitle;
-				RightSide rightSide;
-				app.AddChild(&mainTitle);
-				app.AddChild(&rightSide);
 				
 				/*auto feels = Relationship::GetInstance()->GetFeels();
 				auto works = Relationship::GetInstance()->GetWorks();

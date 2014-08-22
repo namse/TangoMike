@@ -5,7 +5,7 @@ public:
 	Animation(T* object)
 	{
 		object_ = object;
-		isAnimating = false;
+		isAnimating_ = false;
 	}
 
 	~Animation()
@@ -15,16 +15,17 @@ public:
 
 	void DoAnimate(T nextObject, float duration)
 	{
+		*object_ = nextObject_;
 		prevObject_ = *object_;
 		nextObject_ = nextObject;
-		isAnimating = true;
+		isAnimating_ = true;
 		duration_ = duration;
 		currentTime_ = 0.f;
 	}
 
 	void OnAnimate(float dTime)
 	{
-		if (isAnimating == true)
+		if (isAnimating_ == true)
 		{
 			currentTime_ += dTime;
 			if (currentTime_ >= duration_)
@@ -43,13 +44,13 @@ private:
 	void OnEnd()
 	{
 		currentTime_ = duration_;
-		isAnimating = false;
+		isAnimating_ = false;
 		*object_ = nextObject_;
 	}
 
 private:
 	T* object_;
-	bool isAnimating;
+	bool isAnimating_;
 	float duration_;
 	float currentTime_;
 	T prevObject_;

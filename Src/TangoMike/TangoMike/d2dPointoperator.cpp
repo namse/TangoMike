@@ -22,3 +22,8 @@ D2D_POINT_2F operator*(const D2D_POINT_2F lhs, const float& rhs){
 	temp.y *= rhs;
 	return temp;
 }
+
+float D2DPointSize(const D2D_POINT_2F point)
+{
+	return pow((point.x * point.x + point.y * point.y), 0.5);
+}

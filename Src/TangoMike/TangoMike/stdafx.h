@@ -125,6 +125,9 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 #define ENGLISH_IDLE_FONT_SIZE 13.f
 #define ENGLISH_FOCUS_FONT_SIZE 22.f
 
+#define SHUFFLE_ACCELERATION 1.f
+#define SHUFFLE_MAX_VELOCITY 5.f
+
 #include "ringbuffer.h"
 
 namespace MyAntialiasMode

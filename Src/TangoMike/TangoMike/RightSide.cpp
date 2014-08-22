@@ -9,7 +9,7 @@ RightSide::RightSide()
 	wordSpriteCollection_.SetCenter(D2D1::Point2F(RADIUS, RADIUS));
 	AddChild(&wordSpriteCollection_);
 
-	OnArrange();
+	SetArrange();
 }
 
 
@@ -29,7 +29,7 @@ void RightSide::Update(float dTime)
 	Component::Update(dTime);
 }
 
-void RightSide::OnArrange()
+void RightSide::SetArrange()
 {
 	float angle = 0.f;
 	float initAngle = M_PI_2;
@@ -63,14 +63,20 @@ void RightSide::OnArrange()
 			wordSprite->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_TRAILING);
 		}
 
-		wordSprite->DoAnimate(POSITION, &(D2D1::Point2F(x, y)), 2.f);
-		wordSprite->DoAnimate(ROTATION, &(wordAngle), 2.f);
+		wordSprite->SetShuffle(false);
+		wordSprite->DoAnimate(POSITION, &(D2D1::Point2F(x, y)), 10.f);
+		wordSprite->DoAnimate(ROTATION, &(wordAngle), 10.f);
 		//wordSprite->SetPosition(D2D1::Point2F(x, y));
 		//wordSprite->SetRotation(wordAngle);
 	}
 }
 
-void RightSide::OnIdle()
+void RightSide::SetIdle()
 {
-
+	for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
+	{
+		float wordAngle = 0.f;// M_PI_2;
+		wordSprite->SetShuffle(true);
+		wordSprite->DoAnimate(ROTATION, &(wordAngle), 2.f);
+	}
 }

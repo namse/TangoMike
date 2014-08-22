@@ -37,4 +37,23 @@ void WordSprite::Render()
 void WordSprite::Update(float dTime)
 {
 	Component::Update(dTime);
+	OnShuffle();
+}
+
+void WordSprite::OnShuffle()
+{
+	if (isShuffle_ == true)
+	{
+		float angle = 2 * M_PI * (rand() / (float)RAND_MAX);
+		shuffleVelocity_ = shuffleVelocity_ + D2D1::Point2F(cos(angle) * SHUFFLE_ACCELERATION, sin(angle) * SHUFFLE_ACCELERATION);
+
+		float pointSize = D2DPointSize(shuffleVelocity_);
+		if (pointSize > SHUFFLE_MAX_VELOCITY)
+		{
+			shuffleVelocity_.x = shuffleVelocity_.x * SHUFFLE_MAX_VELOCITY / pointSize;
+			shuffleVelocity_.y = shuffleVelocity_.y * SHUFFLE_MAX_VELOCITY / pointSize;
+		}
+
+		DoAnimate(POSITION, &(position_ + shuffleVelocity_), 1.f);
+	}
 }

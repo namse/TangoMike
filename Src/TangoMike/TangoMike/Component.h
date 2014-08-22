@@ -41,5 +41,14 @@ protected:
 	D2D_MATRIX_3X2_F matrix_;
 
 	bool isVisible_;
+
+
+	// below, Animation Section
+
+	Animation<D2D_POINT_2F> positionAnimation_;
+	Animation<D2D_POINT_2F> centerAnimation_;
+	Animation<D2D_POINT_2F> scaleAnimation_;
+	Animation<float> rotationAnimation_;
+
 };
 

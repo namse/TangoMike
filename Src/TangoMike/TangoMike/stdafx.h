@@ -77,8 +77,10 @@
 
 
 ////
+#include "d2dPointOperator.h"
 #include "pugiconfig.hpp"
 #include "pugixml.hpp"
+#include "animation.h"
 
 
 //////////////////////////////////////////////////////////////////////////

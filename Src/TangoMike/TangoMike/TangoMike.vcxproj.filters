@@ -59,6 +59,12 @@
     <ClInclude Include="WordSpriteCollection.h">
       <Filter>ShowItems\RightSide\WordSpriteCollection</Filter>
     </ClInclude>
+    <ClInclude Include="animation.h">
+      <Filter>Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="d2dPointOperator.h">
+      <Filter>Components\Operator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -105,6 +111,9 @@
     </ClCompile>
     <ClCompile Include="WordSpriteCollection.cpp">
       <Filter>ShowItems\RightSide\WordSpriteCollection</Filter>
+    </ClCompile>
+    <ClCompile Include="d2dPointoperator.cpp">
+      <Filter>Components\Operator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +176,12 @@
     </Filter>
     <Filter Include="ShowItems\RightSide\WordSpriteCollection">
       <UniqueIdentifier>{493a0571-f984-4cca-a7e2-2a618e22e496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Animation">
+      <UniqueIdentifier>{b92a262a-6765-46bb-bb43-4d1408c2f95b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Operator">
+      <UniqueIdentifier>{7087e8c5-a71f-4ef5-b442-6bb8939a2cf9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

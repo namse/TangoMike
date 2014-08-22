@@ -4,7 +4,11 @@
 
 Component::Component()
 	: isVisible_(true),
-	matrix_(D2D1::Matrix3x2F::Identity())
+	matrix_(D2D1::Matrix3x2F::Identity()),
+	positionAnimation_(&position_),
+	scaleAnimation_(&scale_),
+	centerAnimation_(&center_),
+	rotationAnimation_(&rotation_)
 {
 	scale_.x = 1.f,	scale_.y = 1.f;
 }
@@ -15,8 +19,17 @@ Component::~Component()
 }
 
 void Component::Update(float dTime)
-{
+{	
+	positionAnimation_.OnAnimate(dTime);
+	scaleAnimation_.OnAnimate(dTime);
+	centerAnimation_.OnAnimate(dTime);
+	rotationAnimation_.OnAnimate(dTime);
 
+
+	for (const auto& child : childs_)
+	{
+		child->Update(dTime);
+	}
 }
 
 void Component::Render()

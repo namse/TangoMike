@@ -81,8 +81,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="animation.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="d2dPointOperator.h" />
     <ClInclude Include="Feel.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="MainTitle.h" />
@@ -103,6 +105,7 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="d2dPointoperator.cpp" />
     <ClCompile Include="Feel.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="MainTitle.cpp" />

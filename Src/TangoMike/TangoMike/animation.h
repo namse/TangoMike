@@ -1,14 +1,14 @@
 template <typename T>
-class Anmation
+class Animation
 {
 public:
-	Anmation(T* object)
+	Animation(T* object)
 	{
 		object_ = object;
 		isAnimating = false;
 	}
 
-	~Anmation()
+	~Animation()
 	{
 
 	}

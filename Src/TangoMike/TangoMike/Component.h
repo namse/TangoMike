@@ -1,5 +1,12 @@
 #pragma once
 #include "stdafx.h"
+enum ANIMATION_TYPE
+{
+	POSITION,
+	ROTATION,
+	SCALE,
+	CENTER,
+};
 class Component
 {
 public:
@@ -29,11 +36,11 @@ public:
 	bool IsVisible()									{ return isVisible_; }
 	void SetVisible(bool isVisible)					{ isVisible_ = isVisible_; }
 
-
+	void DoAnimate(ANIMATION_TYPE type, void* purpose, float duration);
 protected:
 	Component* parent_;
 	std::list<Component*> childs_;
-	
+
 	D2D_POINT_2F position_;
 	D2D_POINT_2F center_;
 	float rotation_;

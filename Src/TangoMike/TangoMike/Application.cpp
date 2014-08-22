@@ -55,7 +55,8 @@ m_paused(false),
 m_pausedTime(0),
 m_drawLoupe(true),
 m_numSquares(sc_defaultNumSquares),
-m_logZoom(sc_loupeDefaultLogZoom*WHEEL_DELTA)
+m_logZoom(sc_loupeDefaultLogZoom*WHEEL_DELTA),
+m_prevTime(0.f)
 {
 	m_pDevice = NULL;
 	m_pSwapChain = NULL;
@@ -556,11 +557,38 @@ void Application::DiscardDeviceResources()
 void Application::RunMessageLoop()
 {
 	MSG msg;
+	ZeroMemory(&msg, sizeof(msg));
 
-	while (GetMessage(&msg, NULL, 0, 0))
+	while (true)
 	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		{
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+
+		auto nowClock = std::clock();
+		float dTime = (float)(nowClock - m_prevClock) / (float)CLOCKS_PER_SEC;
+		Update(dTime);
+		m_prevClock = nowClock;
+
+		/*LARGE_INTEGER time;
+		LARGE_INTEGER frequency;
+		QueryPerformanceCounter(&time);
+		QueryPerformanceFrequency(&frequency);
+
+		float floatTime;
+
+		if (!m_paused)
+		{
+			floatTime = static_cast<float>(time.QuadPart + m_timeDelta) / static_cast<float>(frequency.QuadPart);
+		}
+		else
+		{
+			floatTime = static_cast<float>(m_pausedTime + m_timeDelta) / static_cast<float>(frequency.QuadPart);
+		}
+
+		m_times.Add(time.QuadPart);*/
 	}
 }
 
@@ -586,23 +614,7 @@ HRESULT Application::OnRender()
 
 	if (SUCCEEDED(hr) && m_pBackBufferRT)
 	{
-		LARGE_INTEGER time;
-		LARGE_INTEGER frequency;
-		QueryPerformanceCounter(&time);
-		QueryPerformanceFrequency(&frequency);
-
-		float floatTime;
-
-		if (!m_paused)
-		{
-			floatTime = static_cast<float>(time.QuadPart + m_timeDelta) / static_cast<float>(frequency.QuadPart);
-		}
-		else
-		{
-			floatTime = static_cast<float>(m_pausedTime + m_timeDelta) / static_cast<float>(frequency.QuadPart);
-		}
-
-		m_times.Add(time.QuadPart);
+		
 
 		// Swap chain will tell us how big the back buffer is
 		DXGI_SWAP_CHAIN_DESC swapDesc;
@@ -612,7 +624,11 @@ HRESULT Application::OnRender()
 		{
 			if (m_pBackBufferRT)
 			{
-				hr = RenderD2DContentIntoSurface(floatTime);
+				m_pBackBufferRT->BeginDraw();
+
+				m_pBackBufferRT->Clear(D2D1::ColorF(D2D1::ColorF::Black));
+				hr = m_pBackBufferRT->EndDraw();
+				//hr = RenderD2DContentIntoSurface();
 				if (SUCCEEDED(hr))
 				{
 					if (m_drawLoupe)

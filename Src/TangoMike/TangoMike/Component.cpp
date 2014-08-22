@@ -59,3 +59,29 @@ void Component::AddChild(Component* child)
 	childs_.push_back(child);
 	child->SetParent(this);
 }
+
+
+
+void Component::DoAnimate(ANIMATION_TYPE type, void* purpose, float duration)
+{
+	switch (type)
+	{
+	case POSITION:
+	{
+		positionAnimation_.DoAnimate(*(D2D_POINT_2F*)purpose, duration);
+	}break;
+	case ROTATION:
+	{
+		rotationAnimation_.DoAnimate(*(float*)purpose, duration);
+	}break;
+	case SCALE:
+	{
+		scaleAnimation_.DoAnimate(*(D2D_POINT_2F*)purpose, duration);
+	}break;
+	case CENTER:
+	{
+		centerAnimation_.DoAnimate(*(D2D_POINT_2F*)purpose, duration);
+	}break;
+
+	}
+}

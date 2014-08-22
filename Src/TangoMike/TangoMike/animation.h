@@ -34,7 +34,7 @@ public:
 			}
 			else
 			{
-				*object_ = prevObject_ + (nextObject_ - prevObject_) * (currentTime_ / dTime);
+				*object_ = prevObject_ + (nextObject_ - prevObject_) * (currentTime_ / duration_);
 			}
 		}
 	}

@@ -63,7 +63,14 @@ void RightSide::OnArrange()
 			wordSprite->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_TRAILING);
 		}
 
-		wordSprite->SetPosition(D2D1::Point2F(x, y));
-		wordSprite->SetRotation(wordAngle);
+		wordSprite->DoAnimate(POSITION, &(D2D1::Point2F(x, y)), 2.f);
+		wordSprite->DoAnimate(ROTATION, &(wordAngle), 2.f);
+		//wordSprite->SetPosition(D2D1::Point2F(x, y));
+		//wordSprite->SetRotation(wordAngle);
 	}
+}
+
+void RightSide::OnIdle()
+{
+
 }

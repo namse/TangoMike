@@ -77,7 +77,7 @@ m_prevTime(0.f)
 	m_timeDelta = -time.QuadPart;
 
 
-	AddChild(&m_MainTitle);
+	AddChild(&m_LeftSide);
 	AddChild(&m_RightSide);
 }
 

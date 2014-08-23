@@ -3,7 +3,7 @@
 #include "EventManager.h"
 Relationship* Relationship::pInstance_ = nullptr;
 
-Relationship::Relationship()
+Relationship::Relationship() :totalUser(0)
 {
 	EventManager::GetInstance()->AddEventListener(EVENT_SELECT, this);
 }

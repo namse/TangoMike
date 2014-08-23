@@ -43,6 +43,7 @@ void LineCollection::Render()
 	Component::Render();
 	m_pBackBufferRT->BeginDraw();
 
+	m_pBackBufferRT->SetTransform(matrix_);
 	if (pointBrush_feel_ == nullptr)
 		m_pBackBufferRT->CreateSolidColorBrush(COLOR_FEEL, &pointBrush_feel_);
 	if (pointBrush_work_ == nullptr)

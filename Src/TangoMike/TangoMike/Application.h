@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include "Component.h"
 #include "RightSide.h"
-#include "MainTitle.h"
+#include "LeftSide.h"
 /******************************************************************
 *                                                                 *
 *  Application                                                  *
@@ -88,7 +88,7 @@ private:
 	std::clock_t m_prevClock;
 
 
-	MainTitle m_MainTitle;
+	LeftSide m_LeftSide;
 	RightSide m_RightSide;
 };
 

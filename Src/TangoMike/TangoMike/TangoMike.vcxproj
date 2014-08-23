@@ -99,6 +99,7 @@
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="EventParameter.h" />
     <ClInclude Include="Feel.h" />
+    <ClInclude Include="LeftSide.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="LineCollection.h" />
     <ClInclude Include="MainTitle.h" />
@@ -115,6 +116,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TangoMike.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TotalCount.h" />
     <ClInclude Include="Word.h" />
     <ClInclude Include="WordSprite.h" />
     <ClInclude Include="WordSpriteCollection.h" />
@@ -132,6 +134,7 @@
     <ClCompile Include="EventListener.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="Feel.cpp" />
+    <ClCompile Include="LeftSide.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="LineCollection.cpp" />
     <ClCompile Include="MainTitle.cpp" />
@@ -144,6 +147,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TangoMike.cpp" />
+    <ClCompile Include="TotalCount.cpp" />
     <ClCompile Include="Word.cpp" />
     <ClCompile Include="WordSprite.cpp" />
     <ClCompile Include="WordSpriteCollection.cpp" />

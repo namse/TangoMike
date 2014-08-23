@@ -30,3 +30,5 @@ ID2D1GradientStopCollection *m_pGradientStops = NULL;
 ID2D1LinearGradientBrush *m_pLGBrush = NULL;
 
 PendingAcceptList pendingAcceptList;
+
+IWICImagingFactory* g_pWICFactory = nullptr;

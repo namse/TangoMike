@@ -52,5 +52,7 @@ private:
 	std::map<std::pair<Feel*, Work*>, int> count_;
 	std::vector<Feel*> feels_;
 	std::vector<Work*> works_;
+
+	int totalUser;
 };
 

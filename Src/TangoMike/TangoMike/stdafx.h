@@ -160,6 +160,38 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 
 #define COLOR_FEEL FONTCOLOR_FEEL_FOCUS
 #define COLOR_WORK FONTCOLOR_WORK_FOCUS
+
+#define TITLE_RECT D2D1::RectF(0.f,0.f,120.f,100.f)
+#define TITLE_POSTION D2D1::Point2F(39.f, 53.f)
+
+#define TOTAL_COUNT_CONTENTS_TOTAL_USERS L"Total Users"
+#define TOTAL_COUNT_CONTENTS_TOP_PICKS L"Top Picks : word / work"
+#define TOTAL_COUNT_CONTENTS_TOP_COMMUNION L"Top Communion"
+
+#define TOTAL_COUNT_POSITION_TOTAL_USERS D2D1::Point2F(49.f, 192.f)
+#define TOTAL_COUNT_POSITION_TOTAL_USERS_NUMBER D2D1::Point2F(48.f, 207.f)
+#define TOTAL_COUNT_POSITION_TOP_PICK D2D1::Point2F(49.f, 262.f)
+#define TOTAL_COUNT_POSITION_TP_KOREAN_FEEL D2D1::Point2F(48.f, 280.f)
+#define TOTAL_COUNT_POSITION_TP_ENGLISH_FEEL D2D1::Point2F(49.f, 296.f)
+#define TOTAL_COUNT_POSITION_TP_COUNT_FEEL D2D1::Point2F(48.f, 309.f)
+#define TOTAL_COUNT_POSITION_TP_KOREAN_WORK D2D1::Point2F(48.f, 342.f)
+#define TOTAL_COUNT_POSITION_TP_ENGLISH_WORK D2D1::Point2F(49.f, 361.f)
+#define TOTAL_COUNT_POSITION_TP_COUNT_WORK D2D1::Point2F(48.f, 374.f)
+#define TOTAL_COUNT_POSITION_TOP_COMMUNION D2D1::Point2F(49.f, 423.f)
+#define TOTAL_COUNT_POSITION_TC_KOREAN_FEEL D2D1::Point2F(49.f, 438.f)
+#define TOTAL_COUNT_POSITION_TC_ENGLISH_FEEL D2D1::Point2F(49.f, 454.f)
+#define TOTAL_COUNT_POSITION_TC_KOREAN_WORK D2D1::Point2F(49.f, 471.f)
+#define TOTAL_COUNT_POSITION_TC_ENGLISH_WORK D2D1::Point2F(49.f, 485.f)
+#define TOTAL_COUNT_POSITION_TC_COUNT D2D1::Point2F(48.f, 502.f)
+
+#define TOTAL_COUNT_FONTSIZE_TITLE 10.f
+#define TOTAL_COUNT_FONTSIZE_TU_COUNT 32.f
+#define TOTAL_COUNT_FONTSIZE_TP_KOREAN 15.f
+#define TOTAL_COUNT_FONTSIZE_TP_ENGLSIH 11.f
+#define TOTAL_COUNT_FONTSIZE_TP_COUNT 24.f
+#define TOTAL_COUNT_FONTSIZE_TC_KOREAN 13.f
+#define TOTAL_COUNT_FONTSIZE_TC_ENGLISH 10.f
+#define TOTAL_COUNT_FONTSIZE_TC_COUNT 24.f
 #include "ringbuffer.h"
 
 namespace MyAntialiasMode
@@ -185,7 +217,7 @@ namespace SampleType
 }
 
 #define XML_FILE_NAME L"positionInfo.xml"
-
+#define MAIN_TITLE_FILE_NAME L"title.png"
 
 //Device-Dependent Resources
 extern ID3D10Device *m_pDevice;
@@ -212,6 +244,7 @@ extern ID2D1GeometrySink *m_pGeometrySink;
 extern ID2D1GradientStopCollection *m_pGradientStops;
 extern ID2D1LinearGradientBrush *m_pLGBrush;
 
+extern IWICImagingFactory* g_pWICFactory;
 
 //for server
 /// accepting list

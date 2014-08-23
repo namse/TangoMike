@@ -110,6 +110,12 @@
     <ClInclude Include="LineCollection.h">
       <Filter>ShowItems\RightSide\LineCollection</Filter>
     </ClInclude>
+    <ClInclude Include="TotalCount.h">
+      <Filter>ShowItems\LeftSide\TotalCount</Filter>
+    </ClInclude>
+    <ClInclude Include="LeftSide.h">
+      <Filter>ShowItems\LeftSide</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -183,6 +189,12 @@
     </ClCompile>
     <ClCompile Include="LineCollection.cpp">
       <Filter>ShowItems\RightSide\LineCollection</Filter>
+    </ClCompile>
+    <ClCompile Include="TotalCount.cpp">
+      <Filter>ShowItems\LeftSide\TotalCount</Filter>
+    </ClCompile>
+    <ClCompile Include="LeftSide.cpp">
+      <Filter>ShowItems\LeftSide</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

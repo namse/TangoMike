@@ -11,7 +11,7 @@ enum PacketTypes
 	PKT_NONE = -1,
 	PKT_FIRST_CLICK = 0,
 	PKT_VOTE_COMPLETE = 1,
-	PKT_SELECTE = 2,
+	PKT_SELECT = 2,
 	PKT_SHUFFLE = 3,
 	PKT_SHOW_DATA = 4,
 	PKT_HIDE_DATA = 5,
@@ -53,12 +53,12 @@ namespace Packet
 		char object[1 + WORK_COUNT];
 	};
 
-	struct SelecteRequest : public PacketHeader
+	struct SelectRequest : public PacketHeader
 	{
-		SelecteRequest()
+		SelectRequest()
 		{
-			mSize = sizeof(SelecteRequest);
-			mType = PKT_SELECTE;
+			mSize = sizeof(SelectRequest);
+			mType = PKT_SELECT;
 			objectLength = 0;
 			memset(object, -1, sizeof(object));
 		}

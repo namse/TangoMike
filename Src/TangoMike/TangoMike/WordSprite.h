@@ -42,6 +42,7 @@ public:
 		else
 			OffFocus();
 	}
+	bool IsFocus(){ return isFocus_; }
 
 	bool IsFeel()
 	{

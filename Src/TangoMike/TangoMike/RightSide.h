@@ -19,9 +19,15 @@ public:
 
 	void OffFocus();
 	void OffShuffle();
+
+	virtual void Notify(EventHeader* event);
+
+private:
+	void CleanFocus();
+	
 private:
 	WordSpriteCollection wordSpriteCollection_;
 
-	std::vector<Object*> selectedObjects_;
+	std::vector<Object*> SelectdObjects_;
 };
 

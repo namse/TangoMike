@@ -7,7 +7,7 @@ enum EventTypes
 	EVENT_NONE = -1,
 	EVENT_FIRST_CLICK = 0,
 	EVENT_VOTE_COMPLETE = 1,
-	EVENT_SELECTE = 2,
+	EVENT_SELECT = 2,
 	EVENT_SHUFFLE = 3,
 	EVENT_SHOW_DATA = 4,
 	EVENT_HIDE_DATA = 5,
@@ -39,9 +39,9 @@ namespace Event
 		char object[1 + WORK_COUNT];
 	};
 
-	struct SelecteRequest : public EventHeader
+	struct SelectRequest : public EventHeader
 	{
-		SelecteRequest()
+		SelectRequest()
 		{
 			objectLength = 0;
 			memset(object, -1, sizeof(object));

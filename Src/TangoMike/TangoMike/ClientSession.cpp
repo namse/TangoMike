@@ -2,8 +2,8 @@
 #include "ClientSession.h"
 #include "PacketType.h"
 #include "ClientManager.h"
-
-
+#include "EventManager.h"
+#include "Event.h"
 
 //@{ Handler Helper
 
@@ -280,7 +280,8 @@ REGISTER_HANDLER(PKT_FIRST_CLICK)
 void ClientSession::HandleFirstClickRequest(Packet::FirstClickRequest& inPacket)
 {
 	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
-
+	Event::FirstClickRequest event;
+	EventManager::GetInstance()->Notify(&event);
 }
 
 REGISTER_HANDLER(PKT_VOTE_COMPLETE)
@@ -291,24 +292,34 @@ REGISTER_HANDLER(PKT_VOTE_COMPLETE)
 void ClientSession::HandleVoteCompleteRequest(Packet::VoteCompleteRequest& inPacket)
 {
 	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
-
+	Event::VoteCompleteRequest event;
+	memcpy(&event + sizeof(event.event_type_),
+		&inPacket + sizeof(inPacket.mSize) + sizeof(inPacket.mType),
+		sizeof(event) - sizeof(event.event_type_));
+	EventManager::GetInstance()->Notify(&event);
 }
 
-REGISTER_HANDLER(PKT_SELECTE)
+REGISTER_HANDLER(PKT_SELECT)
 {
-	Packet::SelecteRequest inPacket = static_cast<Packet::SelecteRequest&>(pktBase);
-	session->HandleSelecteRequest(inPacket);
+	Packet::SelectRequest inPacket = static_cast<Packet::SelectRequest&>(pktBase);
+	session->HandleSelectRequest(inPacket);
 }
-void ClientSession::HandleSelecteRequest(Packet::SelecteRequest& inPacket)
+void ClientSession::HandleSelectRequest(Packet::SelectRequest& inPacket)
 {
 	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
-
+	Event::SelectRequest event;
+	memcpy( &event + sizeof(event.event_type_),
+		&inPacket + sizeof(inPacket.mSize) + sizeof(inPacket.mType),
+		sizeof(event) - sizeof(event.event_type_) );
+	EventManager::GetInstance()->Notify(&event);
 }
 
 REGISTER_HANDLER(PKT_SHUFFLE)
 {
 	Packet::ShuffleRequest inPacket = static_cast<Packet::ShuffleRequest&>(pktBase);
 	session->HandleShuffleRequest(inPacket);
+	Event::ShuffleRequest event;
+	EventManager::GetInstance()->Notify(&event);
 }
 void ClientSession::HandleShuffleRequest(Packet::ShuffleRequest& inPacket)
 {

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "EventManager.h"
 
+EventManager* EventManager::pInstance_ = nullptr;
+
 EventManager::EventManager(void)
 {
 }
@@ -49,5 +51,3 @@ void EventManager::Notify(EventHeader* event)
 		it->second->Notify(event);
 	}
 }
-
-EventManager *g_event_manager = nullptr;

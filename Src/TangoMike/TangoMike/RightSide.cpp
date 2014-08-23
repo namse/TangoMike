@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "RightSide.h"
-
+#include "EventManager.h"
+#include "Relationship.h"
 #define RADIUS 300.f
 
 RightSide::RightSide()
@@ -10,6 +11,12 @@ RightSide::RightSide()
 	AddChild(&wordSpriteCollection_);
 
 	SetArrange();
+
+	EventManager::GetInstance()->AddEventListener(EVENT_FIRST_CLICK, this);
+	EventManager::GetInstance()->AddEventListener(EVENT_VOTE_COMPLETE, this);
+	EventManager::GetInstance()->AddEventListener(EVENT_SELECT, this);
+	EventManager::GetInstance()->AddEventListener(EVENT_SHUFFLE, this);
+	
 }
 
 
@@ -85,40 +92,112 @@ void RightSide::SetIdle()
 
 void RightSide::SetFocus()
 {
-	for (auto &selectedObject : selectedObjects_)
+	for (auto &SelectdObject : SelectdObjects_)
 	{
-		WordSprite* selectedWordSprite = nullptr;
+		WordSprite* SelectdWordSprite = nullptr;
 		for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
 		{
-			if (wordSprite->GetKoreanWord()->GetContents().compare(selectedObject->GetName()) == 0)
+			if (wordSprite->GetKoreanWord()->GetContents().compare(SelectdObject->GetName()) == 0)
 			{
-				selectedWordSprite = wordSprite;
+				SelectdWordSprite = wordSprite;
 				break;
 			}
 		}
-		if (selectedWordSprite != nullptr)
+		if (SelectdWordSprite != nullptr)
 		{
-			selectedWordSprite->SetFocus(true);
+			SelectdWordSprite->SetFocus(true);
 		}
 	}
 }
 
 void RightSide::OffFocus()
 {
-	for (auto &selectedObject : selectedObjects_)
+	for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
 	{
-		WordSprite* selectedWordSprite = nullptr;
+		wordSprite->SetFocus(false);
+	}
+}
+/*
+	for (auto &SelectdObject : SelectdObjects_)
+	{
+		WordSprite* SelectdWordSprite = nullptr;
 		for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
 		{
-			if (wordSprite->GetKoreanWord()->GetContents().compare(selectedObject->GetName()) == 0)
+			if (wordSprite->GetKoreanWord()->GetContents().compare(SelectdObject->GetName()) == 0)
 			{
-				selectedWordSprite = wordSprite;
+				SelectdWordSprite = wordSprite;
 				break;
 			}
 		}
-		if (selectedWordSprite != nullptr)
+		if (SelectdWordSprite != nullptr)
 		{
-			selectedWordSprite->SetFocus(false);
+			SelectdWordSprite->SetFocus(false);
 		}
+	}*/
+void RightSide::Notify(EventHeader* event)
+{
+	switch (event->event_type_)
+	{
+	case EVENT_FIRST_CLICK:
+	{
+		SetArrange();
+	}break;
+
+	case EVENT_VOTE_COMPLETE:
+	{
+		Event::VoteCompleteRequest* recvEvent = (Event::VoteCompleteRequest*)event;
+		SelectdObjects_.clear();
+		for (int i = 0; i < recvEvent->objectLength; i++)
+		{
+			for (auto &object : Relationship::GetInstance()->GetFeels())
+			{
+				if (object->GetId() == recvEvent->object[i])
+				{
+					SelectdObjects_.push_back(object);
+				}
+			}
+			for (auto &object : Relationship::GetInstance()->GetWorks())
+			{
+				if (object->GetId() == recvEvent->object[i])
+				{
+					SelectdObjects_.push_back(object);
+				}
+			}
+		}
+	}break;
+
+	case EVENT_SELECT:
+	{
+		Event::SelectRequest* recvEvent = (Event::SelectRequest*)event;
+		SelectdObjects_.clear();
+		for (int i = 0; i < recvEvent->objectLength; i++)
+		{
+			for (auto &object : Relationship::GetInstance()->GetFeels())
+			{
+				if (object->GetId() == recvEvent->object[i])
+				{
+					SelectdObjects_.push_back(object);
+				}
+			}
+			for (auto &object : Relationship::GetInstance()->GetWorks())
+			{
+				if (object->GetId() == recvEvent->object[i])
+				{
+					SelectdObjects_.push_back(object);
+				}
+			}
+		}
+	}break;
+
+	case EVENT_SHUFFLE:
+	{
+		Event::ShuffleRequest* recvEvent = (Event::ShuffleRequest*)event;
+		SetIdle();
+	}break;
+
+	default:
+	{
+		break;
+	}
 	}
 }

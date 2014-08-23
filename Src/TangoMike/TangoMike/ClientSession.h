@@ -64,7 +64,7 @@ public:
 
 	void HandleFirstClickRequest(Packet::FirstClickRequest& inPacket);
 	void HandleVoteCompleteRequest(Packet::VoteCompleteRequest& inPacket);
-	void HandleSelecteRequest(Packet::SelecteRequest& inPacket);
+	void HandleSelectRequest(Packet::SelectRequest& inPacket);
 	void HandleShuffleRequest(Packet::ShuffleRequest& inPacket);
 	void HandleShowDataRequest(Packet::ShowDataRequest& inPacket);
 	void HandleHideDataRequest(Packet::HideDataRequest& inPacket);

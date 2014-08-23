@@ -851,24 +851,24 @@ PUGI__NS_BEGIN
 		}
 	};
 
-	template <size_t size> struct wchar_selector;
+	template <size_t size> struct wchar_SELECTor;
 
-	template <> struct wchar_selector<2>
+	template <> struct wchar_SELECTor<2>
 	{
 		typedef uint16_t type;
 		typedef utf16_counter counter;
 		typedef utf16_writer writer;
 	};
 
-	template <> struct wchar_selector<4>
+	template <> struct wchar_SELECTor<4>
 	{
 		typedef uint32_t type;
 		typedef utf32_counter counter;
 		typedef utf32_writer writer;
 	};
 
-	typedef wchar_selector<sizeof(wchar_t)>::counter wchar_counter;
-	typedef wchar_selector<sizeof(wchar_t)>::writer wchar_writer;
+	typedef wchar_SELECTor<sizeof(wchar_t)>::counter wchar_counter;
+	typedef wchar_SELECTor<sizeof(wchar_t)>::writer wchar_writer;
 
 	template <typename Traits, typename opt_swap = opt_false> struct utf_decoder
 	{
@@ -1025,7 +1025,7 @@ PUGI__NS_BEGIN
 
 		static inline typename Traits::value_type decode_wchar_block(const wchar_t* data, size_t size, typename Traits::value_type result)
 		{
-			return decode_wchar_block_impl(reinterpret_cast<const wchar_selector<sizeof(wchar_t)>::type*>(data), size, result);
+			return decode_wchar_block_impl(reinterpret_cast<const wchar_SELECTor<sizeof(wchar_t)>::type*>(data), size, result);
 		}
 	};
 
@@ -1037,7 +1037,7 @@ PUGI__NS_BEGIN
 #ifdef PUGIXML_WCHAR_MODE
 	PUGI__FN void convert_wchar_endian_swap(wchar_t* result, const wchar_t* data, size_t length)
 	{
-		for (size_t i = 0; i < length; ++i) result[i] = static_cast<wchar_t>(endian_swap(static_cast<wchar_selector<sizeof(wchar_t)>::type>(data[i])));
+		for (size_t i = 0; i < length; ++i) result[i] = static_cast<wchar_t>(endian_swap(static_cast<wchar_SELECTor<sizeof(wchar_t)>::type>(data[i])));
 	}
 #endif
 PUGI__NS_END
@@ -3001,7 +3001,7 @@ PUGI__NS_BEGIN
 					// need to convert in suitable chunks
 					while (length > bufcapacity)
 					{
-						// get chunk size by selecting such number of characters that are guaranteed to fit into scratch buffer
+						// get chunk size by Selecting such number of characters that are guaranteed to fit into scratch buffer
 						// and form a complete codepoint sequence (i.e. discard start of last codepoint if necessary)
 						size_t chunk_size = get_valid_length(data, bufcapacity);
 
@@ -7714,8 +7714,8 @@ PUGI__NS_BEGIN
 		ast_op_negate,					// left - right
 		ast_op_union,					// left | right
 		ast_predicate,					// apply predicate to set; next points to next predicate
-		ast_filter,						// select * from left where right
-		ast_filter_posinv,				// select * from left where right; proximity position invariant
+		ast_filter,						// Select * from left where right
+		ast_filter_posinv,				// Select * from left where right; proximity position invariant
 		ast_string_constant,			// string constant
 		ast_number_constant,			// number constant
 		ast_variable,					// variable
@@ -7755,7 +7755,7 @@ PUGI__NS_BEGIN
 		ast_func_ceiling,				// ceiling(left)
 		ast_func_round,					// round(left)
 		ast_step,						// process set left with step
-		ast_step_root					// select root node
+		ast_step_root					// Select root node
 	};
 
 	enum axis_t
@@ -9800,7 +9800,7 @@ PUGI__NS_BEGIN
 						n = new (alloc_node()) xpath_ast_node(ast_step, n, axis_descendant_or_self, nodetest_type_node, 0);
 					}
 	
-					// select from location path
+					// Select from location path
 					return parse_relative_location_path(n);
 				}
 
@@ -10555,25 +10555,25 @@ namespace pugi
 		return !_impl;
 	}
 
-	PUGI__FN xpath_node xml_node::select_single_node(const char_t* query, xpath_variable_set* variables) const
+	PUGI__FN xpath_node xml_node::Select_single_node(const char_t* query, xpath_variable_set* variables) const
 	{
 		xpath_query q(query, variables);
-		return select_single_node(q);
+		return Select_single_node(q);
 	}
 
-	PUGI__FN xpath_node xml_node::select_single_node(const xpath_query& query) const
+	PUGI__FN xpath_node xml_node::Select_single_node(const xpath_query& query) const
 	{
 		xpath_node_set s = query.evaluate_node_set(*this);
 		return s.empty() ? xpath_node() : s.first();
 	}
 
-	PUGI__FN xpath_node_set xml_node::select_nodes(const char_t* query, xpath_variable_set* variables) const
+	PUGI__FN xpath_node_set xml_node::Select_nodes(const char_t* query, xpath_variable_set* variables) const
 	{
 		xpath_query q(query, variables);
-		return select_nodes(q);
+		return Select_nodes(q);
 	}
 
-	PUGI__FN xpath_node_set xml_node::select_nodes(const xpath_query& query) const
+	PUGI__FN xpath_node_set xml_node::Select_nodes(const xpath_query& query) const
 	{
 		return query.evaluate_node_set(*this);
 	}

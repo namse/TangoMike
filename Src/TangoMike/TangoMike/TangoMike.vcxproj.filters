@@ -95,6 +95,18 @@
     <ClInclude Include="PacketType.h">
       <Filter>Server</Filter>
     </ClInclude>
+    <ClInclude Include="EventListener.h">
+      <Filter>EventManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>EventManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EventParameter.h">
+      <Filter>EventManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>EventManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -159,6 +171,12 @@
     </ClCompile>
     <ClCompile Include="CircularBuffer.cpp">
       <Filter>Server</Filter>
+    </ClCompile>
+    <ClCompile Include="EventListener.cpp">
+      <Filter>EventManager</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>EventManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +248,9 @@
     </Filter>
     <Filter Include="Server">
       <UniqueIdentifier>{cfec662a-b44a-40d2-ba4f-f875aa67d463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EventManager">
+      <UniqueIdentifier>{392019bb-807e-45f5-b86f-15adc8dd6ce4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

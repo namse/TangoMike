@@ -1,5 +1,6 @@
 #pragma once
 #include "stdafx.h"
+#include "EventListener.h"
 enum ANIMATION_TYPE
 {
 	POSITION,
@@ -7,7 +8,7 @@ enum ANIMATION_TYPE
 	SCALE,
 	CENTER,
 };
-class Component
+class Component : public EventListener
 {
 public:
 	Component();
@@ -37,6 +38,11 @@ public:
 	void SetVisible(bool isVisible)					{ isVisible_ = isVisible_; }
 
 	void DoAnimate(ANIMATION_TYPE type, void* purpose, float duration);
+	
+	virtual void Notify(EventHeader* event)
+	{
+
+	};
 protected:
 	Component* parent_;
 	std::list<Component*> childs_;

@@ -271,6 +271,73 @@ void CALLBACK SendCompletion(DWORD dwError, DWORD cbTransferred, LPWSAOVERLAPPED
 
 
 //////////////////////////////////////////////////////////////////
+
+REGISTER_HANDLER(PKT_FIRST_CLICK)
+{
+	Packet::FirstClickRequest inPacket = static_cast<Packet::FirstClickRequest&>(pktBase);
+	session->HandleFirstClickRequest(inPacket);
+}
+void ClientSession::HandleFirstClickRequest(Packet::FirstClickRequest& inPacket)
+{
+	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
+
+}
+
+REGISTER_HANDLER(PKT_VOTE_COMPLETE)
+{
+	Packet::VoteCompleteRequest inPacket = static_cast<Packet::VoteCompleteRequest&>(pktBase);
+	session->HandleVoteCompleteRequest(inPacket);
+}
+void ClientSession::HandleVoteCompleteRequest(Packet::VoteCompleteRequest& inPacket)
+{
+	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
+
+}
+
+REGISTER_HANDLER(PKT_SELECTE)
+{
+	Packet::SelecteRequest inPacket = static_cast<Packet::SelecteRequest&>(pktBase);
+	session->HandleSelecteRequest(inPacket);
+}
+void ClientSession::HandleSelecteRequest(Packet::SelecteRequest& inPacket)
+{
+	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
+
+}
+
+REGISTER_HANDLER(PKT_SHUFFLE)
+{
+	Packet::ShuffleRequest inPacket = static_cast<Packet::ShuffleRequest&>(pktBase);
+	session->HandleShuffleRequest(inPacket);
+}
+void ClientSession::HandleShuffleRequest(Packet::ShuffleRequest& inPacket)
+{
+	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
+
+}
+
+REGISTER_HANDLER(PKT_SHOW_DATA)
+{
+	Packet::ShowDataRequest inPacket = static_cast<Packet::ShowDataRequest&>(pktBase);
+	session->HandleShowDataRequest(inPacket);
+}
+void ClientSession::HandleShowDataRequest(Packet::ShowDataRequest& inPacket)
+{
+	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
+
+}
+
+REGISTER_HANDLER(PKT_HIDE_DATA)
+{
+	Packet::HideDataRequest inPacket = static_cast<Packet::HideDataRequest&>(pktBase);
+	session->HandleHideDataRequest(inPacket);
+}
+void ClientSession::HandleHideDataRequest(Packet::HideDataRequest& inPacket)
+{
+	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
+
+}
+
 /*
 REGISTER_HANDLER(PKT_CS_LOGIN)
 {

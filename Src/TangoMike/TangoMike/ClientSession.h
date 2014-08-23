@@ -62,6 +62,12 @@ public:
 	void	HandleLoginRequest(LoginRequest& inPacket);
 	void	HandleChatRequest(ChatBroadcastRequest& inPacket);*/
 
+	void HandleFirstClickRequest(Packet::FirstClickRequest& inPacket);
+	void HandleVoteCompleteRequest(Packet::VoteCompleteRequest& inPacket);
+	void HandleSelecteRequest(Packet::SelecteRequest& inPacket);
+	void HandleShuffleRequest(Packet::ShuffleRequest& inPacket);
+	void HandleShowDataRequest(Packet::ShowDataRequest& inPacket);
+	void HandleHideDataRequest(Packet::HideDataRequest& inPacket);
 private:
 
 	bool	SendFlush(); ///< Send요청 중인것들 모아서 보냄

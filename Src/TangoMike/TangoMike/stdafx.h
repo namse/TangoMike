@@ -144,10 +144,22 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 #define SHUFFLE_ACCELERATION 1.f
 #define SHUFFLE_MAX_VELOCITY 5.f
 
+#define CIRCLE_RADIUS_TO_POINT 269.f
+#define POINT_TO_WORD 14.f
+#define CIRCLE_RADIUS_TO_WORD (CIRCLE_RADIUS_TO_POINT + POINT_TO_WORD)
+
+#define CIRCLE_CENTER_POSITION D2D1::Point2F(573.f, 375.f)
+
+#define POINT_RADIUS_FOCUS 5.5f
+#define POINT_RADIUS_UNFOCUS 2.f
+
 #define FONTCOLOR_FEEL_FOCUS D2D1::ColorF( 0x84d3a2)
-#define FONTCOLOR_WORK_FOCUS D2D1::ColorF( 0x84d3a2)
+#define FONTCOLOR_WORK_FOCUS D2D1::ColorF( 0xde9658)
 #define FONTCOLOR_FEEL_UNFOCUS D2D1::ColorF( 0x84d3a2, 0.35f)
-#define FONTCOLOR_WORK_UNFOCUS D2D1::ColorF( 0x84d3a2, 0.35f)
+#define FONTCOLOR_WORK_UNFOCUS D2D1::ColorF( 0xde9658, 0.35f)
+
+#define COLOR_FEEL FONTCOLOR_FEEL_FOCUS
+#define COLOR_WORK FONTCOLOR_WORK_FOCUS
 #include "ringbuffer.h"
 
 namespace MyAntialiasMode
@@ -199,6 +211,7 @@ extern ID2D1PathGeometry *m_pPathGeometry;
 extern ID2D1GeometrySink *m_pGeometrySink;
 extern ID2D1GradientStopCollection *m_pGradientStops;
 extern ID2D1LinearGradientBrush *m_pLGBrush;
+
 
 //for server
 /// accepting list

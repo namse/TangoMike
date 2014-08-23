@@ -2,13 +2,14 @@
 #include "RightSide.h"
 #include "EventManager.h"
 #include "Relationship.h"
-#define RADIUS 300.f
 
 RightSide::RightSide()
 {
 	wordSpriteCollection_.InitWordSprites();
-	wordSpriteCollection_.SetCenter(D2D1::Point2F(RADIUS, RADIUS));
+	//wordSpriteCollection_.SetCenter(D2D1::Point2F(CIRCLE_RADIUS_TO_WORD, CIRCLE_RADIUS_TO_WORD));
+	SetPosition(CIRCLE_CENTER_POSITION);
 	AddChild(&wordSpriteCollection_);
+	AddChild(&lineCollection_);
 
 	SetArrange();
 
@@ -52,8 +53,8 @@ void RightSide::SetArrange()
 	{
 		angle += dAngle;
 
-		x = RADIUS * cos(angle + initAngle);
-		y = RADIUS * sin(angle + initAngle);
+		x = CIRCLE_RADIUS_TO_WORD * cos(angle + initAngle);
+		y = CIRCLE_RADIUS_TO_WORD * sin(angle + initAngle);
 		
 
 		wordAngle = angle - M_PI_2;

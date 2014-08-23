@@ -3,7 +3,8 @@
 #include "Object.h"
 #include "Feel.h"
 #include "Work.h"
-class Relationship
+#include "EventListener.h"
+class Relationship : public EventListener
 {
 public:
 	static Relationship* GetInstance()
@@ -27,6 +28,20 @@ public:
 
 	std::vector<Feel*> GetFeels()		{ return feels_; }
 	std::vector<Work*> GetWorks()		{ return works_; }
+
+	virtual void Notify(EventHeader* event);
+
+	Object* FindObjectById(int id);
+
+	Feel* FindFeelById(int id)
+	{
+		return (Feel*)FindObjectById(id);
+	}
+
+	Work* FindWorkById(int id)
+	{
+		return (Work*)FindObjectById(id);
+	}
 
 private:
 	Relationship();

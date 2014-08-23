@@ -12,7 +12,7 @@ static const D2D1_GRADIENT_STOP stops[] =
 Line::Line(D2D1_POINT_2F* point1, D2D1_POINT_2F* point2)
 	:point1_(point1), point2_(point2)
 {
-	
+
 }
 
 
@@ -31,7 +31,7 @@ void Line::Render()
 	m_pGeometrySink->BeginFigure(
 		D2D1::Point2F(point1_->x, point1_->y),
 		D2D1_FIGURE_BEGIN_HOLLOW);
-	
+
 	float radius, angle;
 	float length = sqrt(pow(point1_->x - point2_->x, 2) + pow(point1_->y - point2_->y, 2));
 	float factor = 0.5f;//(float)(std::rand() % 10) / 100.f;
@@ -42,50 +42,44 @@ void Line::Render()
 		D2D1::BezierSegment(
 		*point1_,
 		*point1_, //D2D1::Point2F( point1_->x + radius * cos(angle), point1_->y + radius * sin(angle)),
-		*point2_ )
+		*point2_)
 		);
 
 	m_pGeometrySink->EndFigure(D2D1_FIGURE_END_OPEN);
 
 	hr = m_pGeometrySink->Close();
-	
-	/*
-	hr = m_pBackBufferRT->CreateGradientStopCollection(
-		stops,
-		ARRAYSIZE(stops),
-		&m_pGradientStops
-		);
-	
-	hr = m_pBackBufferRT->CreateLinearGradientBrush(
-		D2D1::LinearGradientBrushProperties(
+
+	if (m_pGradientStops == nullptr)
+	{
+		hr = m_pBackBufferRT->CreateGradientStopCollection(
+			stops,
+			ARRAYSIZE(stops),
+			&m_pGradientStops
+			);
+	}
+
+	if (m_pLGBrush == nullptr)
+	{
+		hr = m_pBackBufferRT->CreateLinearGradientBrush(
+			D2D1::LinearGradientBrushProperties(
 			*point1_,
 			*point2_),
-		D2D1::BrushProperties(),
-		m_pGradientStops,
-		&m_pLGBrush
-	);*/ // ->한번만 호출되게 하자.
-
-	ID2D1SolidColorBrush *pBrush = NULL;
-	hr = m_pBackBufferRT->CreateSolidColorBrush(
-		D2D1::ColorF(0, 0, 0),
-		&pBrush
-		);
-	pBrush->SetColor(D2D1::ColorF(D2D1::ColorF::AntiqueWhite));
-	
+			D2D1::BrushProperties(),
+			m_pGradientStops,
+			&m_pLGBrush
+			);
+	}
+	// 최적화 : http://msdn.microsoft.com/ko-kr/library/windows/desktop/ee719658(v=vs.85).aspx
 	m_pBackBufferRT->BeginDraw();
 
 	m_pBackBufferRT->SetTransform(matrix_);
 
-	//m_pBackBufferRT->DrawGeometry(m_pPathGeometry,
-	//	m_pLGBrush);
 	m_pBackBufferRT->DrawGeometry(m_pPathGeometry,
-			pBrush);
+		m_pLGBrush);
 	hr = m_pBackBufferRT->EndDraw();
 
 	//m_pGradientStops->Release();
 	//m_pLGBrush->Release();
-	m_pPathGeometry->Release();
-	m_pGeometrySink->Release();
 	//SafeRelease(&m_pGradientStops);
 	//SafeRelease(&m_pLGBrush);
 	//SafeRelease(&m_pPathGeometry);

@@ -100,6 +100,7 @@
     <ClInclude Include="EventParameter.h" />
     <ClInclude Include="Feel.h" />
     <ClInclude Include="Line.h" />
+    <ClInclude Include="LineCollection.h" />
     <ClInclude Include="MainTitle.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectPool.h" />
@@ -132,6 +133,7 @@
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="Feel.cpp" />
     <ClCompile Include="Line.cpp" />
+    <ClCompile Include="LineCollection.cpp" />
     <ClCompile Include="MainTitle.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="pugixml.cpp" />

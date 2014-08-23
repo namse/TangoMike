@@ -318,13 +318,13 @@ REGISTER_HANDLER(PKT_SHUFFLE)
 {
 	Packet::ShuffleRequest inPacket = static_cast<Packet::ShuffleRequest&>(pktBase);
 	session->HandleShuffleRequest(inPacket);
-	Event::ShuffleRequest event;
-	EventManager::GetInstance()->Notify(&event);
+	
 }
 void ClientSession::HandleShuffleRequest(Packet::ShuffleRequest& inPacket)
 {
 	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
-
+	Event::ShuffleRequest event;
+	EventManager::GetInstance()->Notify(&event);
 }
 
 REGISTER_HANDLER(PKT_SHOW_DATA)

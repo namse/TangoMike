@@ -107,6 +107,9 @@
     <ClInclude Include="Event.h">
       <Filter>EventManager</Filter>
     </ClInclude>
+    <ClInclude Include="LineCollection.h">
+      <Filter>ShowItems\RightSide\LineCollection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -177,6 +180,9 @@
     </ClCompile>
     <ClCompile Include="EventManager.cpp">
       <Filter>EventManager</Filter>
+    </ClCompile>
+    <ClCompile Include="LineCollection.cpp">
+      <Filter>ShowItems\RightSide\LineCollection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -251,6 +257,9 @@
     </Filter>
     <Filter Include="EventManager">
       <UniqueIdentifier>{392019bb-807e-45f5-b86f-15adc8dd6ce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShowItems\RightSide\LineCollection">
+      <UniqueIdentifier>{8f204bcd-ba64-4623-a185-ef00aa1ba6af}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

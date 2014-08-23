@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "Component.h"
 #include "WordSpriteCollection.h"
+#include "LineCollection.h"
 class RightSide :
 	public Component
 {
@@ -27,7 +28,7 @@ private:
 	
 private:
 	WordSpriteCollection wordSpriteCollection_;
-
+	LineCollection lineCollection_;
 	std::vector<Object*> SelectdObjects_;
 };
 

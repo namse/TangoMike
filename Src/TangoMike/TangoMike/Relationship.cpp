@@ -1,12 +1,41 @@
 #include "stdafx.h"
 #include "Relationship.h"
-
+#include "EventManager.h"
 Relationship* Relationship::pInstance_ = nullptr;
 
 Relationship::Relationship()
 {
+	EventManager::GetInstance()->AddEventListener(EVENT_SELECT, this);
 }
 
+void Relationship::Notify(EventHeader* event)
+{
+	switch (event->event_type_)
+	{
+	case EVENT_SELECT:
+	{
+		Event::SelectRequest* recvEvent = (Event::SelectRequest*)event;
+
+		Feel* selectedFeel = FindFeelById(recvEvent->object[0]);
+		for (int i = 1; i < recvEvent->objectLength; i++)
+		{
+			Work* selectedWork = FindWorkById(recvEvent->object[i]);
+			if (selectedWork != nullptr)
+			{
+				auto count = count_.find(std::make_pair(selectedFeel, selectedWork));
+				if (count_.find(std::make_pair(selectedFeel, selectedWork)) != count_.end())
+				{
+					std::cout << count_.find(std::make_pair(selectedFeel, selectedWork))->second;
+					count_.find(std::make_pair(selectedFeel, selectedWork))->second++;
+					std::cout << count_.find(std::make_pair(selectedFeel, selectedWork))->second;
+				}
+			}
+		}
+	}break;
+	default:
+		break;
+	}
+}
 
 Relationship::~Relationship()
 {
@@ -62,4 +91,23 @@ bool Relationship::LoadDataFromFile(std::string filename)
 	}
 
 	return true;
+}
+
+Object* Relationship::FindObjectById(int id)
+{
+	for (auto& feel : feels_)
+	{
+		if (feel->GetId() == id)
+		{
+			return feel;
+		}
+	}
+	for (auto& work : works_)
+	{
+		if (work->GetId() == id)
+		{
+			return work;
+		}
+	}
+	return nullptr;
 }

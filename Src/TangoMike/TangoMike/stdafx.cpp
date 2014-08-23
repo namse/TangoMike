@@ -28,3 +28,5 @@ ID2D1PathGeometry *m_pPathGeometry = NULL;
 ID2D1GeometrySink *m_pGeometrySink = NULL;
 ID2D1GradientStopCollection *m_pGradientStops = NULL;
 ID2D1LinearGradientBrush *m_pLGBrush = NULL;
+
+PendingAcceptList pendingAcceptList;

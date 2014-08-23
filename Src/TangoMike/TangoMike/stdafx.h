@@ -5,6 +5,8 @@
 
 #pragma once
 
+#pragma warning(disable : 4018)
+
 #include "targetver.h"
 
 
@@ -73,13 +75,27 @@
 #include <ctime>
 #include <atlconv.h>
 #include <ctime>
+#include <set>
 
+#include <stdio.h>
+#include <tchar.h>
+#include <winsock2.h>
+#include <windows.h>
+#include <process.h>
+#include <assert.h>
+#include <limits.h>
+#include <vector>
+#include <algorithm>
+#include <atomic>
+#include <typeinfo>
 
 ////
 #include "d2dPointOperator.h"
 #include "pugiconfig.hpp"
 #include "pugixml.hpp"
 #include "animation.h"
+
+#include "ProducerConsumerQueue.h"
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -183,3 +199,10 @@ extern ID2D1PathGeometry *m_pPathGeometry;
 extern ID2D1GeometrySink *m_pGeometrySink;
 extern ID2D1GradientStopCollection *m_pGradientStops;
 extern ID2D1LinearGradientBrush *m_pLGBrush;
+
+//for server
+/// accepting list
+typedef ProducerConsumerQueue<SOCKET, 100> PendingAcceptList;
+extern PendingAcceptList pendingAcceptList;
+#define FEEL_COUNT 18
+#define WORK_COUNT 18

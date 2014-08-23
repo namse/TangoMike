@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Application.h"
+#include "EasyServer.h"
 
 
 
@@ -573,6 +574,7 @@ void Application::RunMessageLoop()
 
 
 
+
 		LARGE_INTEGER time;
 		LARGE_INTEGER frequency;
 		QueryPerformanceCounter(&time);
@@ -590,13 +592,7 @@ void Application::RunMessageLoop()
 		}
 		Update(floatTime);
 
-		//m_times.Add(time.QuadPart);
-/*
-
-		auto nowClock = std::clock();
-		float dTime = (float)(nowClock - m_prevClock) / (float)CLOCKS_PER_SEC;
-		Update(dTime);
-		m_prevClock = nowClock;*/
+		EasyServer::GetInstance()->Run();
 	}
 }
 
@@ -1101,6 +1097,7 @@ D2D1_POINT_2F WindowPointToTargetPoint(
 
 void Application::OnMouseMove(LPARAM lParam)
 {
+/*
 	FLOAT dpiX;
 	FLOAT dpiY;
 	m_pD2DFactory->GetDesktopDpi(&dpiX, &dpiY);
@@ -1111,7 +1108,7 @@ void Application::OnMouseMove(LPARAM lParam)
 		dpiX,
 		dpiY,
 		m_hwnd
-		);
+		);*/
 }
 
 /******************************************************************
@@ -1190,22 +1187,6 @@ LRESULT CALLBACK Application::WndProc(HWND hwnd, UINT message, WPARAM wParam, LP
 			case WM_KEYDOWN:
 			{
 				pApplication->OnKeyDown(static_cast<SHORT>(wParam));
-			}
-				result = 0;
-				wasHandled = true;
-				break;
-
-			case WM_MOUSEMOVE:
-			{
-				pApplication->OnMouseMove(lParam);
-			}
-				result = 0;
-				wasHandled = true;
-				break;
-
-			case WM_MOUSEWHEEL:
-			{
-				pApplication->OnWheel(wParam);
 			}
 				result = 0;
 				wasHandled = true;

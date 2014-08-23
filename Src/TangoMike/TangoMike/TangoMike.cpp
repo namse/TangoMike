@@ -8,10 +8,8 @@
 #include "stdafx.h"
 #include "TangoMike.h"
 #include "Relationship.h"
-#include "Word.h"
-#include "Line.h"
-#include "MainTitle.h"
-#include "RightSide.h"
+#include "EasyServer.h"
+
 /******************************************************************
 *                                                                 *
 *  WinMain                                                        *
@@ -28,6 +26,7 @@ int WINAPI WinMain(
 	int /* nCmdShow */
 	)
 {
+	EasyServer::GetInstance();
 	DevConsoleCreate();
 	std::srand(unsigned(std::time(0)));
 	Relationship::GetInstance()->LoadDataFromFile("data.txt");

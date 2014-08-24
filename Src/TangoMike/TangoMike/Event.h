@@ -2,8 +2,6 @@
 #include <memory>
 enum EventTypes
 {
-	EVENT_NULL = 0,
-
 	EVENT_NONE = -1,
 	EVENT_FIRST_CLICK = 0,
 	EVENT_VOTE_COMPLETE = 1,
@@ -25,6 +23,7 @@ namespace Event
 	{
 		FirstClickRequest()
 		{
+			event_type_ = EVENT_FIRST_CLICK;
 		}
 	};
 
@@ -32,6 +31,7 @@ namespace Event
 	{
 		VoteCompleteRequest()
 		{
+			event_type_ = EVENT_VOTE_COMPLETE;
 			objectLength = 0;
 			memset(object, -1, sizeof(object));
 		}
@@ -43,6 +43,7 @@ namespace Event
 	{
 		SelectRequest()
 		{
+			event_type_ = EVENT_SELECT;
 			objectLength = 0;
 			memset(object, -1, sizeof(object));
 		}
@@ -54,6 +55,7 @@ namespace Event
 	{
 		ShuffleRequest()
 		{
+			event_type_ = EVENT_SHUFFLE;
 		}
 	};
 
@@ -61,6 +63,7 @@ namespace Event
 	{
 		ShowDataRequest()
 		{
+			event_type_ = EVENT_SHOW_DATA;
 		}
 	};
 
@@ -68,6 +71,7 @@ namespace Event
 	{
 		HideDataRequest()
 		{
+			event_type_ = EVENT_HIDE_DATA;
 		}
 	};
 }

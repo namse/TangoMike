@@ -44,11 +44,10 @@ void RightSide::SetArrange()
 	float initAngle = M_PI_2;
 	float dAngle = M_PI * 2.f / wordSpriteCollection_.GetWordSprites().size();
 	float wordAngle;
-	angle = dAngle / 2.f;
+	angle = -dAngle/4.f;
 	
 
 	float x, y;
-
 	for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
 	{
 		angle += dAngle;
@@ -56,6 +55,37 @@ void RightSide::SetArrange()
 		x = CIRCLE_RADIUS_TO_WORD * cos(angle + initAngle);
 		y = CIRCLE_RADIUS_TO_WORD * sin(angle + initAngle);
 		
+
+		wordAngle = angle - M_PI_2;
+
+		if (wordSprite->IsWork())
+		{
+			wordAngle += M_PI;
+			x = CIRCLE_RADIUS_TO_WORD * cos(angle + initAngle - dAngle/2.f);
+			y = CIRCLE_RADIUS_TO_WORD * sin(angle + initAngle - dAngle/2.f);
+			wordSprite->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+		}
+		else
+		{
+			float maxWidth = wordSprite->GetMaxWidth();
+			x += maxWidth * cos(angle + initAngle);
+			y += maxWidth * sin(angle + initAngle);
+			wordSprite->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_TRAILING);
+		}
+
+		wordSprite->SetShuffle(false);
+		wordSprite->DoAnimate(POSITION, &(D2D1::Point2F(x, y)), 10.f);
+		wordSprite->SetRotation(wordAngle);
+		//wordSprite->DoAnimate(ROTATION, &(wordAngle), 10.f);
+	}
+	/*
+	for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
+	{
+		angle += dAngle;
+
+		x = CIRCLE_RADIUS_TO_WORD * cos(angle + initAngle);
+		y = CIRCLE_RADIUS_TO_WORD * sin(angle + initAngle);
+
 
 		wordAngle = angle - M_PI_2;
 
@@ -75,9 +105,7 @@ void RightSide::SetArrange()
 		wordSprite->SetShuffle(false);
 		wordSprite->DoAnimate(POSITION, &(D2D1::Point2F(x, y)), 10.f);
 		wordSprite->DoAnimate(ROTATION, &(wordAngle), 10.f);
-		//wordSprite->SetPosition(D2D1::Point2F(x, y));
-		//wordSprite->SetRotation(wordAngle);
-	}
+	}*/
 }
 
 void RightSide::SetIdle()
@@ -165,6 +193,7 @@ void RightSide::Notify(EventHeader* event)
 				}
 			}
 		}
+		SetFocus();
 	}break;
 
 	case EVENT_SELECT:
@@ -188,6 +217,7 @@ void RightSide::Notify(EventHeader* event)
 				}
 			}
 		}
+		SetFocus();
 	}break;
 
 	case EVENT_SHUFFLE:

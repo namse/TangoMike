@@ -39,6 +39,7 @@
 #define WIN32_LEAN_AND_MEAN     // Exclude rarely-used stuff from Windows headers
 
 #define _CRT_SECURE_NO_WARNINGS
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
 // Windows 헤더 파일:
 #include <windows.h>
 
@@ -91,6 +92,7 @@
 
 ////
 #include "d2dPointOperator.h"
+#include "d2dColorOperator.h"s
 #include "pugiconfig.hpp"
 #include "pugixml.hpp"
 #include "animation.h"
@@ -135,10 +137,10 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 
 #define TIME_RING_BUFFER_SIZE 10
 
-#define KOREAN_IDLE_FONT_SIZE 13.f
+#define KOREAN_IDLE_FONT_SIZE 15.f
 #define KOREAN_FOCUS_FONT_SIZE 22.f
 
-#define ENGLISH_IDLE_FONT_SIZE 13.f
+#define ENGLISH_IDLE_FONT_SIZE 11.f
 #define ENGLISH_FOCUS_FONT_SIZE 22.f
 
 #define SHUFFLE_ACCELERATION 1.f
@@ -153,10 +155,10 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 #define POINT_RADIUS_FOCUS 5.5f
 #define POINT_RADIUS_UNFOCUS 2.f
 
-#define FONTCOLOR_FEEL_FOCUS D2D1::ColorF( 0x84d3a2)
-#define FONTCOLOR_WORK_FOCUS D2D1::ColorF( 0xde9658)
-#define FONTCOLOR_FEEL_UNFOCUS D2D1::ColorF( 0x84d3a2, 0.35f)
-#define FONTCOLOR_WORK_UNFOCUS D2D1::ColorF( 0xde9658, 0.35f)
+#define FONTCOLOR_FEEL_FOCUS D2D1::ColorF( 0xde9658)
+#define FONTCOLOR_WORK_FOCUS D2D1::ColorF( 0x84d3a2)
+#define FONTCOLOR_FEEL_UNFOCUS D2D1::ColorF( 0xde9658, 0.35f)
+#define FONTCOLOR_WORK_UNFOCUS D2D1::ColorF( 0x84d3a2, 0.35f)
 
 #define COLOR_FEEL FONTCOLOR_FEEL_FOCUS
 #define COLOR_WORK FONTCOLOR_WORK_FOCUS

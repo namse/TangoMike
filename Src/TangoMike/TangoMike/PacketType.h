@@ -24,8 +24,8 @@ enum PacketTypes
 struct PacketHeader
 {
 	PacketHeader() : mSize(0), mType(PKT_NONE) 	{}
+	short mType; 
 	short mSize;
-	short mType;
 };
 namespace Packet
 {

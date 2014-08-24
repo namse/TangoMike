@@ -26,9 +26,17 @@ public:
 		maxWidthAndHeight = size;
 	}
 
+	void SetFontColor(D2D_COLOR_F color){
+		fontColor_ = color;
+	}
+
 	void DoFontSizeAnimate(float fontSize, float duration);
 	void DoFontColorAnimate(D2D_COLOR_F color, float duration);
 
+	void SetFontName(PCWSTR fontName)
+	{
+		fontName_ = fontName;
+	}
 	std::wstring GetContents(){ return contents_; }
 private:
 	

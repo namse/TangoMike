@@ -3,7 +3,7 @@
 class Object
 {
 public:
-	Object();
+	Object(int id, std::wstring name, float width, std::wstring englishName, float englishWidth);
 	virtual ~Object();
 
 	int GetId(){ return id_; }

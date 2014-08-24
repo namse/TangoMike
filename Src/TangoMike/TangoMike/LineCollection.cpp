@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "LineCollection.h"
-
+#include "EventManager.h"
 
 LineCollection::LineCollection()
 {
@@ -8,20 +8,21 @@ LineCollection::LineCollection()
 	//SetPosition(CIRCLE_CENTER_POSITION);
 
 
-
+	EventManager::GetInstance()->AddEventListener(EVENT_VOTE_COMPLETE, this);
 
 
 	InitLinePoints();
-	for (int i = 0; i < 25; i++)
+	/*
+	for (int i = 0; i < 3; i++)
 	{
 		int a = rand() % Relationship::GetInstance()->GetFeels().size();
-		for (int l = 0; l < 25; l++)
+		for (int l = 0; l < 2; l++)
 		{
 			int b = rand() % Relationship::GetInstance()->GetWorks().size();
 			b += Relationship::GetInstance()->GetFeels().size();
 			MakeLine(a, b);
 		}
-	}
+	}*/
 }
 
 
@@ -45,9 +46,9 @@ void LineCollection::Render()
 
 	m_pBackBufferRT->SetTransform(matrix_);
 	if (pointBrush_feel_ == nullptr)
-		m_pBackBufferRT->CreateSolidColorBrush(COLOR_FEEL, &pointBrush_feel_);
+		m_pBackBufferRT->CreateSolidColorBrush(COLOR_WORK, &pointBrush_feel_);
 	if (pointBrush_work_ == nullptr)
-		m_pBackBufferRT->CreateSolidColorBrush(COLOR_WORK, &pointBrush_work_);
+		m_pBackBufferRT->CreateSolidColorBrush(COLOR_FEEL, &pointBrush_work_);
 
 	for (int i = 0; i < Relationship::GetInstance()->GetFeels().size(); i++)
 	{
@@ -73,7 +74,8 @@ void LineCollection::InitLinePoints()
 	float dAngle = M_PI * 2.f / (float)totalCount;
 	for (int i = 0; i < totalCount; i++)
 	{
-		linePoints_.push_back(D2D1::Point2F(cos(dAngle*i), sin(dAngle*i)) * CIRCLE_RADIUS_TO_POINT);
+		float angle = -M_PI_2 + dAngle * (i + 0.5f);
+		linePoints_.push_back(D2D1::Point2F(cos(angle), sin(angle)) * CIRCLE_RADIUS_TO_POINT);
 	}
 }
 
@@ -81,7 +83,7 @@ void LineCollection::Notify(EventHeader* event)
 {
 	switch (event->event_type_)
 	{
-	case EVENT_SELECT:
+	case EVENT_VOTE_COMPLETE:
 	{
 		Event::SelectRequest* recvEvent = (Event::SelectRequest*)event;
 
@@ -97,6 +99,7 @@ void LineCollection::Notify(EventHeader* event)
 
 void LineCollection::MakeLine(int feelId, int workId)
 {
-	Line* line = new Line(&linePoints_[feelId], &linePoints_[workId]);
+	//Line* line = new Line(&linePoints_[feelId - FEEL_COUNT + 1], &linePoints_[FEEL_COUNT + WORK_COUNT -  workId]);
+	Line* line = new Line(&linePoints_[feelId], &linePoints_ [workId]);
 	AddChild(line);
 }

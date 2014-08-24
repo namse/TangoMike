@@ -12,7 +12,7 @@ void Relationship::Notify(EventHeader* event)
 {
 	switch (event->event_type_)
 	{
-	case EVENT_SELECT:
+	case EVENT_VOTE_COMPLETE:
 	{
 		Event::SelectRequest* recvEvent = (Event::SelectRequest*)event;
 

@@ -56,6 +56,8 @@ void Word::Render()
 
 	m_pBackBufferRT->SetTransform(matrix_);
 
+	m_pBackBufferRT->CreateSolidColorBrush(
+		fontColor_, &m_pTextBrush);
 
 
 	m_pBackBufferRT->DrawText(
@@ -79,6 +81,7 @@ void Word::Render()
 void Word::Update(float dTime)
 {
 	Component::Update(dTime);
+	fontColorAnimation_.OnAnimate(dTime);
 }
 
 void Word::DoFontSizeAnimate(float fontSize, float duration)

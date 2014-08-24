@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Application.h"
 #include "EasyServer.h"
-
+#include "EventManager.h"
 
 
 static const UINT sc_msaaSampleCount = 4;
@@ -150,7 +150,8 @@ HRESULT Application::Initialize()
 		m_hwnd = CreateWindow(
 			L"D2DApplication",
 			L"D2D Demo App",
-			WS_OVERLAPPEDWINDOW & ~(WS_MAXIMIZEBOX | WS_SIZEBOX),
+			WS_EX_TOPMOST | WS_POPUP,
+			//WS_OVERLAPPEDWINDOW & ~(WS_MAXIMIZEBOX | WS_SIZEBOX),
 			CW_USEDEFAULT,
 			CW_USEDEFAULT,
 			static_cast<UINT>(ceil(1024.f * dpiX / 96.f)),
@@ -167,7 +168,7 @@ HRESULT Application::Initialize()
 			hr = CreateDeviceIndependentResources();
 			if (SUCCEEDED(hr))
 			{
-				ShowWindow(m_hwnd, SW_SHOWNORMAL);
+				ShowWindow(m_hwnd, SW_MAXIMIZE);
 				UpdateWindow(m_hwnd);
 			}
 		}
@@ -995,7 +996,6 @@ void Application::OnKeyDown(SHORT vkey)
 {
 	switch (vkey)
 	{
-	case 'A':
 	case VK_RIGHT:
 		m_RightSide.SetIdle();
 	/*	m_antialiasMode =
@@ -1045,13 +1045,55 @@ void Application::OnKeyDown(SHORT vkey)
 		m_numSquares = max(m_numSquares / 2, sc_minNumSquares);
 		break;
 
-	case 'W':
-		m_sampleType = static_cast<SampleType::Enum>((m_sampleType + 1) % SampleType::Count);
-		break;
+	case 'A':
+	{
+		Event::FirstClickRequest event;
+		EventManager::GetInstance()->Notify(&event);
+	}	break;
 
-	case 'L':
-		m_drawLoupe = !m_drawLoupe;
-		break;
+	case 'S':
+	{
+		Event::VoteCompleteRequest event;
+		int length = rand() % WORK_COUNT;
+		event.objectLength = length + 1;
+		event.object[0] = rand() % FEEL_COUNT;
+		bool didUse[WORK_COUNT];
+		memset(didUse, false, sizeof(didUse));
+		for (int i = 1; i <= length; i++)
+		{
+			int randomWorkID = 0;
+			do{
+				randomWorkID = rand() % WORK_COUNT;
+			} while (didUse[randomWorkID] != false);
+			didUse[randomWorkID] = true;
+			event.object[i] = randomWorkID + FEEL_COUNT;
+		}
+		EventManager::GetInstance()->Notify(&event);
+	}break;
+
+	case 'D':
+	{
+		Event::SelectRequest event;
+		int length = rand() % (WORK_COUNT + FEEL_COUNT);
+		event.objectLength = length;
+		bool didUse[WORK_COUNT + FEEL_COUNT];
+		memset(didUse, false, sizeof(didUse));
+		for (int i = 0; i <= length; i++)
+		{
+			int randomID = 0;
+			do{
+				randomID = rand() % (WORK_COUNT + FEEL_COUNT);
+			} while (didUse[randomID] != false);
+			didUse[randomID] = true;
+			event.object[i] = randomID;
+		}
+		EventManager::GetInstance()->Notify(&event);
+		}break;
+
+	case 'F':
+	{	Event::ShuffleRequest event;
+		EventManager::GetInstance()->Notify(&event);
+	}break;
 
 	default:
 		break;

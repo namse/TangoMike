@@ -27,7 +27,7 @@ int WINAPI WinMain(
 	)
 {
 	EasyServer::GetInstance();
-	DevConsoleCreate();
+	//DevConsoleCreate();
 	std::srand(unsigned(std::time(0)));
 	Relationship::GetInstance()->LoadDataFromFile("data.txt");
 

@@ -292,9 +292,14 @@ REGISTER_HANDLER(PKT_VOTE_COMPLETE)
 void ClientSession::HandleVoteCompleteRequest(Packet::VoteCompleteRequest& inPacket)
 {
 	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
+	/*for (int i = 0; i < inPacket.objectLength; i++)
+	{
+		if (inPacket.object[i] < FEEL_COUNT)
+			inPacket.object[i] = FEEL_COUNT - inPacket.object[i] - 1;
+	}*/
 	Event::VoteCompleteRequest event;
-	memcpy(&event + sizeof(event.event_type_),
-		&inPacket + sizeof(inPacket.mSize) + sizeof(inPacket.mType),
+	memcpy(&(event.objectLength),
+		&(inPacket.objectLength),
 		sizeof(event) - sizeof(event.event_type_));
 	EventManager::GetInstance()->Notify(&event);
 }
@@ -307,10 +312,15 @@ REGISTER_HANDLER(PKT_SELECT)
 void ClientSession::HandleSelectRequest(Packet::SelectRequest& inPacket)
 {
 	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
+	/*for (int i = 0; i < inPacket.objectLength; i++)
+	{
+		if (inPacket.object[i] < FEEL_COUNT)
+			inPacket.object[i] = FEEL_COUNT - inPacket.object[i] - 1;
+	}*/
 	Event::SelectRequest event;
-	memcpy( &event + sizeof(event.event_type_),
-		&inPacket + sizeof(inPacket.mSize) + sizeof(inPacket.mType),
-		sizeof(event) - sizeof(event.event_type_) );
+	memcpy(&(event.objectLength),
+		&(inPacket.objectLength),
+		sizeof(event) - sizeof(event.event_type_));
 	EventManager::GetInstance()->Notify(&event);
 }
 

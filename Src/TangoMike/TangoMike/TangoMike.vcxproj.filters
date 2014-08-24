@@ -116,6 +116,9 @@
     <ClInclude Include="LeftSide.h">
       <Filter>ShowItems\LeftSide</Filter>
     </ClInclude>
+    <ClInclude Include="LightBall.h">
+      <Filter>Components\LightBall</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -196,6 +199,9 @@
     <ClCompile Include="LeftSide.cpp">
       <Filter>ShowItems\LeftSide</Filter>
     </ClCompile>
+    <ClCompile Include="LightBall.cpp">
+      <Filter>Components\LightBall</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Main">
@@ -272,6 +278,9 @@
     </Filter>
     <Filter Include="ShowItems\RightSide\LineCollection">
       <UniqueIdentifier>{8f204bcd-ba64-4623-a185-ef00aa1ba6af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\LightBall">
+      <UniqueIdentifier>{2f54087c-4a4c-4a35-8033-020fd60d6ce2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

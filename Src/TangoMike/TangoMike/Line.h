@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "Component.h"
+#include "LightBall.h"
 class Line :
 	public Component
 {
@@ -20,6 +21,8 @@ private:
 
 	ID2D1PathGeometry* geometry_;
 	ID2D1GeometrySink* sink_;
-};
+	ID2D1GradientStopCollection* stops_;
+	ID2D1LinearGradientBrush *brush_;
 
-float distance(D2D1_POINT_2F* a, D2D1_POINT_2F* b);
+	LightBall* lightBall_;
+};

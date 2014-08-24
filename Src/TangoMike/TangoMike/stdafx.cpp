@@ -32,3 +32,10 @@ ID2D1LinearGradientBrush *m_pLGBrush = NULL;
 PendingAcceptList pendingAcceptList;
 
 IWICImagingFactory* g_pWICFactory = nullptr;
+
+
+
+float distance(D2D1_POINT_2F* a, D2D1_POINT_2F* b)
+{
+	return sqrt(pow(a->x - b->x, 2) + pow(a->y - b->y, 2));
+}

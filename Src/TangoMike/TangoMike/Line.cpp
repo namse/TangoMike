@@ -10,9 +10,16 @@ static const D2D1_GRADIENT_STOP stops[] =
 };
 
 Line::Line(D2D1_POINT_2F* point1, D2D1_POINT_2F* point2)
-	:point1_(point1), point2_(point2), geometry_(nullptr)
+	:point1_(point1), point2_(point2), geometry_(nullptr), stops_(nullptr), brush_(nullptr)
 {
 	CalcBezier();
+
+	if (rand()%2 == 0)
+		lightBall_ = new LightBall(*point1_, point_bezier_, *point2_);
+	else
+		lightBall_ = new LightBall(*point2_, point_bezier_, *point1_);
+
+	AddChild(lightBall_);
 }
 
 void Line::CalcBezier()
@@ -68,24 +75,24 @@ void Line::Render()
 		hr = sink_->Close();
 	}
 
-	if (m_pGradientStops == nullptr)
+	if (stops_ == nullptr)
 	{
 		hr = m_pBackBufferRT->CreateGradientStopCollection(
 			stops,
 			ARRAYSIZE(stops),
-			&m_pGradientStops
+			&stops_
 			);
 	}
 
-	if (m_pLGBrush == nullptr)
+	if (brush_ == nullptr)
 	{
 		hr = m_pBackBufferRT->CreateLinearGradientBrush(
 			D2D1::LinearGradientBrushProperties(
 			*point1_,
 			*point2_),
 			D2D1::BrushProperties(),
-			m_pGradientStops,
-			&m_pLGBrush
+			stops_,
+			&brush_
 			);
 	}
 	// ÃÖÀûÈ­ : http://msdn.microsoft.com/ko-kr/library/windows/desktop/ee719658(v=vs.85).aspx
@@ -94,7 +101,7 @@ void Line::Render()
 	m_pBackBufferRT->SetTransform(matrix_);
 
 	m_pBackBufferRT->DrawGeometry(geometry_,
-		m_pLGBrush);
+		brush_);
 	hr = m_pBackBufferRT->EndDraw();
 
 	//m_pGradientStops->Release();
@@ -108,9 +115,4 @@ void Line::Render()
 void Line::Update(float dTime)
 {
 	Component::Update(dTime);
-}
-
-float distance(D2D1_POINT_2F* a, D2D1_POINT_2F* b)
-{
-	return sqrt(pow(a->x - b->x, 2) + pow(a->y - b->y, 2));
 }

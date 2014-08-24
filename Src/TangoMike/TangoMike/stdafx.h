@@ -202,6 +202,8 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 
 #define TOTAL_COUNT_FONTCOLOR_TITLE D2D1::ColorF( 0xFFFFFF)
 #define TOTAL_COUNT_FONTCOLOR_COUNT D2D1::ColorF( 0xFFFFFF)
+
+#define LIGHT_BALL_MAX_RADIUS 4.f
 #include "ringbuffer.h"
 
 namespace MyAntialiasMode
@@ -262,3 +264,7 @@ typedef ProducerConsumerQueue<SOCKET, 100> PendingAcceptList;
 extern PendingAcceptList pendingAcceptList;
 #define FEEL_COUNT 18
 #define WORK_COUNT 18
+
+
+
+float distance(D2D1_POINT_2F* a, D2D1_POINT_2F* b);

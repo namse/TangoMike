@@ -1054,7 +1054,7 @@ void Application::OnKeyDown(SHORT vkey)
 	case 'S':
 	{
 		Event::VoteCompleteEvent event;
-		int length = rand() % WORK_COUNT;
+		int length = 1;//rand() % WORK_COUNT;
 		event.objectLength = length + 1;
 		event.object[0] = rand() % FEEL_COUNT;
 		bool didUse[WORK_COUNT];

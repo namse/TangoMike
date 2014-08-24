@@ -173,7 +173,7 @@ void RightSide::Notify(EventHeader* event)
 
 	case EVENT_VOTE_COMPLETE:
 	{
-		Event::VoteCompleteRequest* recvEvent = (Event::VoteCompleteRequest*)event;
+		Event::VoteCompleteEvent* recvEvent = (Event::VoteCompleteEvent*)event;
 		SelectdObjects_.clear();
 		for (int i = 0; i < recvEvent->objectLength; i++)
 		{
@@ -197,7 +197,7 @@ void RightSide::Notify(EventHeader* event)
 
 	case EVENT_SELECT:
 	{
-		Event::SelectRequest* recvEvent = (Event::SelectRequest*)event;
+		Event::SelectEvent* recvEvent = (Event::SelectEvent*)event;
 		SelectdObjects_.clear();
 		for (int i = 0; i < recvEvent->objectLength; i++)
 		{
@@ -221,7 +221,7 @@ void RightSide::Notify(EventHeader* event)
 
 	case EVENT_SHUFFLE:
 	{
-		Event::ShuffleRequest* recvEvent = (Event::ShuffleRequest*)event;
+		Event::ShuffleEvent* recvEvent = (Event::ShuffleEvent*)event;
 		SetIdle();
 	}break;
 

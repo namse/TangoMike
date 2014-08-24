@@ -1,5 +1,7 @@
 #pragma once
 #include <memory>
+#include "Feel.h"
+#include "Work.h"
 enum EventTypes
 {
 	EVENT_NONE = -1,
@@ -10,6 +12,11 @@ enum EventTypes
 	EVENT_SHOW_DATA = 4,
 	EVENT_HIDE_DATA = 5,
 
+	EVENT_TOP_PICK_FEEL_UPDATE = 6,
+	EVENT_TOP_PICK_WORK_UPDATE = 7,
+	EVENT_TOP_COMMUNION_UPDATE = 8,
+	EVENT_USER_COUNT_UPDATE = 9,
+
 } ;
 
 struct EventHeader
@@ -19,17 +26,17 @@ struct EventHeader
 
 namespace Event
 {
-	struct FirstClickRequest : public EventHeader
+	struct FirstClickEvent : public EventHeader
 	{
-		FirstClickRequest()
+		FirstClickEvent()
 		{
 			event_type_ = EVENT_FIRST_CLICK;
 		}
 	};
 
-	struct VoteCompleteRequest : public EventHeader
+	struct VoteCompleteEvent : public EventHeader
 	{
-		VoteCompleteRequest()
+		VoteCompleteEvent()
 		{
 			event_type_ = EVENT_VOTE_COMPLETE;
 			objectLength = 0;
@@ -39,9 +46,9 @@ namespace Event
 		char object[1 + WORK_COUNT];
 	};
 
-	struct SelectRequest : public EventHeader
+	struct SelectEvent : public EventHeader
 	{
-		SelectRequest()
+		SelectEvent()
 		{
 			event_type_ = EVENT_SELECT;
 			objectLength = 0;
@@ -51,27 +58,66 @@ namespace Event
 		char object[FEEL_COUNT + WORK_COUNT];
 	};
 
-	struct ShuffleRequest : public EventHeader
+	struct ShuffleEvent : public EventHeader
 	{
-		ShuffleRequest()
+		ShuffleEvent()
 		{
 			event_type_ = EVENT_SHUFFLE;
 		}
 	};
 
-	struct ShowDataRequest : public EventHeader
+	struct ShowDataEvent : public EventHeader
 	{
-		ShowDataRequest()
+		ShowDataEvent()
 		{
 			event_type_ = EVENT_SHOW_DATA;
 		}
 	};
 
-	struct HideDataRequest : public EventHeader
+	struct HideDataEvent : public EventHeader
 	{
-		HideDataRequest()
+		HideDataEvent()
 		{
 			event_type_ = EVENT_HIDE_DATA;
 		}
+	};
+
+	struct TopPickFeelUpdateEvent : public EventHeader
+	{
+		TopPickFeelUpdateEvent()
+		{
+			event_type_ = EVENT_TOP_PICK_FEEL_UPDATE;
+		}
+		Feel* tp_feel;
+		int tp_feel_count;
+	};
+
+	struct TopPickWorkUpdateEvent : public EventHeader
+	{
+		TopPickWorkUpdateEvent()
+		{
+			event_type_ = EVENT_TOP_PICK_WORK_UPDATE;
+		}
+		Work* tp_work;
+		int tp_work_count;
+	};
+
+	struct TopCommunionUpdateEvent : public EventHeader
+	{
+		TopCommunionUpdateEvent()
+		{
+			event_type_ = EVENT_TOP_COMMUNION_UPDATE;
+		}
+		std::pair<Feel*, Work*> tc_com;
+		int tc_com_count;
+	};
+
+	struct UserCountUpdateEvent : public EventHeader
+	{
+		UserCountUpdateEvent()
+		{
+			event_type_ = EVENT_USER_COUNT_UPDATE;
+		}
+		int userCount;
 	};
 }

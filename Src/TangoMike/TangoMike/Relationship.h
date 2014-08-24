@@ -43,6 +43,11 @@ public:
 		return (Work*)FindObjectById(id);
 	}
 
+	int GetCount(std::pair<Feel*, Work*> pair)
+	{
+		return count_.find(pair)->second;
+	}
+
 private:
 	Relationship();
 	~Relationship();
@@ -53,6 +58,18 @@ private:
 	std::vector<Feel*> feels_;
 	std::vector<Work*> works_;
 
+
+	std::map<Feel*, int> pickCount_feel;
+	std::map<Work*, int> pickCount_work;
+
 	int totalUser;
+
+	Feel* tp_feel;
+	int tp_feel_count;
+	Work* tp_work;
+	int tp_work_count;
+	std::pair<Feel*, Work*> tc_com;
+	int tc_com_count ;
+
 };
 

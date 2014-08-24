@@ -90,7 +90,7 @@ void LineCollection::Notify(EventHeader* event)
 	{
 	case EVENT_VOTE_COMPLETE:
 	{
-		Event::SelectRequest* recvEvent = (Event::SelectRequest*)event;
+		Event::SelectEvent* recvEvent = (Event::SelectEvent*)event;
 
 		for (int i = 1; i < recvEvent->objectLength; i++)
 		{

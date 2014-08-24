@@ -13,6 +13,7 @@ public:
 	void Render();
 	void Update(float dTime);
 
+	virtual void Notify(EventHeader* event);
 private:
 	Word word_TotalUsers;
 	Word word_TotalUsersNumber;

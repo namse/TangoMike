@@ -280,7 +280,7 @@ REGISTER_HANDLER(PKT_FIRST_CLICK)
 void ClientSession::HandleFirstClickRequest(Packet::FirstClickRequest& inPacket)
 {
 	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
-	Event::FirstClickRequest event;
+	Event::FirstClickEvent event;
 	EventManager::GetInstance()->Notify(&event);
 }
 
@@ -292,7 +292,7 @@ REGISTER_HANDLER(PKT_VOTE_COMPLETE)
 void ClientSession::HandleVoteCompleteRequest(Packet::VoteCompleteRequest& inPacket)
 {
 	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
-	Event::VoteCompleteRequest event;
+	Event::VoteCompleteEvent event;
 	memcpy(&(event.objectLength),
 		&(inPacket.objectLength),
 		sizeof(event) - sizeof(event.event_type_));
@@ -307,7 +307,7 @@ REGISTER_HANDLER(PKT_SELECT)
 void ClientSession::HandleSelectRequest(Packet::SelectRequest& inPacket)
 {
 	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
-	Event::SelectRequest event;
+	Event::SelectEvent event;
 	memcpy(&(event.objectLength),
 		&(inPacket.objectLength),
 		sizeof(event) - sizeof(event.event_type_));
@@ -323,7 +323,7 @@ REGISTER_HANDLER(PKT_SHUFFLE)
 void ClientSession::HandleShuffleRequest(Packet::ShuffleRequest& inPacket)
 {
 	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
-	Event::ShuffleRequest event;
+	Event::ShuffleEvent event;
 	EventManager::GetInstance()->Notify(&event);
 }
 

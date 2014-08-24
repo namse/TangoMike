@@ -27,9 +27,9 @@ int WINAPI WinMain(
 	)
 {
 	EasyServer::GetInstance();
-	//DevConsoleCreate();
+	DevConsoleCreate();
 	std::srand(unsigned(std::time(0)));
-	Relationship::GetInstance()->LoadDataFromFile("data.txt");
+	Relationship::GetInstance();
 
 	// Ignoring the return value because we want to continue running even in the
 	// unlikely event that HeapSetInformation fails.

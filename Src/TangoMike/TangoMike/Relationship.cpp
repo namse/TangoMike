@@ -5,7 +5,14 @@ Relationship* Relationship::pInstance_ = nullptr;
 
 Relationship::Relationship() :totalUser(0)
 {
-	EventManager::GetInstance()->AddEventListener(EVENT_SELECT, this);
+	EventManager::GetInstance()->AddEventListener(EVENT_VOTE_COMPLETE, this);
+	LoadDataFromFile("data.txt");
+	tp_feel = FindFeelById(0);
+	tp_feel_count = 0;
+	tp_work = FindWorkById(FEEL_COUNT + 1);
+	tp_work_count = 0;
+	tc_com = std::make_pair(tp_feel, tp_work);
+	tc_com_count = 0;
 }
 
 void Relationship::Notify(EventHeader* event)
@@ -14,7 +21,12 @@ void Relationship::Notify(EventHeader* event)
 	{
 	case EVENT_VOTE_COMPLETE:
 	{
-		Event::SelectRequest* recvEvent = (Event::SelectRequest*)event;
+		Event::SelectEvent* recvEvent = (Event::SelectEvent*)event;
+		
+		totalUser++;
+		Event::UserCountUpdateEvent event;
+		event.userCount = totalUser;
+		EventManager::GetInstance()->Notify(&event);
 
 		Feel* selectedFeel = FindFeelById(recvEvent->object[0]);
 		for (int i = 1; i < recvEvent->objectLength; i++)
@@ -22,12 +34,48 @@ void Relationship::Notify(EventHeader* event)
 			Work* selectedWork = FindWorkById(recvEvent->object[i]);
 			if (selectedWork != nullptr)
 			{
-				auto count = count_.find(std::make_pair(selectedFeel, selectedWork));
-				if (count_.find(std::make_pair(selectedFeel, selectedWork)) != count_.end())
+				pickCount_feel[selectedFeel]++;
+				
+				if (pickCount_feel[selectedFeel] >= tp_feel_count)
 				{
-					std::cout << count_.find(std::make_pair(selectedFeel, selectedWork))->second;
-					count_.find(std::make_pair(selectedFeel, selectedWork))->second++;
-					std::cout << count_.find(std::make_pair(selectedFeel, selectedWork))->second;
+					tp_feel_count = pickCount_feel[selectedFeel];
+					tp_feel = selectedFeel;
+					
+					Event::TopPickFeelUpdateEvent event;
+					event.tp_feel = tp_feel;
+					event.tp_feel_count = tp_feel_count;
+					EventManager::GetInstance()->Notify(&event);
+				}
+				
+				
+				pickCount_work[selectedWork]++;
+
+				if (pickCount_work[selectedWork] >= tp_work_count)
+				{
+					tp_work_count = pickCount_work[selectedWork];
+					tp_work = selectedWork;
+
+					Event::TopPickWorkUpdateEvent event;
+					event.tp_work = tp_work;
+					event.tp_work_count = tp_work_count;
+					EventManager::GetInstance()->Notify(&event);
+				}
+
+				auto pair = std::make_pair(selectedFeel, selectedWork);
+				auto count = count_.find(pair);
+				if (count_.find(pair) != count_.end())
+				{
+					count_.find(pair)->second++;
+					if (count_.find(pair)->second > tc_com_count)
+					{
+						tc_com_count = count_.find(pair)->second;
+						tc_com = pair;
+
+						Event::TopCommunionUpdateEvent event;
+						event.tc_com = tc_com;
+						event.tc_com_count = tc_com_count;
+						EventManager::GetInstance()->Notify(&event);
+					}
 				}
 			}
 		}

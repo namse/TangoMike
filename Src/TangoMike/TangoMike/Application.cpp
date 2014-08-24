@@ -1047,13 +1047,13 @@ void Application::OnKeyDown(SHORT vkey)
 
 	case 'A':
 	{
-		Event::FirstClickRequest event;
+		Event::FirstClickEvent event;
 		EventManager::GetInstance()->Notify(&event);
 	}	break;
 
 	case 'S':
 	{
-		Event::VoteCompleteRequest event;
+		Event::VoteCompleteEvent event;
 		int length = rand() % WORK_COUNT;
 		event.objectLength = length + 1;
 		event.object[0] = rand() % FEEL_COUNT;
@@ -1073,7 +1073,7 @@ void Application::OnKeyDown(SHORT vkey)
 
 	case 'D':
 	{
-		Event::SelectRequest event;
+		Event::SelectEvent event;
 		int length = rand() % (WORK_COUNT + FEEL_COUNT);
 		event.objectLength = length;
 		bool didUse[WORK_COUNT + FEEL_COUNT];
@@ -1091,7 +1091,7 @@ void Application::OnKeyDown(SHORT vkey)
 		}break;
 
 	case 'F':
-	{	Event::ShuffleRequest event;
+	{	Event::ShuffleEvent event;
 		EventManager::GetInstance()->Notify(&event);
 	}break;
 

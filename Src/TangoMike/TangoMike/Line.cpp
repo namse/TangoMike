@@ -10,11 +10,26 @@ static const D2D1_GRADIENT_STOP stops[] =
 };
 
 Line::Line(D2D1_POINT_2F* point1, D2D1_POINT_2F* point2)
-	:point1_(point1), point2_(point2)
+	:point1_(point1), point2_(point2), geometry_(nullptr)
 {
-
+	CalcBezier();
 }
 
+void Line::CalcBezier()
+{
+	float h = (((float)rand() / (float)RAND_MAX) * 0.4f) - 0.2f;
+	float t = (((float)rand() / (float)RAND_MAX) * 1.6f) - 0.3f;
+
+	D2D1_POINT_2F vec = *point2_ - *point1_;
+
+	D2D1_POINT_2F vec_horizen = vec * t;
+	D2D1_POINT_2F vec_vertical;
+	vec_vertical.x = -vec.y;
+	vec_vertical.y = vec.x;
+	vec_vertical = vec_vertical * h;
+
+	point_bezier_ = vec_vertical + vec_horizen + *point1_;
+}
 
 Line::~Line()
 {
@@ -23,31 +38,35 @@ Line::~Line()
 void Line::Render()
 {
 	Component::Render();
+
 	HRESULT hr;
-	hr = m_pD2DFactory->CreatePathGeometry(&m_pPathGeometry);
 
-	hr = m_pPathGeometry->Open(&m_pGeometrySink);
+	if (geometry_ == nullptr)
+	{
+		hr = m_pD2DFactory->CreatePathGeometry(&geometry_);
 
-	m_pGeometrySink->BeginFigure(
-		D2D1::Point2F(point1_->x, point1_->y),
-		D2D1_FIGURE_BEGIN_HOLLOW);
+		hr = geometry_->Open(&sink_);
 
-	float radius, angle;
-	float length = sqrt(pow(point1_->x - point2_->x, 2) + pow(point1_->y - point2_->y, 2));
-	float factor = 0.5f;//(float)(std::rand() % 10) / 100.f;
-	radius = length * factor;
-	angle = 1.5f;//(float)((float)std::rand() / (float)RAND_MAX) * M_PI * 2.0f;
+		sink_->BeginFigure(
+			D2D1::Point2F(point1_->x, point1_->y),
+			D2D1_FIGURE_BEGIN_HOLLOW);
 
-	m_pGeometrySink->AddBezier(
-		D2D1::BezierSegment(
-		*point1_,
-		*point1_, //D2D1::Point2F( point1_->x + radius * cos(angle), point1_->y + radius * sin(angle)),
-		*point2_)
-		);
+		float radius, angle;
+		float length = sqrt(pow(point1_->x - point2_->x, 2) + pow(point1_->y - point2_->y, 2));
+		float factor = 0.5f;//(float)(std::rand() % 10) / 100.f;
+		radius = length * factor;
+		angle = 1.5f;//(float)((float)std::rand() / (float)RAND_MAX) * M_PI * 2.0f;
 
-	m_pGeometrySink->EndFigure(D2D1_FIGURE_END_OPEN);
+		sink_->AddBezier(
+			D2D1::BezierSegment(
+			*point1_,
+			point_bezier_, //D2D1::Point2F( point1_->x + radius * cos(angle), point1_->y + radius * sin(angle)),
+			*point2_)
+			);
 
-	hr = m_pGeometrySink->Close();
+		sink_->EndFigure(D2D1_FIGURE_END_OPEN);
+		hr = sink_->Close();
+	}
 
 	if (m_pGradientStops == nullptr)
 	{
@@ -74,7 +93,7 @@ void Line::Render()
 
 	m_pBackBufferRT->SetTransform(matrix_);
 
-	m_pBackBufferRT->DrawGeometry(m_pPathGeometry,
+	m_pBackBufferRT->DrawGeometry(geometry_,
 		m_pLGBrush);
 	hr = m_pBackBufferRT->EndDraw();
 
@@ -89,4 +108,9 @@ void Line::Render()
 void Line::Update(float dTime)
 {
 	Component::Update(dTime);
+}
+
+float distance(D2D1_POINT_2F* a, D2D1_POINT_2F* b)
+{
+	return sqrt(pow(a->x - b->x, 2) + pow(a->y - b->y, 2));
 }

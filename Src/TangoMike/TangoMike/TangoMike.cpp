@@ -19,7 +19,7 @@
 ******************************************************************/
 
 void DevConsoleCreate();
-int WINAPI WinMain(
+int WINAPI WinMain( 
 	HINSTANCE /* hInstance */,
 	HINSTANCE /* hPrevInstance */,
 	LPSTR /* lpCmdLine */,
@@ -27,7 +27,7 @@ int WINAPI WinMain(
 	)
 {
 	EasyServer::GetInstance();
-	DevConsoleCreate();
+	//DevConsoleCreate();
 	std::srand(unsigned(std::time(0)));
 	Relationship::GetInstance();
 

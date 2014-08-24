@@ -5,8 +5,8 @@
 // Create a linear gradient.
 static const D2D1_GRADIENT_STOP stops[] =
 {
-	{ 0.f, { ((float)0x85 / (float)0xFF), ((float)0xD5 / (float)0xFF), ((float)0xA3 / (float)0xFF), 1.f } },
-	{ 1.f, { ((float)0xE7 / (float)0xFF), ((float)0x9F / (float)0xFF), ((float)0x58 / (float)0xFF), 1.f } },
+	{ 0.f, { ((float)0xde / (float)0xFF), ((float)0x96 / (float)0xFF), ((float)0x58 / (float)0xFF), 1.f } },
+	{ 1.f, { ((float)0x84 / (float)0xFF), ((float)0xD3 / (float)0xFF), ((float)0xA2 / (float)0xFF), 1.f } },
 };
 
 Line::Line(D2D1_POINT_2F* point1, D2D1_POINT_2F* point2)

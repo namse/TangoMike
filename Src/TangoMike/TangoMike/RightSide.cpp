@@ -44,33 +44,32 @@ void RightSide::SetArrange()
 	float initAngle = M_PI_2;
 	float dAngle = M_PI * 2.f / wordSpriteCollection_.GetWordSprites().size();
 	float wordAngle;
-	angle = -dAngle/4.f;
 	
 
 	float x, y;
 	for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
 	{
-		angle += dAngle;
 
 		x = CIRCLE_RADIUS_TO_WORD * cos(angle + initAngle);
 		y = CIRCLE_RADIUS_TO_WORD * sin(angle + initAngle);
 		
 
-		wordAngle = angle - M_PI_2;
-
-		if (wordSprite->IsWork())
+		if (wordSprite->IsFeel())
 		{
-			wordAngle += M_PI;
-			x = CIRCLE_RADIUS_TO_WORD * cos(angle + initAngle - dAngle/2.f);
-			y = CIRCLE_RADIUS_TO_WORD * sin(angle + initAngle - dAngle/2.f);
-			wordSprite->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+			angle = M_PI * 2.f * 0.75f - (dAngle * (wordSprite->GetId() + 0.5f));
+			wordAngle = angle - M_PI;
+			float maxWidth = wordSprite->GetMaxWidth();
+			x = (CIRCLE_RADIUS_TO_WORD + maxWidth) * cos(angle);
+			y = (CIRCLE_RADIUS_TO_WORD + maxWidth) * sin(angle);
+			wordSprite->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_TRAILING);	
 		}
 		else
 		{
-			float maxWidth = wordSprite->GetMaxWidth();
-			x += maxWidth * cos(angle + initAngle);
-			y += maxWidth * sin(angle + initAngle);
-			wordSprite->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_TRAILING);
+			angle = M_PI * 2.f * 0.75f + (dAngle * (wordSprite->GetId() - FEEL_COUNT + 0.5f));
+			wordAngle = angle;
+			x = CIRCLE_RADIUS_TO_WORD * cos(angle);
+			y = CIRCLE_RADIUS_TO_WORD * sin(angle);
+			wordSprite->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
 		}
 
 		wordSprite->SetShuffle(false);

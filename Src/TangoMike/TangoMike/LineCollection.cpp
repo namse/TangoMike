@@ -46,9 +46,9 @@ void LineCollection::Render()
 
 	m_pBackBufferRT->SetTransform(matrix_);
 	if (pointBrush_feel_ == nullptr)
-		m_pBackBufferRT->CreateSolidColorBrush(COLOR_WORK, &pointBrush_feel_);
+		m_pBackBufferRT->CreateSolidColorBrush(COLOR_FEEL, &pointBrush_feel_);
 	if (pointBrush_work_ == nullptr)
-		m_pBackBufferRT->CreateSolidColorBrush(COLOR_FEEL, &pointBrush_work_);
+		m_pBackBufferRT->CreateSolidColorBrush(COLOR_WORK, &pointBrush_work_);
 
 	for (int i = 0; i < Relationship::GetInstance()->GetFeels().size(); i++)
 	{
@@ -74,7 +74,12 @@ void LineCollection::InitLinePoints()
 	float dAngle = M_PI * 2.f / (float)totalCount;
 	for (int i = 0; i < totalCount; i++)
 	{
-		float angle = -M_PI_2 + dAngle * (i + 0.5f);
+		float angle = 0.f;
+		if ( i < FEEL_COUNT ) // is Feel's Point
+			angle = M_PI * 2.f * 0.75f - (dAngle * (i + 0.5f));
+		else
+			angle = M_PI * 2.f * 0.75f + (dAngle * (i - FEEL_COUNT + 0.5f));
+			
 		linePoints_.push_back(D2D1::Point2F(cos(angle), sin(angle)) * CIRCLE_RADIUS_TO_POINT);
 	}
 }

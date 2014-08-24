@@ -42,66 +42,6 @@ int WINAPI WinMain(
 
 			if (SUCCEEDED(app.Initialize()))
 			{
-				
-				/*auto feels = Relationship::GetInstance()->GetFeels();
-				auto works = Relationship::GetInstance()->GetWorks();
-				std::vector<D2D_POINT_2F*>feelsPositions;
-				std::vector<D2D_POINT_2F*>worksPositions;
-
-				int totalCount = feels.size() + works.size();
-				D2D_POINT_2F center;
-				center.x = 512.f, center.y = 384.f;
-				float radius = 300.f;
-				for (int i = 0; i < feels.size(); i++)
-				{
-					float angle = 2.f * M_PI * (float)i / (float)(totalCount);
-
-					D2D_POINT_2F pos;
-					pos.x = center.x + cosf(angle) * radius;
-					pos.y = center.y + sinf(angle) * radius;
-					Word* word = new Word(feels[i]->GetName(), pos);
-					if (angle < M_PI_2 || angle > M_PI + M_PI_2)
-					{
-						word->SetRotation(angle);
-					}
-					else
-					{
-						word->SetRotation(M_PI + angle);
-					}
-					app.AddChild(word);
-
-					feelsPositions.push_back(word->GetPosition());
-				}
-				for (int i = 0; i < works.size(); i++)
-				{
-					float angle = 2.f * M_PI * (float)(i + feels.size()) / (float)(totalCount);
-					D2D_POINT_2F pos;
-					pos.x = center.x + cosf(angle) * radius;
-					pos.y = center.y + sinf(angle) * radius;
-					Word* word = new Word(works[i]->GetName(), pos);
-					if (angle < M_PI_2 || angle > M_PI + M_PI_2)
-					{
-						word->SetRotation(angle);
-					}
-					else
-					{
-						word->SetRotation(M_PI + angle);
-					}
-					app.AddChild(word);
-
-					worksPositions.push_back(word->GetPosition());
-				}
-
-				for (auto feelPositoin : feelsPositions)
-				{
-					for (auto workPosition : worksPositions)
-					{
-						//for (int i = 0; i < rand() % 5; i++)
-							app.AddChild(new Line(feelPositoin, workPosition));
-					}
-				}
-*/
-
 				app.RunMessageLoop();
 			}
 		}

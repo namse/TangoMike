@@ -22,13 +22,14 @@ WordSprite::WordSprite(Object& object)
 	englishWord_.SetFontName(L"Melor");
 	englishSize_ = D2D1::Point2F(object.GetEnglishWidth(), ENGLISH_IDLE_FONT_SIZE);
 
-	//SetPosition(D2D1::Point2F(0.f, (KOREAN_IDLE_FONT_SIZE + ENGLISH_IDLE_FONT_SIZE) / 2.f));
+	SetCenter(D2D1::Point2F(0.f, (KOREAN_IDLE_FONT_SIZE + ENGLISH_IDLE_FONT_SIZE) / 2.f));
 
 	if (object.GetId() < Relationship::GetInstance()->GetFeels().size())
 		isFeel_ = true;
 	else
 		isFeel_ = false;
 
+	id_ = object.GetId();
 	AddChild(&koreanWord_);
 	AddChild(&englishWord_);
 	if (IsFeel() == true)

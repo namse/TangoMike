@@ -35,6 +35,8 @@ public:
 	Word* GetKoreanWord(){ return &koreanWord_; }
 	Word* GetEnglishWord(){ return &englishWord_; }
 
+	int GetId(){ return id_; }
+
 	void SetFocus(bool isFocus){
 		isFocus_ = isFocus;
 		if (isFocus == true)
@@ -70,5 +72,7 @@ private:
 	bool isFocus_;
 
 	bool isFeel_;
+
+	int id_;
 };
 

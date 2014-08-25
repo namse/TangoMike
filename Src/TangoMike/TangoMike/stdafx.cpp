@@ -33,8 +33,14 @@ PendingAcceptList pendingAcceptList;
 
 IWICImagingFactory* g_pWICFactory = nullptr;
 
+ID2D1LinearGradientBrush *linebrush_[FEEL_COUNT][WORK_COUNT];
+ID2D1GradientStopCollection* linestops_ = nullptr;
 
-
+ID2D1LinearGradientBrush *linebrush_background[FEEL_COUNT][WORK_COUNT];
+ID2D1GradientStopCollection* lineStopCollection_ = nullptr;
+ID2D1GradientStopCollection* lineStopCollection_background = nullptr;
+ID2D1BitmapRenderTarget *pCompatibleRenderTarget = nullptr;
+bool isFocus[FEEL_COUNT + WORK_COUNT] = { false, };
 float distance(D2D1_POINT_2F* a, D2D1_POINT_2F* b)
 {
 	return sqrt(pow(a->x - b->x, 2) + pow(a->y - b->y, 2));

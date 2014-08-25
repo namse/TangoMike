@@ -6,6 +6,7 @@ public:
 	{
 		object_ = object;
 		isAnimating_ = false;
+		isFirst = true;
 	}
 
 	~Animation()
@@ -15,7 +16,12 @@ public:
 
 	void DoAnimate(T nextObject, float duration)
 	{
-		*object_ = nextObject_;
+		if (isFirst != true)
+		{
+			*object_ = nextObject_;
+		}
+		else
+			isFirst = true;
 		prevObject_ = *object_;
 		nextObject_ = nextObject;
 		isAnimating_ = true;
@@ -55,4 +61,5 @@ private:
 	float currentTime_;
 	T prevObject_;
 	T nextObject_;
+	bool isFirst;
 };

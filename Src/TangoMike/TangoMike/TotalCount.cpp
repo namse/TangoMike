@@ -18,6 +18,13 @@ TotalCount::TotalCount()
 	, word_TCEnglish_Feel(L"", TOTAL_COUNT_POSITION_TC_ENGLISH_FEEL)
 	, word_TCEnglish_Work(L"", TOTAL_COUNT_POSITION_TC_ENGLISH_WORK)
 	, word_TCCount(L"", TOTAL_COUNT_POSITION_TC_COUNT)
+	, animatingWordGroup()
+	, tpFCount(0), tpWCount(0), tcCount(0), opacity(0.f)
+	, tpFCount_ani(0), tpWCount_ani(0), tcCount_ani(0)
+	, opacityAnimation(&opacity)
+	, tpFeelCountAnimation(&tpFCount_ani)
+	, tpWorkCountAnimation(&tpWCount_ani)
+	, tcCountAnimation(&tcCount_ani)
 {
 	word_TotalUsers.SetFontSize(TOTAL_COUNT_FONTSIZE_TITLE);
 	word_TotalUsersNumber.SetFontSize(TOTAL_COUNT_FONTSIZE_TU_COUNT);
@@ -73,31 +80,43 @@ TotalCount::TotalCount()
 	AddChild(&word_TotalUsers);
 	AddChild(&word_TotalUsersNumber);
 
-	AddChild(&word_TopPick);
-	AddChild(&word_TPKorean_Feel);
-	AddChild(&word_TPEnglish_Feel);
-	AddChild(&word_TPCount_Feel);
-	AddChild(&word_TPKorean_Work);
-	AddChild(&word_TPEnglish_Work);
-	AddChild(&word_TPCount_Work);
+	animatingWordGroup.SetPosition(D2D1::Point2F(0.f, +25.f));
+	animatingWordGroup.AddChild(&word_TopPick);
+	animatingWordGroup.AddChild(&word_TPKorean_Feel);
+	animatingWordGroup.AddChild(&word_TPEnglish_Feel);
+	animatingWordGroup.AddChild(&word_TPCount_Feel);
+	animatingWordGroup.AddChild(&word_TPKorean_Work);
+	animatingWordGroup.AddChild(&word_TPEnglish_Work);
+	animatingWordGroup.AddChild(&word_TPCount_Work);
 
-	AddChild(&word_TopComunion);
-	AddChild(&word_TCKorean_Feel);
-	AddChild(&word_TCKorean_Work);
-	AddChild(&word_TCEnglish_Feel);
-	AddChild(&word_TCEnglish_Work);
-	AddChild(&word_TCCount);
+	animatingWordGroup.AddChild(&word_TopComunion);
+	animatingWordGroup.AddChild(&word_TCKorean_Feel);
+	animatingWordGroup.AddChild(&word_TCKorean_Work);
+	animatingWordGroup.AddChild(&word_TCEnglish_Feel);
+	animatingWordGroup.AddChild(&word_TCEnglish_Work);
+	animatingWordGroup.AddChild(&word_TCCount);
+
+	AddChild(&animatingWordGroup);
 
 	for (auto& child : childs_)
 	{
 		Word* word = (Word*)child;
 		word->SetMaxWidthAndHeight(D2D1::Point2F(1000.f, 1000.f));
 	}
+	for (auto& child : animatingWordGroup.GetChildern())
+	{
+		Word* word = (Word*)child;
+		word->SetMaxWidthAndHeight(D2D1::Point2F(1000.f, 1000.f));
+
+		originPosition.push_back(*word->GetPosition());
+	}
 
 	EventManager::GetInstance()->AddEventListener(EVENT_TOP_PICK_WORK_UPDATE, this);
 	EventManager::GetInstance()->AddEventListener(EVENT_TOP_PICK_FEEL_UPDATE, this);
 	EventManager::GetInstance()->AddEventListener(EVENT_TOP_COMMUNION_UPDATE, this);
 	EventManager::GetInstance()->AddEventListener(EVENT_USER_COUNT_UPDATE, this);
+	EventManager::GetInstance()->AddEventListener(EVENT_SHOW_DATA, this);
+	EventManager::GetInstance()->AddEventListener(EVENT_HIDE_DATA, this);
 }
 
 TotalCount::~TotalCount()
@@ -113,14 +132,16 @@ void TotalCount::Notify(EventHeader* event)
 		Event::TopPickFeelUpdateEvent* recvEvent = (Event::TopPickFeelUpdateEvent*) event;
 		word_TPKorean_Feel.SetContents(recvEvent->tp_feel->GetName());
 		word_TPEnglish_Feel.SetContents(recvEvent->tp_feel->GetEnglishName());
-		word_TPCount_Feel.SetContents(std::to_wstring (recvEvent->tp_feel_count));
+		tpFCount = recvEvent->tp_feel_count;
+		//word_TPCount_Feel.SetContents(std::to_wstring (recvEvent->tp_feel_count));
 	}break;
 	case EVENT_TOP_PICK_WORK_UPDATE:
 	{
 		Event::TopPickWorkUpdateEvent* recvEvent = (Event::TopPickWorkUpdateEvent*) event;
 		word_TPKorean_Work.SetContents(recvEvent->tp_work->GetName());
 		word_TPEnglish_Work.SetContents(recvEvent->tp_work->GetEnglishName());
-		word_TPCount_Work.SetContents(std::to_wstring(recvEvent->tp_work_count));
+		tpWCount = recvEvent->tp_work_count;
+		//word_TPCount_Work.SetContents(std::to_wstring(recvEvent->tp_work_count));
 	}break;
 	case EVENT_TOP_COMMUNION_UPDATE:
 	{
@@ -129,23 +150,72 @@ void TotalCount::Notify(EventHeader* event)
 		word_TCEnglish_Feel.SetContents(recvEvent->tc_com.first->GetEnglishName());
 		word_TCKorean_Work.SetContents(recvEvent->tc_com.second->GetName());
 		word_TCEnglish_Work.SetContents(recvEvent->tc_com.second->GetEnglishName());
-		word_TCCount.SetContents(std::to_wstring(recvEvent->tc_com_count));
+		tcCount = recvEvent->tc_com_count;
+		//word_TCCount.SetContents(std::to_wstring(recvEvent->tc_com_count));
 	}break;
 	case EVENT_USER_COUNT_UPDATE:
 	{
 		Event::UserCountUpdateEvent* recvEvent = (Event::UserCountUpdateEvent*) event;
 		word_TotalUsersNumber.SetContents(std::to_wstring(recvEvent->userCount));
 	}break;
+	case EVENT_SHOW_DATA:
+	{
+		// Start Animation
+		//animatingWordGroup.DoAnimate(POSITION, &D2D1::Point2F(0.f, 0.f), 2.f);
+		opacity = 0.f;
+		tpFCount_ani = 0;
+		tpWCount_ani = 0;
+		tcCount_ani = 0;
+		opacityAnimation.DoAnimate(1.f, 1.f);
+		tpFeelCountAnimation.DoAnimate(tpFCount, 2.f);
+		tpWorkCountAnimation.DoAnimate(tpWCount, 2.f);
+		tcCountAnimation.DoAnimate(tcCount, 2.f);
+
+	}break;
+	case EVENT_HIDE_DATA:
+	{
+		// Fade Off this.
+		//animatingWordGroup.DoAnimate(POSITION, &D2D1::Point2F(0.f, 25.f), 2.f);
+		opacityAnimation.DoAnimate(0.f, 1.f);
+	}break;
 	}
 }
 
 void TotalCount::Render()
 {
+	word_TPCount_Feel.SetContents(std::to_wstring(tpFCount_ani));
+	word_TPCount_Work.SetContents(std::to_wstring(tpWCount_ani));
+	word_TCCount.SetContents(std::to_wstring(tcCount_ani));
+
+	int i = 0;
+	for (auto& child : animatingWordGroup.GetChildern())
+	{
+		Word* word = (Word*)child;
+		auto fontcolor = word->Getfontcolor();
+		fontcolor.a = opacity;
+		word->SetFontColor(fontcolor);
+
+		word->SetPosition(originPosition[i] + D2D1::Point2F(0.f, - opacity * 25.f));
+
+		i++;
+	}
+
+
 	Component::Render();
+
+
 }
 
 void TotalCount::Update(float dTime)
 {
 	Component::Update(dTime);
+
+	opacityAnimation.OnAnimate(dTime);
+	tpFeelCountAnimation.OnAnimate(dTime);
+	tpWorkCountAnimation.OnAnimate(dTime);
+	tcCountAnimation.OnAnimate(dTime);
+
+	std::cout << animatingWordGroup.GetPosition()->x << " " << animatingWordGroup.GetPosition()->y << " " << tpWCount_ani << " " << tcCount_ani
+		<<" "<< (word_TCKorean_Work.GetPosition()->y) - (word_TCCount.GetPosition()->y) << " " << word_TCKorean_Work.GetPosition()->y << " " << std::endl;
 
 }

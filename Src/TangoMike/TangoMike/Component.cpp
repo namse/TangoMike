@@ -85,3 +85,15 @@ void Component::DoAnimate(ANIMATION_TYPE type, void* purpose, float duration)
 
 	}
 }
+
+void Component::RemoveChild(Component* child)
+{
+	for (auto& iter = childs_.begin(); iter != childs_.end(); iter++)
+	{
+		if ((*iter) == child)
+		{
+			childs_.erase(iter);
+			break;
+		}
+	}
+}

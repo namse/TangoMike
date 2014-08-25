@@ -1,16 +1,10 @@
 #include "stdafx.h"
 #include "Line.h"
 
-//85D5A3 E79F58
-// Create a linear gradient.
-static const D2D1_GRADIENT_STOP stops[] =
-{
-	{ 0.f, { ((float)0xde / (float)0xFF), ((float)0x96 / (float)0xFF), ((float)0x58 / (float)0xFF), 1.f } },
-	{ 1.f, { ((float)0x84 / (float)0xFF), ((float)0xD3 / (float)0xFF), ((float)0xA2 / (float)0xFF), 1.f } },
-};
 
-Line::Line(D2D1_POINT_2F* point1, D2D1_POINT_2F* point2)
-	:point1_(point1), point2_(point2), geometry_(nullptr), stops_(nullptr), brush_(nullptr)
+Line::Line(D2D1_POINT_2F* point1, D2D1_POINT_2F* point2, int feelID, int workID)
+	:point1_(point1), point2_(point2), geometry_(nullptr), didDrawBackground(false)
+	, feelID_(feelID), workID_(workID)
 {
 	CalcBezier();
 
@@ -75,35 +69,27 @@ void Line::Render()
 		hr = sink_->Close();
 	}
 
-	if (stops_ == nullptr)
+	if (didDrawBackground == false)
 	{
-		hr = m_pBackBufferRT->CreateGradientStopCollection(
-			stops,
-			ARRAYSIZE(stops),
-			&stops_
-			);
+		pCompatibleRenderTarget->BeginDraw();
+		pCompatibleRenderTarget->SetTransform(matrix_);
+		pCompatibleRenderTarget->DrawGeometry(geometry_, GetLineBrush_Background(feelID_, workID_));
+		pCompatibleRenderTarget->EndDraw();
+		didDrawBackground = true;
 	}
 
-	if (brush_ == nullptr)
-	{
-		hr = m_pBackBufferRT->CreateLinearGradientBrush(
-			D2D1::LinearGradientBrushProperties(
-			*point1_,
-			*point2_),
-			D2D1::BrushProperties(),
-			stops_,
-			&brush_
-			);
-	}
 	// ÃÖÀûÈ­ : http://msdn.microsoft.com/ko-kr/library/windows/desktop/ee719658(v=vs.85).aspx
-	m_pBackBufferRT->BeginDraw();
+	
+	if (isFocus[feelID_] == true && isFocus[workID_] == true)
+	{
+		m_pBackBufferRT->BeginDraw();
+		m_pBackBufferRT->SetTransform(matrix_);
 
-	m_pBackBufferRT->SetTransform(matrix_);
+		m_pBackBufferRT->DrawGeometry(geometry_,
+			GetLineBrush(feelID_, workID_));
+		hr = m_pBackBufferRT->EndDraw();
 
-	m_pBackBufferRT->DrawGeometry(geometry_,
-		brush_);
-	hr = m_pBackBufferRT->EndDraw();
-
+	}
 	//m_pGradientStops->Release();
 	//m_pLGBrush->Release();
 	//SafeRelease(&m_pGradientStops);

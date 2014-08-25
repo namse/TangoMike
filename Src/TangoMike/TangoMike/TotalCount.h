@@ -32,5 +32,25 @@ private:
 	Word word_TCEnglish_Feel;
 	Word word_TCEnglish_Work;
 	Word word_TCCount;
+
+	Component animatingWordGroup;
+
+	float opacity;
+	int tpFCount;
+	int tpWCount;
+	int tcCount;
+
+	int tpFCount_ani;
+	int tpWCount_ani;
+	int tcCount_ani;
+
+	Animation <float> opacityAnimation;
+	Animation <int> tpFeelCountAnimation;
+	Animation <int> tpWorkCountAnimation;
+	Animation <int> tcCountAnimation;
+
+
+	std::vector<D2D_POINT_2F> originPosition;
+
 };
 

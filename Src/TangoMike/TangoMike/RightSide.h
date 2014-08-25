@@ -18,6 +18,7 @@ public:
 	void SetFocus();
 	void SetIdle();
 
+
 	void OffFocus();
 	void OffShuffle();
 
@@ -28,7 +29,7 @@ private:
 	
 private:
 	WordSpriteCollection wordSpriteCollection_;
-	LineCollection lineCollection_;
-	std::vector<Object*> SelectdObjects_;
+	LineCollection lineCollection_;/*
+	std::vector<Object*> SelectdObjects_;*/
 };
 

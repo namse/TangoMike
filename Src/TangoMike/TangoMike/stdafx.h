@@ -93,12 +93,15 @@
 
 ////
 #include "d2dPointOperator.h"
-#include "d2dColorOperator.h"s
+#include "d2dColorOperator.h"
 #include "pugiconfig.hpp"
 #include "pugixml.hpp"
 #include "animation.h"
 
 #include "ProducerConsumerQueue.h"
+
+#include <mmsystem.h>
+#pragma comment(lib, "winmm.lib")
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -206,7 +209,11 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 
 #define LIGHT_BALL_MAX_RADIUS 4.f
 
-#define MAX_LINE_COUNT 10
+#define MAX_LINE_COUNT 3
+
+#define FEEL_COUNT 18
+#define WORK_COUNT 18
+
 #include "ringbuffer.h"
 
 namespace MyAntialiasMode
@@ -262,13 +269,39 @@ extern ID2D1LinearGradientBrush *m_pLGBrush;
 
 extern IWICImagingFactory* g_pWICFactory;
 
+extern ID2D1LinearGradientBrush *linebrush_[FEEL_COUNT][WORK_COUNT];
+extern ID2D1LinearGradientBrush *linebrush_background[FEEL_COUNT][WORK_COUNT];
+extern ID2D1GradientStopCollection* lineStopCollection_;
+extern ID2D1GradientStopCollection* lineStopCollection_background;
+extern ID2D1BitmapRenderTarget *pCompatibleRenderTarget;
+static const D2D1_GRADIENT_STOP lineStops[] =
+{
+	{ 0.f, { ((float)0xde / (float)0xFF), ((float)0x96 / (float)0xFF), ((float)0x58 / (float)0xFF), 1.f } },
+	{ 1.f, { ((float)0x84 / (float)0xFF), ((float)0xD3 / (float)0xFF), ((float)0xA2 / (float)0xFF), 1.f } },
+};
+static const D2D1_GRADIENT_STOP lineStops_background[] =
+{
+	{ 0.f, { ((float)0xde / (float)0xFF), ((float)0x96 / (float)0xFF), ((float)0x58 / (float)0xFF), 0.35f } },
+	{ 1.f, { ((float)0x84 / (float)0xFF), ((float)0xD3 / (float)0xFF), ((float)0xA2 / (float)0xFF), 0.35f } },
+};
+static const D2D1_GRADIENT_STOP lightBallStops[] =
+{
+	{ 0.f, { 1.f, 1.f, 1.f, 1.f } },
+	{ 1.f, { 1.f, 1.f, 1.f, 0.f } },
+};
+
+inline ID2D1LinearGradientBrush* GetLineBrush(int feelID, int workID){
+	return linebrush_[feelID][workID - FEEL_COUNT];
+};
+
+inline ID2D1LinearGradientBrush* GetLineBrush_Background(int feelID, int workID){
+	return linebrush_background[feelID][workID - FEEL_COUNT];
+};
 //for server
 /// accepting list
 typedef ProducerConsumerQueue<SOCKET, 100> PendingAcceptList;
 extern PendingAcceptList pendingAcceptList;
-#define FEEL_COUNT 18
-#define WORK_COUNT 18
 
-
+extern bool isFocus[FEEL_COUNT + WORK_COUNT];
 
 float distance(D2D1_POINT_2F* a, D2D1_POINT_2F* b);

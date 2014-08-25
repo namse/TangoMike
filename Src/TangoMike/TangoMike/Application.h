@@ -83,9 +83,8 @@ private:
 	LONGLONG m_pausedTime;
 	LONGLONG m_timeDelta;
 	RingBuffer<LONGLONG, TIME_RING_BUFFER_SIZE> m_times;
-
-	float m_prevTime;
-	std::clock_t m_prevClock;
+	
+	DWORD prevTime = NULL;
 
 
 	LeftSide m_LeftSide;

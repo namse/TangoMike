@@ -6,14 +6,17 @@ class Line :
 	public Component
 {
 public:
-	Line(D2D1_POINT_2F* point1, D2D1_POINT_2F* point2);
+	Line(D2D1_POINT_2F* point1, D2D1_POINT_2F* point2, int feelID, int workID);
 	~Line();
 
 	void Render();
 	void Update(float dTime);
+
 private:
 	void CalcBezier();
 private:
+	int feelID_, workID_;
+	bool didDrawBackground;
 	D2D1_POINT_2F * point1_;
 	D2D1_POINT_2F * point2_;
 
@@ -21,8 +24,7 @@ private:
 
 	ID2D1PathGeometry* geometry_;
 	ID2D1GeometrySink* sink_;
-	ID2D1GradientStopCollection* stops_;
-	ID2D1LinearGradientBrush *brush_;
+
 
 	LightBall* lightBall_;
 };

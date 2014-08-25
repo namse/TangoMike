@@ -3,26 +3,14 @@
 #include "EventManager.h"
 
 LineCollection::LineCollection()
+	:bitmap_line(nullptr), pointBrush_feel_(nullptr), pointBrush_work_(nullptr)
 {
-	//SetCenter(D2D1::Point2F(CIRCLE_RADIUS_TO_POINT, CIRCLE_RADIUS_TO_POINT));
-	//SetPosition(CIRCLE_CENTER_POSITION);
 
 
 	EventManager::GetInstance()->AddEventListener(EVENT_VOTE_COMPLETE, this);
 
 
 	InitLinePoints();
-	/*
-	for (int i = 0; i < 3; i++)
-	{
-		int a = rand() % Relationship::GetInstance()->GetFeels().size();
-		for (int l = 0; l < 2; l++)
-		{
-			int b = rand() % Relationship::GetInstance()->GetWorks().size();
-			b += Relationship::GetInstance()->GetFeels().size();
-			MakeLine(a, b);
-		}
-	}*/
 }
 
 
@@ -41,8 +29,43 @@ void LineCollection::Update(float dTime)
 
 void LineCollection::Render()
 {
+	HRESULT hr;
+	if (pCompatibleRenderTarget == nullptr)
+	{
+		InitLineBrushes();
+		hr = m_pBackBufferRT->CreateCompatibleRenderTarget(
+			D2D1::SizeF(1024.f, 768.f),
+			&pCompatibleRenderTarget
+			);
+	}
+
 	Component::Render();
+
 	m_pBackBufferRT->BeginDraw();
+
+	m_pBackBufferRT->SetTransform(D2D1::Matrix3x2F::Identity());
+
+
+	// Draw Background lines
+	ID2D1Bitmap *pGridBitmap = NULL;
+	hr = pCompatibleRenderTarget->GetBitmap(&pGridBitmap);
+	
+	// Choose the tiling mode for the bitmap brush.
+	D2D1_BITMAP_BRUSH_PROPERTIES brushProperties =
+		D2D1::BitmapBrushProperties(D2D1_EXTEND_MODE_WRAP, D2D1_EXTEND_MODE_WRAP);
+	ID2D1BitmapBrush* pBitmapBrush;
+	// Create the bitmap brush.
+	hr = m_pBackBufferRT->CreateBitmapBrush(pGridBitmap, brushProperties, &pBitmapBrush);
+
+	pGridBitmap->Release();
+
+	m_pBackBufferRT->FillRectangle(
+		D2D1::RectF(0.0f, 0.0f, 1024.f, 768.f),
+		pBitmapBrush
+		);
+
+
+	// Draw Point
 
 	m_pBackBufferRT->SetTransform(matrix_);
 	if (pointBrush_feel_ == nullptr)
@@ -64,8 +87,7 @@ void LineCollection::Render()
 		auto ellipse = D2D1::Ellipse(linePoint, POINT_RADIUS_UNFOCUS, POINT_RADIUS_UNFOCUS);
 		m_pBackBufferRT->FillEllipse(ellipse, pointBrush_work_);
 	}
-	
-	HRESULT hr = m_pBackBufferRT->EndDraw();
+	hr = m_pBackBufferRT->EndDraw();
 }
 
 void LineCollection::InitLinePoints()
@@ -105,6 +127,67 @@ void LineCollection::Notify(EventHeader* event)
 void LineCollection::MakeLine(int feelId, int workId)
 {
 	//Line* line = new Line(&linePoints_[feelId - FEEL_COUNT + 1], &linePoints_[FEEL_COUNT + WORK_COUNT -  workId]);
-	Line* line = new Line(&linePoints_[feelId], &linePoints_ [workId]);
+	Line* line = new Line(&linePoints_[feelId], &linePoints_ [workId], feelId, workId);
+	lines_.push_back(line);
+	
+	std::queue<Line*> line_fw_ = GetLines(feelId, workId);
+	if (line_fw_.size() >= MAX_LINE_COUNT)
+	{
+		Line* frontLine = line_fw_.front();
+		line_fw_.pop();
+		RemoveLine(frontLine);
+		frontLine = nullptr;
+	}
+	
+	line_fw_.push(line);
+	
+
 	AddChild(line);
+}
+
+void LineCollection::RemoveLine(Line* line)
+{
+	lines_.remove(line);
+	this->RemoveChild(line);
+	delete line;
+}
+
+void LineCollection::InitLineBrushes()
+{
+
+	HRESULT hr = m_pBackBufferRT->CreateGradientStopCollection(
+			lineStops,
+			ARRAYSIZE(lineStops),
+			&lineStopCollection_
+			);
+	hr = m_pBackBufferRT->CreateGradientStopCollection(
+		lineStops_background,
+		ARRAYSIZE(lineStops_background),
+		&lineStopCollection_background
+		);
+	
+	for (int i = 0; i < FEEL_COUNT; i++)
+	{
+		for (int l = 0; l < WORK_COUNT; l++)
+		{
+			hr = m_pBackBufferRT->CreateLinearGradientBrush(
+				D2D1::LinearGradientBrushProperties(
+				linePoints_[i],
+				linePoints_[l + FEEL_COUNT]),
+				D2D1::BrushProperties(),
+				lineStopCollection_,
+				&linebrush_[i][l]
+				);
+			hr = m_pBackBufferRT->CreateLinearGradientBrush(
+				D2D1::LinearGradientBrushProperties(
+				linePoints_[i],
+				linePoints_[l + FEEL_COUNT]),
+				D2D1::BrushProperties(),
+				lineStopCollection_background,
+				&linebrush_background[i][l]
+				);
+		}
+	}
+
+	
 }

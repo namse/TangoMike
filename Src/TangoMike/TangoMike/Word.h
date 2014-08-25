@@ -30,6 +30,10 @@ public:
 		fontColor_ = color;
 	}
 
+	D2D_COLOR_F Getfontcolor(){
+		return fontColor_;
+	}
+
 	void DoFontSizeAnimate(float fontSize, float duration);
 	void DoFontColorAnimate(D2D_COLOR_F color, float duration);
 

@@ -56,8 +56,7 @@ m_paused(false),
 m_pausedTime(0),
 m_drawLoupe(true),
 m_numSquares(sc_defaultNumSquares),
-m_logZoom(sc_loupeDefaultLogZoom*WHEEL_DELTA),
-m_prevTime(0.f)
+m_logZoom(sc_loupeDefaultLogZoom*WHEEL_DELTA)
 {
 	m_pDevice = NULL;
 	m_pSwapChain = NULL;
@@ -514,7 +513,6 @@ HRESULT Application::CreateDeviceResources()
 				);
 		}
 	}
-
 	SafeRelease(&pBackBufferResource);
 	SafeRelease(&pDXGIDevice);
 	SafeRelease(&pAdapter);
@@ -575,23 +573,14 @@ void Application::RunMessageLoop()
 
 
 
-
-		LARGE_INTEGER time;
-		LARGE_INTEGER frequency;
-		QueryPerformanceCounter(&time);
-		QueryPerformanceFrequency(&frequency);
-
-		float floatTime;
-
-		if (!m_paused)
-		{
-			floatTime = static_cast<float>(time.QuadPart + m_timeDelta) / static_cast<float>(frequency.QuadPart);
-		}
+		DWORD nowTime = timeGetTime();
+		float dTime;
+		if (prevTime == NULL)
+			dTime = 0.f;
 		else
-		{
-			floatTime = static_cast<float>(m_pausedTime + m_timeDelta) / static_cast<float>(frequency.QuadPart);
-		}
-		Update(floatTime);
+			dTime = (nowTime - prevTime) * 0.001f;
+		prevTime = nowTime;
+		Update(dTime);
 
 		EasyServer::GetInstance()->Run();
 	}
@@ -636,16 +625,18 @@ HRESULT Application::OnRender()
 				//hr = RenderD2DContentIntoSurface();
 				if (SUCCEEDED(hr))
 				{
-					/*if (m_drawLoupe)
-					{
-						hr = RenderLoupe();
-					}
+					/*
 
 					if (SUCCEEDED(hr))
 					{
 						//hr = RenderTextInfo();
 					}*/
 					Render();
+
+					if (m_drawLoupe)
+					{
+						hr = RenderLoupe();
+					}
 				}
 
 			}
@@ -825,7 +816,7 @@ HRESULT Application::RenderLoupe()
 {
 	HRESULT hr = S_OK;
 
-	/*
+	
 	//
 	// Read back the current contents of the swap chain buffer.
 	//
@@ -837,6 +828,7 @@ HRESULT Application::RenderLoupe()
 		);
 	if (SUCCEEDED(hr))
 	{
+
 		m_pDevice->ResolveSubresource(
 			m_pLoupeTexture,
 			0, // DstSubresource
@@ -906,7 +898,7 @@ HRESULT Application::RenderLoupe()
 			m_pBackBufferRT->BeginDraw();
 
 			m_pBackBufferRT->SetTransform(D2D1::Matrix3x2F::Identity());
-			m_pBackBufferRT->SetAntialiasMode(D2D1_ANTIALIAS_MODE_PER_PRIMITIVE);
+			m_pBackBufferRT->SetAntialiasMode(D2D1_ANTIALIAS_MODE_ALIASED);//D2D1_ANTIALIAS_MODE_PER_PRIMITIVE);
 
 			m_pBackBufferRT->DrawEllipse(srcEllipse, m_pLoupeBrush, sc_srcLoupeRingThickness);
 			m_pBackBufferRT->FillEllipse(destEllipse, pLoupeBrush);
@@ -918,7 +910,7 @@ HRESULT Application::RenderLoupe()
 		}
 
 		pBackBufferResource->Release();
-	}*/
+	}
 
 	return hr;
 }
@@ -1095,6 +1087,17 @@ void Application::OnKeyDown(SHORT vkey)
 		EventManager::GetInstance()->Notify(&event);
 	}break;
 
+	case 'G':
+	{	
+		Event::ShowDataEvent event;
+		EventManager::GetInstance()->Notify(&event);
+	}break;
+
+	case 'H':
+	{	
+		Event::HideDataEvent event;
+		EventManager::GetInstance()->Notify(&event);
+	}break;
 	default:
 		break;
 	}
@@ -1139,7 +1142,7 @@ D2D1_POINT_2F WindowPointToTargetPoint(
 
 void Application::OnMouseMove(LPARAM lParam)
 {
-/*
+
 	FLOAT dpiX;
 	FLOAT dpiY;
 	m_pD2DFactory->GetDesktopDpi(&dpiX, &dpiY);
@@ -1150,7 +1153,7 @@ void Application::OnMouseMove(LPARAM lParam)
 		dpiX,
 		dpiY,
 		m_hwnd
-		);*/
+		);
 }
 
 /******************************************************************
@@ -1221,6 +1224,14 @@ LRESULT CALLBACK Application::WndProc(HWND hwnd, UINT message, WPARAM wParam, LP
 				pApplication->OnRender();
 
 				// Do not call ValidateRect so that the window will be redrawn.
+			}
+				result = 0;
+				wasHandled = true;
+				break;
+
+			case WM_MOUSEMOVE:
+			{
+				pApplication->OnMouseMove(lParam);
 			}
 				result = 0;
 				wasHandled = true;

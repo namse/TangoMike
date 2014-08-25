@@ -118,8 +118,17 @@ void RightSide::SetIdle()
 	}
 }
 
+
 void RightSide::SetFocus()
 {
+	for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
+	{
+		if (isFocus[wordSprite->GetId()] == true)
+		{
+			wordSprite->SetFocus(true);
+		}
+	}
+/*
 	for (auto &SelectdObject : SelectdObjects_)
 	{
 		WordSprite* SelectdWordSprite = nullptr;
@@ -135,15 +144,25 @@ void RightSide::SetFocus()
 		{
 			SelectdWordSprite->SetFocus(true);
 		}
-	}
+	}*/
 }
+
 
 void RightSide::OffFocus()
 {
 	for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
 	{
-		wordSprite->SetFocus(false);
+		if (isFocus[wordSprite->GetId()] == true)
+		{
+			wordSprite->SetFocus(false);
+		}
 	}
+	memset(isFocus, false, sizeof(isFocus));
+
+	/*for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
+	{
+		wordSprite->SetFocus(false);
+	}*/
 }
 /*
 	for (auto &SelectdObject : SelectdObjects_)
@@ -174,10 +193,10 @@ void RightSide::Notify(EventHeader* event)
 	case EVENT_VOTE_COMPLETE:
 	{
 		Event::VoteCompleteEvent* recvEvent = (Event::VoteCompleteEvent*)event;
-		SelectdObjects_.clear();
+		OffFocus();
 		for (int i = 0; i < recvEvent->objectLength; i++)
 		{
-			for (auto &object : Relationship::GetInstance()->GetFeels())
+			/*for (auto &object : Relationship::GetInstance()->GetFeels())
 			{
 				if (object->GetId() == recvEvent->object[i])
 				{
@@ -190,7 +209,8 @@ void RightSide::Notify(EventHeader* event)
 				{
 					SelectdObjects_.push_back(object);
 				}
-			}
+			}*/
+			isFocus[recvEvent->object[i]] = true;
 		}
 		SetFocus();
 	}break;
@@ -198,10 +218,12 @@ void RightSide::Notify(EventHeader* event)
 	case EVENT_SELECT:
 	{
 		Event::SelectEvent* recvEvent = (Event::SelectEvent*)event;
-		SelectdObjects_.clear();
+		/*SelectdObjects_.clear();
+		*/
+		OffFocus();
 		for (int i = 0; i < recvEvent->objectLength; i++)
 		{
-			for (auto &object : Relationship::GetInstance()->GetFeels())
+			/*for (auto &object : Relationship::GetInstance()->GetFeels())
 			{
 				if (object->GetId() == recvEvent->object[i])
 				{
@@ -214,7 +236,8 @@ void RightSide::Notify(EventHeader* event)
 				{
 					SelectdObjects_.push_back(object);
 				}
-			}
+			}*/
+			isFocus[recvEvent->object[i]] = true;
 		}
 		SetFocus();
 	}break;

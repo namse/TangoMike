@@ -1,11 +1,6 @@
 #include "stdafx.h"
 #include "LightBall.h"
 
-static const D2D1_GRADIENT_STOP stops[] =
-{
-	{ 0.f, { 1.f, 1.f, 1.f, 1.f} },
-	{ 1.f, { 1.f, 1.f, 1.f, 0.f } },
-};
 
 
 LightBall::LightBall()
@@ -29,8 +24,8 @@ void LightBall::Render()
 	if (stops_ == nullptr)
 	{
 		hr = m_pBackBufferRT->CreateGradientStopCollection(
-			stops,
-			ARRAYSIZE(stops),
+			lightBallStops,
+			ARRAYSIZE(lightBallStops),
 			&stops_
 			);
 	}

@@ -18,6 +18,7 @@ public:
 	void RemoveChild(Component* child);
 	void SetParent(Component* parent) { parent_ = parent; }
 
+	std::list<Component*> GetChildern(){ return childs_; }
 	virtual void Update(float dTime);
 	virtual void Render();
 

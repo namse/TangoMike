@@ -89,6 +89,7 @@
 #include <algorithm>
 #include <atomic>
 #include <typeinfo>
+#include <queue>
 
 ////
 #include "d2dPointOperator.h"
@@ -204,6 +205,8 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 #define TOTAL_COUNT_FONTCOLOR_COUNT D2D1::ColorF( 0xFFFFFF)
 
 #define LIGHT_BALL_MAX_RADIUS 4.f
+
+#define MAX_LINE_COUNT 10
 #include "ringbuffer.h"
 
 namespace MyAntialiasMode
@@ -230,6 +233,7 @@ namespace SampleType
 
 #define XML_FILE_NAME L"positionInfo.xml"
 #define MAIN_TITLE_FILE_NAME L"title.png"
+#define XML_BACKUP_NAME L"backup.xml"
 
 //Device-Dependent Resources
 extern ID3D10Device *m_pDevice;

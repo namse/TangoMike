@@ -20,6 +20,7 @@ EasyServer::EasyServer()
 }
 EasyServer::~EasyServer(){
 	delete GClientManager;
+	CloseHandle(hCAThread);
 }
 
 
@@ -29,7 +30,7 @@ bool EasyServer::InitAccepThread()
 {
 	/// DB Thread
 	DWORD dwThreadId ;
-	HANDLE hCAThread = (HANDLE)_beginthreadex(NULL, 0, ClientAcceptThread, NULL, 0, (unsigned int*)&dwThreadId);
+	hCAThread = (HANDLE)_beginthreadex(NULL, 0, ClientAcceptThread, NULL, 0, (unsigned int*)&dwThreadId);
 	if (hCAThread == NULL)
 		return false;
 	return true;

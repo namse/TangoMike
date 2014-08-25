@@ -28,6 +28,7 @@ private:
 
 
 	static EasyServer* pInstance_;
+	HANDLE hCAThread;
 };
 
 unsigned int WINAPI ClientAcceptThread(LPVOID lpParam);

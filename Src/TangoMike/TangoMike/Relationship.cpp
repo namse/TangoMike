@@ -1,12 +1,13 @@
 #include "stdafx.h"
 #include "Relationship.h"
 #include "EventManager.h"
+#include "XMLBackup.h"
 Relationship* Relationship::pInstance_ = nullptr;
 
 Relationship::Relationship() :totalUser(0)
 {
 	EventManager::GetInstance()->AddEventListener(EVENT_VOTE_COMPLETE, this);
-	LoadDataFromFile("data.txt");
+	LoadMetaDataFromFile("data.txt");
 	tp_feel = FindFeelById(0);
 	tp_feel_count = 0;
 	tp_work = FindWorkById(FEEL_COUNT + 1);
@@ -100,7 +101,7 @@ Relationship::~Relationship()
 	works_.clear();
 }
 
-bool Relationship::LoadDataFromFile(std::string filename)
+bool Relationship::LoadMetaDataFromFile(std::string filename)
 {
 	feels_.clear();
 	works_.clear();
@@ -158,4 +159,19 @@ Object* Relationship::FindObjectById(int id)
 		}
 	}
 	return nullptr;
+}
+
+void Relationship::LoadDataFromXMLBackup(pugi::xml_document* doc)
+{
+	auto communions = doc->child(L"Communions");
+
+	for (auto& feel : feels_)
+	{
+		for (auto& work : works_)
+		{
+			int count = communions.child(feel->GetNameOnXML().c_str()).child(work->GetNameOnXML().c_str()).attribute(L"CommunionCount").as_int();
+			count_.find(std::make_pair(feel, work))->second = count;
+		}
+	}
+	totalUser = doc->child(L"TotalUser").attribute(L"Count").as_int();
 }

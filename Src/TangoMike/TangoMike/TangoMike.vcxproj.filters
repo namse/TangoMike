@@ -119,6 +119,9 @@
     <ClInclude Include="LightBall.h">
       <Filter>Components\LightBall</Filter>
     </ClInclude>
+    <ClInclude Include="XMLBackup.h">
+      <Filter>Data\XMLBackup</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -202,6 +205,9 @@
     <ClCompile Include="LightBall.cpp">
       <Filter>Components\LightBall</Filter>
     </ClCompile>
+    <ClCompile Include="XMLBackup.cpp">
+      <Filter>Data\XMLBackup</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Main">
@@ -281,6 +287,9 @@
     </Filter>
     <Filter Include="Components\LightBall">
       <UniqueIdentifier>{2f54087c-4a4c-4a35-8033-020fd60d6ce2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data\XMLBackup">
+      <UniqueIdentifier>{8171cc06-91db-46ef-b0b7-c7c3c1265528}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,7 @@
 #include "TangoMike.h"
 #include "Relationship.h"
 #include "EasyServer.h"
+#include "XMLBackup.h"
 
 /******************************************************************
 *                                                                 *
@@ -30,7 +31,7 @@ int WINAPI WinMain(
 	DevConsoleCreate();
 	std::srand(unsigned(std::time(0)));
 	Relationship::GetInstance();
-
+	XMLBackup::GetInstance()->LoadData();
 	// Ignoring the return value because we want to continue running even in the
 	// unlikely event that HeapSetInformation fails.
 	HeapSetInformation(NULL, HeapEnableTerminationOnCorruption, NULL, 0);

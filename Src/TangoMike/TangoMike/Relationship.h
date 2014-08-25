@@ -4,6 +4,7 @@
 #include "Feel.h"
 #include "Work.h"
 #include "EventListener.h"
+
 class Relationship : public EventListener
 {
 public:
@@ -24,7 +25,8 @@ public:
 		}
 	}
 
-	bool LoadDataFromFile(std::string filename);
+	bool LoadMetaDataFromFile(std::string filename);
+	void LoadDataFromXMLBackup(pugi::xml_document* doc);
 
 	std::vector<Feel*> GetFeels()		{ return feels_; }
 	std::vector<Work*> GetWorks()		{ return works_; }
@@ -43,10 +45,16 @@ public:
 		return (Work*)FindObjectById(id);
 	}
 
-	int GetCount(std::pair<Feel*, Work*> pair)
+	int GetCount(Feel* feel, Work* work)
 	{
-		return count_.find(pair)->second;
+		return count_.find(std::make_pair(feel, work))->second;
 	}
+
+	int GetTotalUserCount()
+	{
+		return totalUser;
+	}
+
 
 private:
 	Relationship();

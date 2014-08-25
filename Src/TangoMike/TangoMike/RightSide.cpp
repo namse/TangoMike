@@ -73,7 +73,7 @@ void RightSide::SetArrange()
 		}
 
 		wordSprite->SetShuffle(false);
-		wordSprite->DoAnimate(POSITION, &(D2D1::Point2F(x, y)), 10.f);
+		wordSprite->DoAnimate(POSITION, &(D2D1::Point2F(x, y)), 2.f);
 		wordSprite->SetRotation(wordAngle);
 		//wordSprite->DoAnimate(ROTATION, &(wordAngle), 10.f);
 	}

@@ -34,9 +34,9 @@ static const float sc_destLoupeRingThickness = 5.0f;
 
 
 // Device-Independent Resources
-ID2D1Factory *m_pD2DFactory= NULL;
-IDWriteFactory *m_pDWriteFactory= NULL;
-IDWriteTextFormat *m_pTextFormat= NULL;
+ID2D1Factory *m_pD2DFactory = NULL;
+IDWriteFactory *m_pDWriteFactory = NULL;
+IDWriteTextFormat *m_pTextFormat = NULL;
 
 
 
@@ -608,7 +608,7 @@ HRESULT Application::OnRender()
 
 	if (SUCCEEDED(hr) && m_pBackBufferRT)
 	{
-		
+
 
 		// Swap chain will tell us how big the back buffer is
 		DXGI_SWAP_CHAIN_DESC swapDesc;
@@ -629,14 +629,14 @@ HRESULT Application::OnRender()
 
 					if (SUCCEEDED(hr))
 					{
-						//hr = RenderTextInfo();
+					//hr = RenderTextInfo();
 					}*/
 					Render();
 
-					if (m_drawLoupe)
+					/*if (m_drawLoupe)
 					{
 						hr = RenderLoupe();
-					}
+					}*/
 				}
 
 			}
@@ -710,94 +710,94 @@ HRESULT Application::RenderD2DContentIntoSurface(float time)
 	float squareWidth = sc_boardWidth / m_numSquares;
 
 	m_pBackBufferRT->SetAntialiasMode(
-		m_antialiasMode == MyAntialiasMode::PerPrimitive ?
+	m_antialiasMode == MyAntialiasMode::PerPrimitive ?
 	D2D1_ANTIALIAS_MODE_PER_PRIMITIVE :
-									  D2D1_ANTIALIAS_MODE_ALIASED
-									  );
+	D2D1_ANTIALIAS_MODE_ALIASED
+	);
 
 	m_pBackBufferRT->BeginDraw();
 
 	m_pBackBufferRT->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 
 	m_pBackBufferRT->SetTransform(
-		D2D1::Matrix3x2F::Translation(
-		0.5f * (rtSize.width - squareWidth * m_numSquares),
-		0.5f * (rtSize.height - squareWidth * m_numSquares)
-		) *
-		D2D1::Matrix3x2F::Rotation(
-		(sc_rotationSpeed * time * 360.0f) * ((float)M_PI / 180.0f),
-		D2D1::Point2F(rtSize.width / 2, rtSize.height / 2)
-		)
-		);
+	D2D1::Matrix3x2F::Translation(
+	0.5f * (rtSize.width - squareWidth * m_numSquares),
+	0.5f * (rtSize.height - squareWidth * m_numSquares)
+	) *
+	D2D1::Matrix3x2F::Rotation(
+	(sc_rotationSpeed * time * 360.0f) * ((float)M_PI / 180.0f),
+	D2D1::Point2F(rtSize.width / 2, rtSize.height / 2)
+	)
+	);
 
 	ID2D1SolidColorBrush *pBrush = NULL;
 	hr = m_pBackBufferRT->CreateSolidColorBrush(
-		D2D1::ColorF(0, 0, 0),
-		&pBrush
-		);
-	
+	D2D1::ColorF(0, 0, 0),
+	&pBrush
+	);
+
 	if (SUCCEEDED(hr))
 	{
-		
-		if (m_sampleType == SampleType::Filled)
-		{
-			for (UINT i = 0; i < m_numSquares; ++i)
-			{
-				for (UINT j = 0; j < m_numSquares; ++j)
-				{
-					D2D1_RECT_F rect =
-						D2D1::RectF(
-						i*squareWidth,
-						j*squareWidth,
-						(i + 1)*squareWidth,
-						(j + 1)*squareWidth
-						);
 
-					float dx = i + 0.5f - 0.5f*m_numSquares;
-					float dy = j + 0.5f - 0.5f*m_numSquares;
+	if (m_sampleType == SampleType::Filled)
+	{
+	for (UINT i = 0; i < m_numSquares; ++i)
+	{
+	for (UINT j = 0; j < m_numSquares; ++j)
+	{
+	D2D1_RECT_F rect =
+	D2D1::RectF(
+	i*squareWidth,
+	j*squareWidth,
+	(i + 1)*squareWidth,
+	(j + 1)*squareWidth
+	);
 
-					float length = sqrtf(2)*m_numSquares;
+	float dx = i + 0.5f - 0.5f*m_numSquares;
+	float dy = j + 0.5f - 0.5f*m_numSquares;
 
-					float intensity =
-						0.5f * (1 + sinf((0.2f * time + 10.0f * sqrtf(static_cast<float>(dx*dx + dy*dy)) / length)));
+	float length = sqrtf(2)*m_numSquares;
 
-					pBrush->SetColor(
-						D2D1::ColorF(
-						0.0f,
-						intensity,
-						1.0f - intensity)
-						);
+	float intensity =
+	0.5f * (1 + sinf((0.2f * time + 10.0f * sqrtf(static_cast<float>(dx*dx + dy*dy)) / length)));
 
-					m_pBackBufferRT->FillRectangle(rect, pBrush);
-				}
-			}
-		}
-		else
-		{
-			pBrush->SetColor(D2D1::ColorF(D2D1::ColorF::AntiqueWhite));
+	pBrush->SetColor(
+	D2D1::ColorF(
+	0.0f,
+	intensity,
+	1.0f - intensity)
+	);
 
-			for (UINT i = 0; i < m_numSquares + 1; ++i)
-			{
-				m_pBackBufferRT->DrawLine(
-					D2D1::Point2F(i*squareWidth, 0),
-					D2D1::Point2F(i*squareWidth, m_numSquares*squareWidth),
-					pBrush,
-					1.0f
-					);
+	m_pBackBufferRT->FillRectangle(rect, pBrush);
+	}
+	}
+	}
+	else
+	{
+	pBrush->SetColor(D2D1::ColorF(D2D1::ColorF::AntiqueWhite));
 
-				m_pBackBufferRT->DrawLine(
-					D2D1::Point2F(0, i*squareWidth),
-					D2D1::Point2F(m_numSquares*squareWidth, i*squareWidth),
-					pBrush,
-					1.0f
-					);
-			}
+	for (UINT i = 0; i < m_numSquares + 1; ++i)
+	{
+	m_pBackBufferRT->DrawLine(
+	D2D1::Point2F(i*squareWidth, 0),
+	D2D1::Point2F(i*squareWidth, m_numSquares*squareWidth),
+	pBrush,
+	1.0f
+	);
 
-		}
-		
-		hr = m_pBackBufferRT->EndDraw();
+	m_pBackBufferRT->DrawLine(
+	D2D1::Point2F(0, i*squareWidth),
+	D2D1::Point2F(m_numSquares*squareWidth, i*squareWidth),
+	pBrush,
+	1.0f
+	);
+	}
 
-		pBrush->Release();
+	}
+
+	hr = m_pBackBufferRT->EndDraw();
+
+	pBrush->Release();
 	}
 	*/
 	return hr;
@@ -816,7 +816,7 @@ HRESULT Application::RenderLoupe()
 {
 	HRESULT hr = S_OK;
 
-	
+
 	//
 	// Read back the current contents of the swap chain buffer.
 	//
@@ -990,15 +990,15 @@ void Application::OnKeyDown(SHORT vkey)
 	{
 	case VK_RIGHT:
 		m_RightSide.SetIdle();
-	/*	m_antialiasMode =
-			static_cast<MyAntialiasMode::Enum>(
-			(m_antialiasMode + 1) % MyAntialiasMode::Count
-			);
+		/*	m_antialiasMode =
+				static_cast<MyAntialiasMode::Enum>(
+				(m_antialiasMode + 1) % MyAntialiasMode::Count
+				);
 
-		// This sample could be smarter about only discarding resources it doesn't
-		// need in order to make transitions from one state to another more quickly.
-		DiscardDeviceResources();*/
-			break;
+				// This sample could be smarter about only discarding resources it doesn't
+				// need in order to make transitions from one state to another more quickly.
+				DiscardDeviceResources();*/
+		break;
 
 	case VK_LEFT:
 		m_RightSide.SetArrange();
@@ -1007,9 +1007,9 @@ void Application::OnKeyDown(SHORT vkey)
 			(m_antialiasMode + MyAntialiasMode::Count - 1) % MyAntialiasMode::Count
 			);
 
-		// This sample could be smarter about only discarding resources it doesn't
-		// need in order to make transitions from one state to another more quickly.
-		DiscardDeviceResources();*/
+			// This sample could be smarter about only discarding resources it doesn't
+			// need in order to make transitions from one state to another more quickly.
+			DiscardDeviceResources();*/
 		break;
 
 	case VK_SPACE:
@@ -1080,23 +1080,46 @@ void Application::OnKeyDown(SHORT vkey)
 			event.object[i] = randomID;
 		}
 		EventManager::GetInstance()->Notify(&event);
-		}break;
+	}break;
 
 	case 'F':
 	{	Event::ShuffleEvent event;
-		EventManager::GetInstance()->Notify(&event);
+	EventManager::GetInstance()->Notify(&event);
 	}break;
 
 	case 'G':
-	{	
+	{
 		Event::ShowDataEvent event;
 		EventManager::GetInstance()->Notify(&event);
 	}break;
 
 	case 'H':
-	{	
+	{
 		Event::HideDataEvent event;
 		EventManager::GetInstance()->Notify(&event);
+	}break;
+
+	case 'Q':
+	{
+		for (int i = 0; i < 100; i++)
+		{
+			Event::VoteCompleteEvent event;
+			int length = 1;//rand() % WORK_COUNT;
+			event.objectLength = length + 1;
+			event.object[0] = rand() % FEEL_COUNT;
+			bool didUse[WORK_COUNT];
+			memset(didUse, false, sizeof(didUse));
+			for (int i = 1; i <= length; i++)
+			{
+				int randomWorkID = 0;
+				do{
+					randomWorkID = rand() % WORK_COUNT;
+				} while (didUse[randomWorkID] != false);
+				didUse[randomWorkID] = true;
+				event.object[i] = randomWorkID + FEEL_COUNT;
+			}
+			EventManager::GetInstance()->Notify(&event);
+		}
 	}break;
 	default:
 		break;
@@ -1167,9 +1190,9 @@ void Application::OnWheel(WPARAM wParam)
 	/*m_logZoom += static_cast<float>(GET_WHEEL_DELTA_WPARAM(wParam));
 
 	m_logZoom = min(
-		max(m_logZoom, sc_loupeMinLogZoom*WHEEL_DELTA),
-		sc_loupeMaxLogZoom*WHEEL_DELTA
-		);*/
+	max(m_logZoom, sc_loupeMinLogZoom*WHEEL_DELTA),
+	sc_loupeMaxLogZoom*WHEEL_DELTA
+	);*/
 }
 
 /******************************************************************

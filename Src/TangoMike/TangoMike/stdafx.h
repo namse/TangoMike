@@ -281,8 +281,8 @@ static const D2D1_GRADIENT_STOP lineStops[] =
 };
 static const D2D1_GRADIENT_STOP lineStops_background[] =
 {
-	{ 0.f, { ((float)0xde / (float)0xFF), ((float)0x96 / (float)0xFF), ((float)0x58 / (float)0xFF), 0.35f } },
-	{ 1.f, { ((float)0x84 / (float)0xFF), ((float)0xD3 / (float)0xFF), ((float)0xA2 / (float)0xFF), 0.35f } },
+	{ 0.f, { ((float)0xde / (float)0xFF), ((float)0x96 / (float)0xFF), ((float)0x58 / (float)0xFF), 0.15f } },
+	{ 1.f, { ((float)0x84 / (float)0xFF), ((float)0xD3 / (float)0xFF), ((float)0xA2 / (float)0xFF), 0.15f } },
 };
 static const D2D1_GRADIENT_STOP lightBallStops[] =
 {

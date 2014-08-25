@@ -45,11 +45,11 @@ void LineCollection::Render()
 
 	m_pBackBufferRT->SetTransform(D2D1::Matrix3x2F::Identity());
 
-
+	
 	// Draw Background lines
 	ID2D1Bitmap *pGridBitmap = NULL;
 	hr = pCompatibleRenderTarget->GetBitmap(&pGridBitmap);
-	
+
 	// Choose the tiling mode for the bitmap brush.
 	D2D1_BITMAP_BRUSH_PROPERTIES brushProperties =
 		D2D1::BitmapBrushProperties(D2D1_EXTEND_MODE_WRAP, D2D1_EXTEND_MODE_WRAP);

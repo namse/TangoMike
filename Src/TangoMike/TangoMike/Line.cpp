@@ -68,12 +68,11 @@ void Line::Render()
 		sink_->EndFigure(D2D1_FIGURE_END_OPEN);
 		hr = sink_->Close();
 	}
-
 	if (didDrawBackground == false)
 	{
 		pCompatibleRenderTarget->BeginDraw();
 		pCompatibleRenderTarget->SetTransform(matrix_);
-		pCompatibleRenderTarget->DrawGeometry(geometry_, GetLineBrush_Background(feelID_, workID_));
+		pCompatibleRenderTarget->DrawGeometry(geometry_, GetLineBrush_Background(feelID_, workID_), 0.4f);
 		pCompatibleRenderTarget->EndDraw();
 		didDrawBackground = true;
 	}
@@ -82,11 +81,10 @@ void Line::Render()
 	
 	if (isFocus[feelID_] == true && isFocus[workID_] == true)
 	{
-		m_pBackBufferRT->BeginDraw();
+		m_pBackBufferRT->BeginDraw(); m_pBackBufferRT->SetAntialiasMode(D2D1_ANTIALIAS_MODE_PER_PRIMITIVE);
 		m_pBackBufferRT->SetTransform(matrix_);
-
 		m_pBackBufferRT->DrawGeometry(geometry_,
-			GetLineBrush(feelID_, workID_));
+			GetLineBrush(feelID_, workID_), 0.4f);
 		hr = m_pBackBufferRT->EndDraw();
 
 	}

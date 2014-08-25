@@ -215,7 +215,7 @@ void TotalCount::Update(float dTime)
 	tpWorkCountAnimation.OnAnimate(dTime);
 	tcCountAnimation.OnAnimate(dTime);
 
-	std::cout << animatingWordGroup.GetPosition()->x << " " << animatingWordGroup.GetPosition()->y << " " << tpWCount_ani << " " << tcCount_ani
-		<<" "<< (word_TCKorean_Work.GetPosition()->y) - (word_TCCount.GetPosition()->y) << " " << word_TCKorean_Work.GetPosition()->y << " " << std::endl;
+	//std::cout << animatingWordGroup.GetPosition()->x << " " << animatingWordGroup.GetPosition()->y << " " << tpWCount_ani << " " << tcCount_ani
+	//	<<" "<< (word_TCKorean_Work.GetPosition()->y) - (word_TCCount.GetPosition()->y) << " " << word_TCKorean_Work.GetPosition()->y << " " << std::endl;
 
 }

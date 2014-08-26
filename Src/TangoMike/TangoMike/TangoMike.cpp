@@ -28,10 +28,8 @@ int WINAPI WinMain(
 	)
 {
 	EasyServer::GetInstance();
-	//DevConsoleCreate();
+	DevConsoleCreate();
 	std::srand(unsigned(std::time(0)));
-	Relationship::GetInstance();
-	XMLBackup::GetInstance()->LoadData();
 	// Ignoring the return value because we want to continue running even in the
 	// unlikely event that HeapSetInformation fails.
 	HeapSetInformation(NULL, HeapEnableTerminationOnCorruption, NULL, 0);
@@ -39,8 +37,10 @@ int WINAPI WinMain(
 	if (SUCCEEDED(CoInitialize(NULL)))
 	{
 		{
-			Application app;
 
+			XMLBackup::GetInstance()->LoadData();
+			Application app;
+			Relationship::GetInstance()->LoadDataFromXMLBackup();
 			if (SUCCEEDED(app.Initialize()))
 			{
 				app.RunMessageLoop();
@@ -70,21 +70,6 @@ void DevConsoleCreate(){
 	freopen("conin$", "r", stdin);
 	freopen("conout$", "w", stdout);
 	freopen("conout$", "w", stderr);
-	/*
-	stdioHandle = (long)GetStdHandle(STD_INPUT_HANDLE);
-	consoleHandleR = _open_osfhandle(stdioHandle, _O_TEXT);
-	fptr = _fdopen(consoleHandleR, "r");
-	*stdin = *fptr;
-	setvbuf(stdin, NULL, _IONBF, 0);
 
-	stdioHandle = (long)GetStdHandle(STD_OUTPUT_HANDLE);
-	consoleHandleW = _open_osfhandle(stdioHandle, _O_TEXT);
-	fptr = _fdopen(consoleHandleW, "w");
-	*stdout = *fptr;
-	setvbuf(stdout, NULL, _IONBF, 0);
-
-	stdioHandle = (long)GetStdHandle(STD_ERROR_HANDLE);
-	*stderr = *fptr;
-	setvbuf(stderr, NULL, _IONBF, 0);*/
 
 }

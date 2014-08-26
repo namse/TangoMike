@@ -3,8 +3,9 @@
 
 
 Line::Line(D2D1_POINT_2F* point1, D2D1_POINT_2F* point2, int feelID, int workID)
-	:point1_(point1), point2_(point2), geometry_(nullptr), didDrawBackground(false)
-	, feelID_(feelID), workID_(workID)
+	:point1_(point1), point2_(point2), geometry_(nullptr)
+	, feelID_(feelID), workID_(workID), lineThickness(0.f), lineThicknessAnimation(&lineThickness)
+	, isFirstTimeFromFocus(true)
 {
 	CalcBezier();
 
@@ -39,9 +40,7 @@ Line::~Line()
 void Line::Render()
 {
 	Component::Render();
-
 	HRESULT hr;
-
 	if (geometry_ == nullptr)
 	{
 		hr = m_pD2DFactory->CreatePathGeometry(&geometry_);
@@ -72,31 +71,69 @@ void Line::Render()
 	{
 		pCompatibleRenderTarget->BeginDraw();
 		pCompatibleRenderTarget->SetTransform(matrix_);
-		pCompatibleRenderTarget->DrawGeometry(geometry_, GetLineBrush_Background(feelID_, workID_), 0.4f);
+		pCompatibleRenderTarget->DrawGeometry(geometry_, GetLineBrush_Background(feelID_, workID_), LINE_THICKNESS);
 		pCompatibleRenderTarget->EndDraw();
-		didDrawBackground = true;
+		
 	}
+	if (IsFocus())
+	{
 
 	// ÃÖÀûÈ­ : http://msdn.microsoft.com/ko-kr/library/windows/desktop/ee719658(v=vs.85).aspx
 	
-	if (isFocus[feelID_] == true && isFocus[workID_] == true)
-	{
 		m_pBackBufferRT->BeginDraw(); m_pBackBufferRT->SetAntialiasMode(D2D1_ANTIALIAS_MODE_PER_PRIMITIVE);
 		m_pBackBufferRT->SetTransform(matrix_);
 		m_pBackBufferRT->DrawGeometry(geometry_,
-			GetLineBrush(feelID_, workID_), 0.4f);
+			GetLineBrush(feelID_, workID_), lineThickness);
 		hr = m_pBackBufferRT->EndDraw();
 
 	}
-	//m_pGradientStops->Release();
-	//m_pLGBrush->Release();
-	//SafeRelease(&m_pGradientStops);
-	//SafeRelease(&m_pLGBrush);
-	//SafeRelease(&m_pPathGeometry);
-	//SafeRelease(&m_pGeometrySink);
+	else
+	{
+		lightBall_->Reset();
+
+		if (timeForFadeOut > 0.f)
+		{
+			m_pBackBufferRT->BeginDraw(); m_pBackBufferRT->SetAntialiasMode(D2D1_ANTIALIAS_MODE_PER_PRIMITIVE);
+			m_pBackBufferRT->SetTransform(matrix_);
+			m_pBackBufferRT->DrawGeometry(geometry_,
+				GetLineBrush(feelID_, workID_), lineThickness);
+			hr = m_pBackBufferRT->EndDraw();
+		}
+	}
 }
 
 void Line::Update(float dTime)
 {
 	Component::Update(dTime);
+	lineThicknessAnimation.OnAnimate(dTime);
+
+	
+	if (IsFocus() == true)
+	{
+		if (isFirstTimeFromFocus == true)
+		{
+			isFirstTimeFromFocus = false;
+			lineThicknessAnimation.DoAnimate(LINE_THICKNESS, 0.3f);
+			isFirstTimeFromUnFocus = true;
+		}
+	}
+	else{
+
+		isFirstTimeFromFocus = true;
+		if (isFirstTimeFromUnFocus)
+		{
+			lineThicknessAnimation.DoAnimate(0.f, 0.3f);
+			timeForFadeOut = 0.3f;
+		}
+	}
+
+	if (timeForFadeOut > 0.f)
+		timeForFadeOut -= dTime;
+}
+
+void Line::LightBallOn()
+{
+	lightBall_->SetMoveOn(true);
+
+
 }

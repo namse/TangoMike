@@ -39,7 +39,6 @@ WordSprite::WordSprite(Object& object)
 	}
 	else
 	{
-//TODO
 		koreanWord_.SetFontColor(FONTCOLOR_WORK_UNFOCUS);
 		englishWord_.SetFontColor(FONTCOLOR_WORK_UNFOCUS);
 	}
@@ -86,13 +85,13 @@ void WordSprite::OnFocus()
 	{
 		if (IsFeel() == true)
 		{
-			koreanWord_.DoFontColorAnimate(FONTCOLOR_FEEL_FOCUS, 1.f);
-			englishWord_.DoFontColorAnimate(FONTCOLOR_FEEL_FOCUS, 1.f);
+			koreanWord_.DoFontColorAnimate(FONTCOLOR_FEEL_FOCUS, 0.3f);
+			englishWord_.DoFontColorAnimate(FONTCOLOR_FEEL_FOCUS, 0.3f);
 		}
 		else
 		{
-			koreanWord_.DoFontColorAnimate(FONTCOLOR_WORK_FOCUS, 1.f);
-			englishWord_.DoFontColorAnimate(FONTCOLOR_WORK_FOCUS, 1.f);
+			koreanWord_.DoFontColorAnimate(FONTCOLOR_WORK_FOCUS, 0.3f);
+			englishWord_.DoFontColorAnimate(FONTCOLOR_WORK_FOCUS, 0.3f);
 		}
 	}
 }
@@ -101,25 +100,12 @@ void WordSprite::OffFocus()
 {
 	if (IsFeel() == true)
 	{
-		koreanWord_.DoFontColorAnimate(FONTCOLOR_FEEL_UNFOCUS, 1.f);
-		englishWord_.DoFontColorAnimate(FONTCOLOR_FEEL_UNFOCUS, 1.f);
+		koreanWord_.DoFontColorAnimate(FONTCOLOR_FEEL_UNFOCUS, 0.3f);
+		englishWord_.DoFontColorAnimate(FONTCOLOR_FEEL_UNFOCUS, 0.3f);
 	}
 	else
 	{
-		koreanWord_.DoFontColorAnimate(FONTCOLOR_WORK_UNFOCUS, 1.f);
-		englishWord_.DoFontColorAnimate(FONTCOLOR_WORK_UNFOCUS, 1.f);
+		koreanWord_.DoFontColorAnimate(FONTCOLOR_WORK_UNFOCUS, 0.3f);
+		englishWord_.DoFontColorAnimate(FONTCOLOR_WORK_UNFOCUS, 0.3f);
 	}
-	/*if (isFocus_ == false)
-	{
-		if (IsFeel() == true)
-		{
-			koreanWord_.DoFontColorAnimate(FONTCOLOR_FEEL_UNFOCUS, 1.f);
-			englishWord_.DoFontColorAnimate(FONTCOLOR_FEEL_UNFOCUS, 1.f);
-		}
-		else
-		{
-			koreanWord_.DoFontColorAnimate(FONTCOLOR_WORK_UNFOCUS, 1.f);
-			englishWord_.DoFontColorAnimate(FONTCOLOR_WORK_UNFOCUS, 1.f);
-		}
-	}*/
 }

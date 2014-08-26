@@ -1,21 +1,22 @@
 #include "stdafx.h"
 #include "LineCollection.h"
 #include "EventManager.h"
+#include "XMLBackup.h"
 
 LineCollection::LineCollection()
 	:bitmap_line(nullptr), pointBrush_feel_(nullptr), pointBrush_work_(nullptr)
+	, lightballTiming(0.f)
 {
-
-
+	didDrawBackground = false;
 	EventManager::GetInstance()->AddEventListener(EVENT_VOTE_COMPLETE, this);
-
-
 	InitLinePoints();
+	LineLoadFromBackup();
 }
 
 
 LineCollection::~LineCollection()
 {
+	didDrawBackground = false;
 	for (auto& object : lines_)
 	{
 		delete object;
@@ -25,6 +26,29 @@ LineCollection::~LineCollection()
 void LineCollection::Update(float dTime)
 {
 	Component::Update(dTime);
+	// On Light Ball
+	lightballTiming += dTime;
+	if (lightballTiming > LIGHT_BALL_PERIOD)
+	{
+		std::vector<Line*> lineOn;
+		for (auto line : lines_)
+		{
+			if (line->IsFocus() == true)
+			{
+				lineOn.push_back(line);
+			}
+		}
+		if (lineOn.empty() == false)
+		{
+			int index = rand() % lineOn.size();
+
+			if (lineOn[index]->IsLightBallOn() == false)
+			{
+				lineOn[index]->LightBallOn();
+			}
+		}
+		lightballTiming = 0.f;
+	}
 }
 
 void LineCollection::Render()
@@ -38,8 +62,19 @@ void LineCollection::Render()
 			&pCompatibleRenderTarget
 			);
 	}
-
+	if (didDrawBackground == false)
+	{
+		pCompatibleRenderTarget->Release();
+		hr = m_pBackBufferRT->CreateCompatibleRenderTarget(
+			D2D1::SizeF(1024.f, 768.f),
+			&pCompatibleRenderTarget
+			);
+	}
 	Component::Render();
+	if (didDrawBackground == false)
+	{
+		didDrawBackground = true;
+	}
 
 	m_pBackBufferRT->BeginDraw();
 
@@ -98,9 +133,9 @@ void LineCollection::InitLinePoints()
 	{
 		float angle = 0.f;
 		if ( i < FEEL_COUNT ) // is Feel's Point
-			angle = M_PI * 2.f * 0.75f - (dAngle * (i + 0.5f));
+			angle = M_PI * 2.f * 0.75f - (dAngle * (i));
 		else
-			angle = M_PI * 2.f * 0.75f + (dAngle * (i - FEEL_COUNT + 0.5f));
+			angle = M_PI * 2.f * 0.75f + (dAngle * (i - FEEL_COUNT + 1.f));
 			
 		linePoints_.push_back(D2D1::Point2F(cos(angle), sin(angle)) * CIRCLE_RADIUS_TO_POINT);
 	}
@@ -118,6 +153,7 @@ void LineCollection::Notify(EventHeader* event)
 		{
 			MakeLine(recvEvent->object[0], recvEvent->object[i]);
 		}
+		didDrawBackground = false;
 	}break;
 	default:
 		break;
@@ -126,24 +162,18 @@ void LineCollection::Notify(EventHeader* event)
 
 void LineCollection::MakeLine(int feelId, int workId)
 {
-	//Line* line = new Line(&linePoints_[feelId - FEEL_COUNT + 1], &linePoints_[FEEL_COUNT + WORK_COUNT -  workId]);
+	if (lines_.size() > MAX_LINE_COUNT)
+	{
+		Line* frontLine = lines_.front();
+		RemoveLine(frontLine);
+	}
 	Line* line = new Line(&linePoints_[feelId], &linePoints_ [workId], feelId, workId);
 	lines_.push_back(line);
-	
-	std::queue<Line*> line_fw_ = GetLines(feelId, workId);
-	if (line_fw_.size() >= MAX_LINE_COUNT)
-	{
-		Line* frontLine = line_fw_.front();
-		line_fw_.pop();
-		RemoveLine(frontLine);
-		frontLine = nullptr;
-	}
-	
-	line_fw_.push(line);
-	
 
 	AddChild(line);
 }
+
+
 
 void LineCollection::RemoveLine(Line* line)
 {
@@ -191,3 +221,14 @@ void LineCollection::InitLineBrushes()
 
 	
 }
+
+void LineCollection::LineLoadFromBackup()
+{
+	auto lines = XMLBackup::GetInstance()->LoadLines();
+	for (auto& line : lines)
+	{
+		MakeLine(line.first, line.second);
+	}
+}
+
+

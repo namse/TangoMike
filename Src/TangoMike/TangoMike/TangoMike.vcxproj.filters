@@ -246,9 +246,6 @@
     <Filter Include="ShowItems\LeftSide\MainTitle">
       <UniqueIdentifier>{f43e0031-bb4a-4d38-afb1-4876a457b66a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ShowItems\LeftSide\SelectedInfo">
-      <UniqueIdentifier>{5f744e8e-6869-4042-985b-3c3744b071fd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ShowItems\LeftSide\TotalCount">
       <UniqueIdentifier>{728de836-aa30-4f00-a0e8-a3a7508ab881}</UniqueIdentifier>
     </Filter>
@@ -260,9 +257,6 @@
     </Filter>
     <Filter Include="Components\Word">
       <UniqueIdentifier>{25bb8b72-d316-4ea7-a871-7cd5785f4b2c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Number">
-      <UniqueIdentifier>{fb1b4600-0cdc-40a9-a201-0b6cd232fa39}</UniqueIdentifier>
     </Filter>
     <Filter Include="ShowItems\RightSide\WordSprite">
       <UniqueIdentifier>{b2e8f584-63c3-411c-a608-d196d09421e5}</UniqueIdentifier>

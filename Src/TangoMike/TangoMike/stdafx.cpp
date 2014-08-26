@@ -45,3 +45,6 @@ float distance(D2D1_POINT_2F* a, D2D1_POINT_2F* b)
 {
 	return sqrt(pow(a->x - b->x, 2) + pow(a->y - b->y, 2));
 }
+bool didDrawBackground = false;
+float g_opacity = 0.3f;
+float g_lineThickness = 0.3f;

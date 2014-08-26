@@ -336,6 +336,9 @@ void ClientSession::HandleShowDataRequest(Packet::ShowDataRequest& inPacket)
 {
 	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
 
+	Event::ShowDataEvent event;
+	EventManager::GetInstance()->Notify(&event);
+
 }
 
 REGISTER_HANDLER(PKT_HIDE_DATA)
@@ -346,6 +349,8 @@ REGISTER_HANDLER(PKT_HIDE_DATA)
 void ClientSession::HandleHideDataRequest(Packet::HideDataRequest& inPacket)
 {
 	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
+	Event::HideDataEvent event;
+	EventManager::GetInstance()->Notify(&event);
 
 }
 

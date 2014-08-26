@@ -70,6 +70,7 @@ private:
 
 	void virtual Render();
 	void virtual Update(float dTime);
+	void Reset();
 private:
 	HWND m_hwnd;
 
@@ -87,7 +88,7 @@ private:
 	DWORD prevTime = NULL;
 
 
-	LeftSide m_LeftSide;
-	RightSide m_RightSide;
+	LeftSide* m_LeftSide;
+	RightSide* m_RightSide;
 };
 

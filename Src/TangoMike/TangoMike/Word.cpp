@@ -70,11 +70,7 @@ void Word::Render()
 		);
 
 	hr = m_pBackBufferRT->EndDraw();
-	
-	//m_pTextLayout->Release();
-	//m_pTextFormat->Release();
-	//SafeRelease(&m_pTextLayout);
-	//SafeRelease(&m_pTextFormat);
+
 
 }
 

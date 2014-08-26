@@ -75,9 +75,11 @@ m_logZoom(sc_loupeDefaultLogZoom*WHEEL_DELTA)
 
 	m_timeDelta = -time.QuadPart;
 
+	m_LeftSide = new LeftSide();
+	m_RightSide = new RightSide();
 
-	AddChild(&m_LeftSide);
-	AddChild(&m_RightSide);
+	AddChild(m_LeftSide);
+	AddChild(m_RightSide);
 }
 
 /******************************************************************
@@ -102,6 +104,8 @@ Application::~Application()
 	SafeRelease(&m_pD2DFactory);
 	SafeRelease(&m_pDWriteFactory);
 	SafeRelease(&m_pTextFormat);
+	delete m_LeftSide;
+	delete m_RightSide;
 }
 
 /******************************************************************
@@ -565,24 +569,35 @@ void Application::RunMessageLoop()
 
 	while (true)
 	{
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		try
 		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
+			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+			{
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+			else
+			{
+				DWORD nowTime = timeGetTime();
+				float dTime;
+				if (prevTime == NULL)
+					dTime = 0.f;
+				else
+					dTime = (nowTime - prevTime) * 0.001f;
+				prevTime = nowTime;
+				Update(dTime);
+
+				EasyServer::GetInstance()->Run();
+
+
+
+				OnRender();
+			}
 		}
+		catch (int e)
+		{
 
-
-
-		DWORD nowTime = timeGetTime();
-		float dTime;
-		if (prevTime == NULL)
-			dTime = 0.f;
-		else
-			dTime = (nowTime - prevTime) * 0.001f;
-		prevTime = nowTime;
-		Update(dTime);
-
-		EasyServer::GetInstance()->Run();
+		}
 	}
 }
 
@@ -625,17 +640,17 @@ HRESULT Application::OnRender()
 				//hr = RenderD2DContentIntoSurface();
 				if (SUCCEEDED(hr))
 				{
-					/*
-
-					if (SUCCEEDED(hr))
-					{
-					//hr = RenderTextInfo();
-					}*/
 					Render();
 
+
+
+					/*if (SUCCEEDED(hr))
+					{
+						hr = RenderTextInfo();
+					}*/
 					/*if (m_drawLoupe)
 					{
-						hr = RenderLoupe();
+					hr = RenderLoupe();
 					}*/
 				}
 
@@ -946,23 +961,41 @@ HRESULT Application::RenderTextInfo()
 	hr = StringCchPrintf(
 		textBuffer,
 		400,
-		L"%s\n"
-		L"# squares: %d x %d = %d\n"
-		L"Fps: %.2f\n"
-		L"Primitives / sec : %.0f\n",
-		GetAntialiasModeString(),
-		m_numSquares,
-		m_numSquares,
-		m_numSquares*m_numSquares,
-		fps,
-		primsPerSecond
-		);
+		L"opacity : %.2f\nthickness : %.2f",
+		g_opacity, g_lineThickness
+		);/*
+	hr = StringCchPrintf(
+	textBuffer,
+	400,
+	L"%s\n"
+	L"# squares: %d x %d = %d\n"
+	L"Fps: %.2f\n"
+	L"Primitives / sec : %.0f\n",
+	GetAntialiasModeString(),
+	m_numSquares,
+	m_numSquares,
+	m_numSquares*m_numSquares,
+	fps,
+	primsPerSecond
+	);*/
 	if (SUCCEEDED(hr))
 	{
 		m_pBackBufferRT->BeginDraw();
 
 		m_pBackBufferRT->SetTransform(D2D1::Matrix3x2F::Identity());
+		hr = m_pDWriteFactory->CreateTextFormat(
+			sc_fontName,
+			NULL,
+			DWRITE_FONT_WEIGHT_NORMAL,
+			DWRITE_FONT_STYLE_NORMAL,
+			DWRITE_FONT_STRETCH_NORMAL,
+			static_cast<FLOAT>(sc_fontSize),
+			L"", // locale
+			&m_pTextFormat
+			);
 
+		m_pBackBufferRT->CreateSolidColorBrush(
+			D2D1::ColorF(D2D1::ColorF::White), &m_pTextBrush);
 		m_pBackBufferRT->DrawText(
 			textBuffer,
 			static_cast<UINT>(wcsnlen(textBuffer, ARRAYSIZE(textBuffer))),
@@ -989,29 +1022,27 @@ void Application::OnKeyDown(SHORT vkey)
 	switch (vkey)
 	{
 	case VK_RIGHT:
-		m_RightSide.SetIdle();
-		/*	m_antialiasMode =
-				static_cast<MyAntialiasMode::Enum>(
-				(m_antialiasMode + 1) % MyAntialiasMode::Count
-				);
-
-				// This sample could be smarter about only discarding resources it doesn't
-				// need in order to make transitions from one state to another more quickly.
-				DiscardDeviceResources();*/
+		if (g_opacity + 0.01f <= 1.f)
+			g_opacity += 0.01f;
+		Reset();
 		break;
 
 	case VK_LEFT:
-		m_RightSide.SetArrange();
-		/*m_antialiasMode =
-			static_cast<MyAntialiasMode::Enum>(
-			(m_antialiasMode + MyAntialiasMode::Count - 1) % MyAntialiasMode::Count
-			);
-
-			// This sample could be smarter about only discarding resources it doesn't
-			// need in order to make transitions from one state to another more quickly.
-			DiscardDeviceResources();*/
+		if (g_opacity - 0.01f >= 0.f)
+			g_opacity -= 0.01f;
+		Reset();
 		break;
 
+	case VK_UP:
+		g_lineThickness += 0.01f;
+		Reset();
+		break;
+
+	case VK_DOWN:
+		if (g_lineThickness > 0.f)
+			g_lineThickness -= 0.01f;
+		Reset();
+		break;
 	case VK_SPACE:
 
 		LARGE_INTEGER time;
@@ -1027,14 +1058,6 @@ void Application::OnKeyDown(SHORT vkey)
 		}
 
 		m_paused = !m_paused;
-		break;
-
-	case VK_UP:
-		m_numSquares = min(m_numSquares * 2, sc_maxNumSquares);
-		break;
-
-	case VK_DOWN:
-		m_numSquares = max(m_numSquares / 2, sc_minNumSquares);
 		break;
 
 	case 'A':
@@ -1121,6 +1144,32 @@ void Application::OnKeyDown(SHORT vkey)
 			EventManager::GetInstance()->Notify(&event);
 		}
 	}break;
+
+	case 'W':
+	{
+
+		Event::VoteCompleteEvent event;
+		int length = 1;//rand() % WORK_COUNT;
+		event.objectLength = length + 1;
+		event.object[0] = rand() % FEEL_COUNT;
+		bool didUse[WORK_COUNT];
+		memset(didUse, false, sizeof(didUse));
+		for (int i = 1; i <= length; i++)
+		{
+			int randomWorkID = 0;
+			do{
+				randomWorkID = rand() % WORK_COUNT;
+			} while (didUse[randomWorkID] != false);
+			didUse[randomWorkID] = true;
+			event.object[i] = randomWorkID + FEEL_COUNT;
+		}
+		for (int i = 0; i < 100; i++)
+		{
+			EventManager::GetInstance()->Notify(&event);
+		}
+
+	}break;
+
 	default:
 		break;
 	}
@@ -1244,9 +1293,10 @@ LRESULT CALLBACK Application::WndProc(HWND hwnd, UINT message, WPARAM wParam, LP
 
 			case WM_PAINT:
 			{
-				pApplication->OnRender();
+				PAINTSTRUCT ps;
+				BeginPaint(hwnd, &ps);
+				EndPaint(hwnd, &ps);
 
-				// Do not call ValidateRect so that the window will be redrawn.
 			}
 				result = 0;
 				wasHandled = true;
@@ -1344,4 +1394,22 @@ void Application::Update(float dTime)
 void Application::Render()
 {
 	Component::Render();
+}
+
+void Application::Reset()
+{
+	this->RemoveChild(m_LeftSide);
+	this->RemoveChild(m_RightSide);
+	delete m_LeftSide;
+	delete m_RightSide;
+
+	m_LeftSide = new LeftSide();
+	m_RightSide = new RightSide();
+
+	this->AddChild(m_LeftSide);
+	this->AddChild(m_RightSide);
+	Relationship::GetInstance()->LoadDataFromXMLBackup();
+	if (pCompatibleRenderTarget != nullptr)
+		pCompatibleRenderTarget->Release();
+	pCompatibleRenderTarget = nullptr;
 }

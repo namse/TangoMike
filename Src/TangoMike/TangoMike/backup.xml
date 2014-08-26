@@ -1,364 +1,766 @@
 <?xml version="1.0"?>
-<Communions>
+<Communions TP_Feel="13" TP_Feel_Count="27" TP_Work="26" TP_Work_Count="18" TC_Feel="14" TC_Work="31" TC_Count="4">
 	<소통>
-		<대지의공기 CommunionCount="60" />
-		<나무 CommunionCount="66" />
-		<달의_이면 CommunionCount="71" />
-		<우리_나라 CommunionCount="66" />
-		<디에고_좌상 CommunionCount="74" />
-		<마크로스코-무제 CommunionCount="73" />
-		<일련의_의도된_전개 CommunionCount="63" />
-		<픽셀-중첩된_사슴_6 CommunionCount="62" />
-		<q0 CommunionCount="68" />
-		<고려청자_유약_12 CommunionCount="65" />
-		<심비오인테스튜브타임 CommunionCount="57" />
-		<F_단조_실험 CommunionCount="64" />
-		<데모_스테이션_No.5 CommunionCount="71" />
-		<추상적_움직임 CommunionCount="67" />
-		<카펫_위의_머리카락 CommunionCount="70" />
-		<잇태원 CommunionCount="67" />
-		<연금술 CommunionCount="67" />
-		<중력의_계단 CommunionCount="58" />
+		<대지의공기 CommunionCount="0" />
+		<나무 CommunionCount="1" />
+		<달의_이면 CommunionCount="0" />
+		<우리_나라 CommunionCount="1" />
+		<디에고_좌상 CommunionCount="1" />
+		<마크로스코-무제 CommunionCount="1" />
+		<일련의_의도된_전개 CommunionCount="0" />
+		<픽셀-중첩된_사슴_6 CommunionCount="1" />
+		<q0 CommunionCount="1" />
+		<고려청자_유약_1 CommunionCount="3" />
+		<심비오인테스튜브타임 CommunionCount="0" />
+		<F_단조_실험 CommunionCount="1" />
+		<데모_스테이션_No.5 CommunionCount="1" />
+		<추상적_움직임 CommunionCount="1" />
+		<카펫_위의_머리카락 CommunionCount="0" />
+		<잇태원 CommunionCount="1" />
+		<연금술 CommunionCount="1" />
+		<중력의_계단 CommunionCount="0" />
 	</소통>
 	<참여>
-		<대지의공기 CommunionCount="79" />
-		<나무 CommunionCount="69" />
-		<달의_이면 CommunionCount="56" />
-		<우리_나라 CommunionCount="50" />
-		<디에고_좌상 CommunionCount="54" />
-		<마크로스코-무제 CommunionCount="65" />
-		<일련의_의도된_전개 CommunionCount="63" />
-		<픽셀-중첩된_사슴_6 CommunionCount="62" />
-		<q0 CommunionCount="64" />
-		<고려청자_유약_12 CommunionCount="59" />
-		<심비오인테스튜브타임 CommunionCount="61" />
-		<F_단조_실험 CommunionCount="73" />
-		<데모_스테이션_No.5 CommunionCount="63" />
-		<추상적_움직임 CommunionCount="61" />
-		<카펫_위의_머리카락 CommunionCount="70" />
-		<잇태원 CommunionCount="51" />
-		<연금술 CommunionCount="65" />
-		<중력의_계단 CommunionCount="72" />
+		<대지의공기 CommunionCount="0" />
+		<나무 CommunionCount="3" />
+		<달의_이면 CommunionCount="0" />
+		<우리_나라 CommunionCount="0" />
+		<디에고_좌상 CommunionCount="2" />
+		<마크로스코-무제 CommunionCount="1" />
+		<일련의_의도된_전개 CommunionCount="0" />
+		<픽셀-중첩된_사슴_6 CommunionCount="2" />
+		<q0 CommunionCount="3" />
+		<고려청자_유약_1 CommunionCount="1" />
+		<심비오인테스튜브타임 CommunionCount="0" />
+		<F_단조_실험 CommunionCount="1" />
+		<데모_스테이션_No.5 CommunionCount="0" />
+		<추상적_움직임 CommunionCount="0" />
+		<카펫_위의_머리카락 CommunionCount="0" />
+		<잇태원 CommunionCount="0" />
+		<연금술 CommunionCount="0" />
+		<중력의_계단 CommunionCount="1" />
 	</참여>
 	<초월>
-		<대지의공기 CommunionCount="67" />
-		<나무 CommunionCount="69" />
-		<달의_이면 CommunionCount="58" />
-		<우리_나라 CommunionCount="52" />
-		<디에고_좌상 CommunionCount="68" />
-		<마크로스코-무제 CommunionCount="85" />
-		<일련의_의도된_전개 CommunionCount="66" />
-		<픽셀-중첩된_사슴_6 CommunionCount="88" />
-		<q0 CommunionCount="67" />
-		<고려청자_유약_12 CommunionCount="73" />
-		<심비오인테스튜브타임 CommunionCount="50" />
-		<F_단조_실험 CommunionCount="64" />
-		<데모_스테이션_No.5 CommunionCount="74" />
-		<추상적_움직임 CommunionCount="51" />
-		<카펫_위의_머리카락 CommunionCount="54" />
-		<잇태원 CommunionCount="69" />
-		<연금술 CommunionCount="68" />
-		<중력의_계단 CommunionCount="63" />
+		<대지의공기 CommunionCount="0" />
+		<나무 CommunionCount="0" />
+		<달의_이면 CommunionCount="0" />
+		<우리_나라 CommunionCount="1" />
+		<디에고_좌상 CommunionCount="1" />
+		<마크로스코-무제 CommunionCount="2" />
+		<일련의_의도된_전개 CommunionCount="0" />
+		<픽셀-중첩된_사슴_6 CommunionCount="1" />
+		<q0 CommunionCount="0" />
+		<고려청자_유약_1 CommunionCount="0" />
+		<심비오인테스튜브타임 CommunionCount="0" />
+		<F_단조_실험 CommunionCount="0" />
+		<데모_스테이션_No.5 CommunionCount="0" />
+		<추상적_움직임 CommunionCount="1" />
+		<카펫_위의_머리카락 CommunionCount="1" />
+		<잇태원 CommunionCount="2" />
+		<연금술 CommunionCount="1" />
+		<중력의_계단 CommunionCount="1" />
 	</초월>
 	<일상>
-		<대지의공기 CommunionCount="53" />
-		<나무 CommunionCount="66" />
-		<달의_이면 CommunionCount="70" />
-		<우리_나라 CommunionCount="75" />
-		<디에고_좌상 CommunionCount="59" />
-		<마크로스코-무제 CommunionCount="60" />
-		<일련의_의도된_전개 CommunionCount="55" />
-		<픽셀-중첩된_사슴_6 CommunionCount="80" />
-		<q0 CommunionCount="62" />
-		<고려청자_유약_12 CommunionCount="59" />
-		<심비오인테스튜브타임 CommunionCount="60" />
-		<F_단조_실험 CommunionCount="69" />
-		<데모_스테이션_No.5 CommunionCount="68" />
-		<추상적_움직임 CommunionCount="58" />
-		<카펫_위의_머리카락 CommunionCount="52" />
-		<잇태원 CommunionCount="70" />
-		<연금술 CommunionCount="71" />
-		<중력의_계단 CommunionCount="58" />
+		<대지의공기 CommunionCount="0" />
+		<나무 CommunionCount="1" />
+		<달의_이면 CommunionCount="0" />
+		<우리_나라 CommunionCount="1" />
+		<디에고_좌상 CommunionCount="0" />
+		<마크로스코-무제 CommunionCount="0" />
+		<일련의_의도된_전개 CommunionCount="1" />
+		<픽셀-중첩된_사슴_6 CommunionCount="0" />
+		<q0 CommunionCount="2" />
+		<고려청자_유약_1 CommunionCount="0" />
+		<심비오인테스튜브타임 CommunionCount="0" />
+		<F_단조_실험 CommunionCount="1" />
+		<데모_스테이션_No.5 CommunionCount="0" />
+		<추상적_움직임 CommunionCount="0" />
+		<카펫_위의_머리카락 CommunionCount="0" />
+		<잇태원 CommunionCount="2" />
+		<연금술 CommunionCount="0" />
+		<중력의_계단 CommunionCount="2" />
 	</일상>
 	<창조>
-		<대지의공기 CommunionCount="58" />
-		<나무 CommunionCount="61" />
-		<달의_이면 CommunionCount="56" />
-		<우리_나라 CommunionCount="64" />
-		<디에고_좌상 CommunionCount="82" />
-		<마크로스코-무제 CommunionCount="57" />
-		<일련의_의도된_전개 CommunionCount="70" />
-		<픽셀-중첩된_사슴_6 CommunionCount="64" />
-		<q0 CommunionCount="61" />
-		<고려청자_유약_12 CommunionCount="82" />
-		<심비오인테스튜브타임 CommunionCount="68" />
-		<F_단조_실험 CommunionCount="63" />
-		<데모_스테이션_No.5 CommunionCount="84" />
-		<추상적_움직임 CommunionCount="70" />
-		<카펫_위의_머리카락 CommunionCount="47" />
-		<잇태원 CommunionCount="64" />
-		<연금술 CommunionCount="68" />
-		<중력의_계단 CommunionCount="53" />
+		<대지의공기 CommunionCount="2" />
+		<나무 CommunionCount="0" />
+		<달의_이면 CommunionCount="0" />
+		<우리_나라 CommunionCount="0" />
+		<디에고_좌상 CommunionCount="0" />
+		<마크로스코-무제 CommunionCount="3" />
+		<일련의_의도된_전개 CommunionCount="0" />
+		<픽셀-중첩된_사슴_6 CommunionCount="1" />
+		<q0 CommunionCount="1" />
+		<고려청자_유약_1 CommunionCount="1" />
+		<심비오인테스튜브타임 CommunionCount="3" />
+		<F_단조_실험 CommunionCount="0" />
+		<데모_스테이션_No.5 CommunionCount="0" />
+		<추상적_움직임 CommunionCount="2" />
+		<카펫_위의_머리카락 CommunionCount="1" />
+		<잇태원 CommunionCount="1" />
+		<연금술 CommunionCount="0" />
+		<중력의_계단 CommunionCount="1" />
 	</창조>
 	<확장>
-		<대지의공기 CommunionCount="55" />
-		<나무 CommunionCount="65" />
-		<달의_이면 CommunionCount="70" />
-		<우리_나라 CommunionCount="55" />
-		<디에고_좌상 CommunionCount="59" />
-		<마크로스코-무제 CommunionCount="55" />
-		<일련의_의도된_전개 CommunionCount="61" />
-		<픽셀-중첩된_사슴_6 CommunionCount="67" />
-		<q0 CommunionCount="81" />
-		<고려청자_유약_12 CommunionCount="63" />
-		<심비오인테스튜브타임 CommunionCount="59" />
-		<F_단조_실험 CommunionCount="66" />
-		<데모_스테이션_No.5 CommunionCount="64" />
-		<추상적_움직임 CommunionCount="56" />
-		<카펫_위의_머리카락 CommunionCount="69" />
-		<잇태원 CommunionCount="68" />
-		<연금술 CommunionCount="61" />
-		<중력의_계단 CommunionCount="47" />
+		<대지의공기 CommunionCount="0" />
+		<나무 CommunionCount="1" />
+		<달의_이면 CommunionCount="0" />
+		<우리_나라 CommunionCount="1" />
+		<디에고_좌상 CommunionCount="1" />
+		<마크로스코-무제 CommunionCount="3" />
+		<일련의_의도된_전개 CommunionCount="2" />
+		<픽셀-중첩된_사슴_6 CommunionCount="1" />
+		<q0 CommunionCount="1" />
+		<고려청자_유약_1 CommunionCount="1" />
+		<심비오인테스튜브타임 CommunionCount="0" />
+		<F_단조_실험 CommunionCount="0" />
+		<데모_스테이션_No.5 CommunionCount="2" />
+		<추상적_움직임 CommunionCount="0" />
+		<카펫_위의_머리카락 CommunionCount="1" />
+		<잇태원 CommunionCount="2" />
+		<연금술 CommunionCount="0" />
+		<중력의_계단 CommunionCount="1" />
 	</확장>
 	<경계>
-		<대지의공기 CommunionCount="51" />
-		<나무 CommunionCount="60" />
-		<달의_이면 CommunionCount="59" />
-		<우리_나라 CommunionCount="69" />
-		<디에고_좌상 CommunionCount="53" />
-		<마크로스코-무제 CommunionCount="66" />
-		<일련의_의도된_전개 CommunionCount="75" />
-		<픽셀-중첩된_사슴_6 CommunionCount="62" />
-		<q0 CommunionCount="49" />
-		<고려청자_유약_12 CommunionCount="77" />
-		<심비오인테스튜브타임 CommunionCount="64" />
-		<F_단조_실험 CommunionCount="64" />
-		<데모_스테이션_No.5 CommunionCount="49" />
-		<추상적_움직임 CommunionCount="58" />
-		<카펫_위의_머리카락 CommunionCount="56" />
-		<잇태원 CommunionCount="55" />
-		<연금술 CommunionCount="64" />
-		<중력의_계단 CommunionCount="58" />
+		<대지의공기 CommunionCount="0" />
+		<나무 CommunionCount="1" />
+		<달의_이면 CommunionCount="0" />
+		<우리_나라 CommunionCount="1" />
+		<디에고_좌상 CommunionCount="2" />
+		<마크로스코-무제 CommunionCount="0" />
+		<일련의_의도된_전개 CommunionCount="2" />
+		<픽셀-중첩된_사슴_6 CommunionCount="0" />
+		<q0 CommunionCount="1" />
+		<고려청자_유약_1 CommunionCount="0" />
+		<심비오인테스튜브타임 CommunionCount="1" />
+		<F_단조_실험 CommunionCount="2" />
+		<데모_스테이션_No.5 CommunionCount="0" />
+		<추상적_움직임 CommunionCount="1" />
+		<카펫_위의_머리카락 CommunionCount="1" />
+		<잇태원 CommunionCount="1" />
+		<연금술 CommunionCount="0" />
+		<중력의_계단 CommunionCount="1" />
 	</경계>
 	<관계>
-		<대지의공기 CommunionCount="58" />
-		<나무 CommunionCount="58" />
-		<달의_이면 CommunionCount="64" />
-		<우리_나라 CommunionCount="54" />
-		<디에고_좌상 CommunionCount="69" />
-		<마크로스코-무제 CommunionCount="60" />
-		<일련의_의도된_전개 CommunionCount="62" />
-		<픽셀-중첩된_사슴_6 CommunionCount="42" />
-		<q0 CommunionCount="61" />
-		<고려청자_유약_12 CommunionCount="67" />
-		<심비오인테스튜브타임 CommunionCount="67" />
-		<F_단조_실험 CommunionCount="61" />
-		<데모_스테이션_No.5 CommunionCount="80" />
-		<추상적_움직임 CommunionCount="51" />
-		<카펫_위의_머리카락 CommunionCount="73" />
-		<잇태원 CommunionCount="64" />
-		<연금술 CommunionCount="58" />
-		<중력의_계단 CommunionCount="59" />
+		<대지의공기 CommunionCount="1" />
+		<나무 CommunionCount="1" />
+		<달의_이면 CommunionCount="1" />
+		<우리_나라 CommunionCount="2" />
+		<디에고_좌상 CommunionCount="1" />
+		<마크로스코-무제 CommunionCount="0" />
+		<일련의_의도된_전개 CommunionCount="0" />
+		<픽셀-중첩된_사슴_6 CommunionCount="1" />
+		<q0 CommunionCount="1" />
+		<고려청자_유약_1 CommunionCount="2" />
+		<심비오인테스튜브타임 CommunionCount="1" />
+		<F_단조_실험 CommunionCount="1" />
+		<데모_스테이션_No.5 CommunionCount="0" />
+		<추상적_움직임 CommunionCount="0" />
+		<카펫_위의_머리카락 CommunionCount="0" />
+		<잇태원 CommunionCount="1" />
+		<연금술 CommunionCount="0" />
+		<중력의_계단 CommunionCount="0" />
 	</관계>
 	<시선>
-		<대지의공기 CommunionCount="70" />
-		<나무 CommunionCount="76" />
-		<달의_이면 CommunionCount="54" />
-		<우리_나라 CommunionCount="54" />
-		<디에고_좌상 CommunionCount="64" />
-		<마크로스코-무제 CommunionCount="68" />
-		<일련의_의도된_전개 CommunionCount="53" />
-		<픽셀-중첩된_사슴_6 CommunionCount="73" />
-		<q0 CommunionCount="59" />
-		<고려청자_유약_12 CommunionCount="59" />
-		<심비오인테스튜브타임 CommunionCount="71" />
-		<F_단조_실험 CommunionCount="69" />
-		<데모_스테이션_No.5 CommunionCount="54" />
-		<추상적_움직임 CommunionCount="78" />
-		<카펫_위의_머리카락 CommunionCount="72" />
-		<잇태원 CommunionCount="65" />
-		<연금술 CommunionCount="61" />
-		<중력의_계단 CommunionCount="61" />
+		<대지의공기 CommunionCount="0" />
+		<나무 CommunionCount="1" />
+		<달의_이면 CommunionCount="1" />
+		<우리_나라 CommunionCount="2" />
+		<디에고_좌상 CommunionCount="0" />
+		<마크로스코-무제 CommunionCount="1" />
+		<일련의_의도된_전개 CommunionCount="1" />
+		<픽셀-중첩된_사슴_6 CommunionCount="0" />
+		<q0 CommunionCount="0" />
+		<고려청자_유약_1 CommunionCount="1" />
+		<심비오인테스튜브타임 CommunionCount="0" />
+		<F_단조_실험 CommunionCount="0" />
+		<데모_스테이션_No.5 CommunionCount="2" />
+		<추상적_움직임 CommunionCount="1" />
+		<카펫_위의_머리카락 CommunionCount="1" />
+		<잇태원 CommunionCount="2" />
+		<연금술 CommunionCount="0" />
+		<중력의_계단 CommunionCount="2" />
 	</시선>
 	<공감>
-		<대지의공기 CommunionCount="55" />
-		<나무 CommunionCount="49" />
-		<달의_이면 CommunionCount="62" />
-		<우리_나라 CommunionCount="51" />
-		<디에고_좌상 CommunionCount="56" />
-		<마크로스코-무제 CommunionCount="57" />
-		<일련의_의도된_전개 CommunionCount="60" />
-		<픽셀-중첩된_사슴_6 CommunionCount="58" />
-		<q0 CommunionCount="70" />
-		<고려청자_유약_12 CommunionCount="55" />
-		<심비오인테스튜브타임 CommunionCount="60" />
-		<F_단조_실험 CommunionCount="47" />
-		<데모_스테이션_No.5 CommunionCount="43" />
-		<추상적_움직임 CommunionCount="59" />
-		<카펫_위의_머리카락 CommunionCount="77" />
-		<잇태원 CommunionCount="57" />
-		<연금술 CommunionCount="66" />
-		<중력의_계단 CommunionCount="65" />
+		<대지의공기 CommunionCount="0" />
+		<나무 CommunionCount="0" />
+		<달의_이면 CommunionCount="2" />
+		<우리_나라 CommunionCount="0" />
+		<디에고_좌상 CommunionCount="0" />
+		<마크로스코-무제 CommunionCount="0" />
+		<일련의_의도된_전개 CommunionCount="0" />
+		<픽셀-중첩된_사슴_6 CommunionCount="1" />
+		<q0 CommunionCount="1" />
+		<고려청자_유약_1 CommunionCount="1" />
+		<심비오인테스튜브타임 CommunionCount="1" />
+		<F_단조_실험 CommunionCount="0" />
+		<데모_스테이션_No.5 CommunionCount="1" />
+		<추상적_움직임 CommunionCount="0" />
+		<카펫_위의_머리카락 CommunionCount="2" />
+		<잇태원 CommunionCount="0" />
+		<연금술 CommunionCount="1" />
+		<중력의_계단 CommunionCount="3" />
 	</공감>
 	<대중>
-		<대지의공기 CommunionCount="73" />
-		<나무 CommunionCount="75" />
-		<달의_이면 CommunionCount="59" />
-		<우리_나라 CommunionCount="60" />
-		<디에고_좌상 CommunionCount="62" />
-		<마크로스코-무제 CommunionCount="74" />
-		<일련의_의도된_전개 CommunionCount="64" />
-		<픽셀-중첩된_사슴_6 CommunionCount="92" />
-		<q0 CommunionCount="70" />
-		<고려청자_유약_12 CommunionCount="63" />
-		<심비오인테스튜브타임 CommunionCount="76" />
-		<F_단조_실험 CommunionCount="73" />
-		<데모_스테이션_No.5 CommunionCount="59" />
-		<추상적_움직임 CommunionCount="54" />
-		<카펫_위의_머리카락 CommunionCount="50" />
-		<잇태원 CommunionCount="65" />
-		<연금술 CommunionCount="68" />
-		<중력의_계단 CommunionCount="54" />
+		<대지의공기 CommunionCount="0" />
+		<나무 CommunionCount="0" />
+		<달의_이면 CommunionCount="1" />
+		<우리_나라 CommunionCount="1" />
+		<디에고_좌상 CommunionCount="0" />
+		<마크로스코-무제 CommunionCount="1" />
+		<일련의_의도된_전개 CommunionCount="0" />
+		<픽셀-중첩된_사슴_6 CommunionCount="2" />
+		<q0 CommunionCount="2" />
+		<고려청자_유약_1 CommunionCount="0" />
+		<심비오인테스튜브타임 CommunionCount="1" />
+		<F_단조_실험 CommunionCount="0" />
+		<데모_스테이션_No.5 CommunionCount="3" />
+		<추상적_움직임 CommunionCount="0" />
+		<카펫_위의_머리카락 CommunionCount="1" />
+		<잇태원 CommunionCount="0" />
+		<연금술 CommunionCount="0" />
+		<중력의_계단 CommunionCount="0" />
 	</대중>
 	<접촉>
-		<대지의공기 CommunionCount="61" />
-		<나무 CommunionCount="56" />
-		<달의_이면 CommunionCount="73" />
-		<우리_나라 CommunionCount="53" />
-		<디에고_좌상 CommunionCount="56" />
-		<마크로스코-무제 CommunionCount="69" />
-		<일련의_의도된_전개 CommunionCount="60" />
-		<픽셀-중첩된_사슴_6 CommunionCount="67" />
-		<q0 CommunionCount="62" />
-		<고려청자_유약_12 CommunionCount="62" />
-		<심비오인테스튜브타임 CommunionCount="60" />
-		<F_단조_실험 CommunionCount="62" />
-		<데모_스테이션_No.5 CommunionCount="63" />
-		<추상적_움직임 CommunionCount="67" />
-		<카펫_위의_머리카락 CommunionCount="59" />
-		<잇태원 CommunionCount="73" />
-		<연금술 CommunionCount="52" />
-		<중력의_계단 CommunionCount="56" />
+		<대지의공기 CommunionCount="0" />
+		<나무 CommunionCount="2" />
+		<달의_이면 CommunionCount="0" />
+		<우리_나라 CommunionCount="1" />
+		<디에고_좌상 CommunionCount="1" />
+		<마크로스코-무제 CommunionCount="0" />
+		<일련의_의도된_전개 CommunionCount="2" />
+		<픽셀-중첩된_사슴_6 CommunionCount="1" />
+		<q0 CommunionCount="0" />
+		<고려청자_유약_1 CommunionCount="1" />
+		<심비오인테스튜브타임 CommunionCount="1" />
+		<F_단조_실험 CommunionCount="0" />
+		<데모_스테이션_No.5 CommunionCount="1" />
+		<추상적_움직임 CommunionCount="0" />
+		<카펫_위의_머리카락 CommunionCount="0" />
+		<잇태원 CommunionCount="0" />
+		<연금술 CommunionCount="0" />
+		<중력의_계단 CommunionCount="0" />
 	</접촉>
 	<이동>
-		<대지의공기 CommunionCount="54" />
-		<나무 CommunionCount="71" />
-		<달의_이면 CommunionCount="65" />
-		<우리_나라 CommunionCount="55" />
-		<디에고_좌상 CommunionCount="54" />
-		<마크로스코-무제 CommunionCount="66" />
-		<일련의_의도된_전개 CommunionCount="63" />
-		<픽셀-중첩된_사슴_6 CommunionCount="51" />
-		<q0 CommunionCount="63" />
-		<고려청자_유약_12 CommunionCount="70" />
-		<심비오인테스튜브타임 CommunionCount="56" />
-		<F_단조_실험 CommunionCount="68" />
-		<데모_스테이션_No.5 CommunionCount="75" />
-		<추상적_움직임 CommunionCount="69" />
-		<카펫_위의_머리카락 CommunionCount="67" />
-		<잇태원 CommunionCount="58" />
-		<연금술 CommunionCount="72" />
-		<중력의_계단 CommunionCount="56" />
+		<대지의공기 CommunionCount="0" />
+		<나무 CommunionCount="0" />
+		<달의_이면 CommunionCount="1" />
+		<우리_나라 CommunionCount="1" />
+		<디에고_좌상 CommunionCount="0" />
+		<마크로스코-무제 CommunionCount="0" />
+		<일련의_의도된_전개 CommunionCount="0" />
+		<픽셀-중첩된_사슴_6 CommunionCount="0" />
+		<q0 CommunionCount="0" />
+		<고려청자_유약_1 CommunionCount="0" />
+		<심비오인테스튜브타임 CommunionCount="0" />
+		<F_단조_실험 CommunionCount="0" />
+		<데모_스테이션_No.5 CommunionCount="1" />
+		<추상적_움직임 CommunionCount="1" />
+		<카펫_위의_머리카락 CommunionCount="1" />
+		<잇태원 CommunionCount="1" />
+		<연금술 CommunionCount="0" />
+		<중력의_계단 CommunionCount="1" />
 	</이동>
 	<변화>
-		<대지의공기 CommunionCount="78" />
-		<나무 CommunionCount="61" />
-		<달의_이면 CommunionCount="54" />
-		<우리_나라 CommunionCount="61" />
-		<디에고_좌상 CommunionCount="71" />
-		<마크로스코-무제 CommunionCount="57" />
-		<일련의_의도된_전개 CommunionCount="56" />
-		<픽셀-중첩된_사슴_6 CommunionCount="70" />
-		<q0 CommunionCount="60" />
-		<고려청자_유약_12 CommunionCount="53" />
-		<심비오인테스튜브타임 CommunionCount="74" />
-		<F_단조_실험 CommunionCount="54" />
-		<데모_스테이션_No.5 CommunionCount="57" />
-		<추상적_움직임 CommunionCount="52" />
-		<카펫_위의_머리카락 CommunionCount="54" />
-		<잇태원 CommunionCount="52" />
-		<연금술 CommunionCount="69" />
-		<중력의_계단 CommunionCount="72" />
+		<대지의공기 CommunionCount="2" />
+		<나무 CommunionCount="2" />
+		<달의_이면 CommunionCount="4" />
+		<우리_나라 CommunionCount="1" />
+		<디에고_좌상 CommunionCount="1" />
+		<마크로스코-무제 CommunionCount="3" />
+		<일련의_의도된_전개 CommunionCount="1" />
+		<픽셀-중첩된_사슴_6 CommunionCount="2" />
+		<q0 CommunionCount="3" />
+		<고려청자_유약_1 CommunionCount="1" />
+		<심비오인테스튜브타임 CommunionCount="2" />
+		<F_단조_실험 CommunionCount="2" />
+		<데모_스테이션_No.5 CommunionCount="0" />
+		<추상적_움직임 CommunionCount="1" />
+		<카펫_위의_머리카락 CommunionCount="2" />
+		<잇태원 CommunionCount="2" />
+		<연금술 CommunionCount="1" />
+		<중력의_계단 CommunionCount="1" />
 	</변화>
 	<조화>
-		<대지의공기 CommunionCount="67" />
-		<나무 CommunionCount="55" />
-		<달의_이면 CommunionCount="63" />
-		<우리_나라 CommunionCount="53" />
-		<디에고_좌상 CommunionCount="56" />
-		<마크로스코-무제 CommunionCount="82" />
-		<일련의_의도된_전개 CommunionCount="74" />
-		<픽셀-중첩된_사슴_6 CommunionCount="59" />
-		<q0 CommunionCount="69" />
-		<고려청자_유약_12 CommunionCount="60" />
-		<심비오인테스튜브타임 CommunionCount="64" />
-		<F_단조_실험 CommunionCount="60" />
-		<데모_스테이션_No.5 CommunionCount="50" />
-		<추상적_움직임 CommunionCount="61" />
-		<카펫_위의_머리카락 CommunionCount="67" />
-		<잇태원 CommunionCount="70" />
-		<연금술 CommunionCount="57" />
-		<중력의_계단 CommunionCount="70" />
+		<대지의공기 CommunionCount="1" />
+		<나무 CommunionCount="0" />
+		<달의_이면 CommunionCount="0" />
+		<우리_나라 CommunionCount="2" />
+		<디에고_좌상 CommunionCount="0" />
+		<마크로스코-무제 CommunionCount="0" />
+		<일련의_의도된_전개 CommunionCount="1" />
+		<픽셀-중첩된_사슴_6 CommunionCount="1" />
+		<q0 CommunionCount="1" />
+		<고려청자_유약_1 CommunionCount="0" />
+		<심비오인테스튜브타임 CommunionCount="0" />
+		<F_단조_실험 CommunionCount="0" />
+		<데모_스테이션_No.5 CommunionCount="2" />
+		<추상적_움직임 CommunionCount="4" />
+		<카펫_위의_머리카락 CommunionCount="1" />
+		<잇태원 CommunionCount="2" />
+		<연금술 CommunionCount="0" />
+		<중력의_계단 CommunionCount="2" />
 	</조화>
 	<만남>
-		<대지의공기 CommunionCount="56" />
-		<나무 CommunionCount="66" />
-		<달의_이면 CommunionCount="80" />
-		<우리_나라 CommunionCount="71" />
-		<디에고_좌상 CommunionCount="85" />
-		<마크로스코-무제 CommunionCount="57" />
-		<일련의_의도된_전개 CommunionCount="73" />
-		<픽셀-중첩된_사슴_6 CommunionCount="64" />
-		<q0 CommunionCount="59" />
-		<고려청자_유약_12 CommunionCount="73" />
-		<심비오인테스튜브타임 CommunionCount="68" />
-		<F_단조_실험 CommunionCount="60" />
-		<데모_스테이션_No.5 CommunionCount="61" />
-		<추상적_움직임 CommunionCount="63" />
-		<카펫_위의_머리카락 CommunionCount="60" />
-		<잇태원 CommunionCount="56" />
-		<연금술 CommunionCount="62" />
-		<중력의_계단 CommunionCount="56" />
+		<대지의공기 CommunionCount="0" />
+		<나무 CommunionCount="1" />
+		<달의_이면 CommunionCount="0" />
+		<우리_나라 CommunionCount="0" />
+		<디에고_좌상 CommunionCount="1" />
+		<마크로스코-무제 CommunionCount="3" />
+		<일련의_의도된_전개 CommunionCount="2" />
+		<픽셀-중첩된_사슴_6 CommunionCount="0" />
+		<q0 CommunionCount="1" />
+		<고려청자_유약_1 CommunionCount="0" />
+		<심비오인테스튜브타임 CommunionCount="2" />
+		<F_단조_실험 CommunionCount="1" />
+		<데모_스테이션_No.5 CommunionCount="2" />
+		<추상적_움직임 CommunionCount="0" />
+		<카펫_위의_머리카락 CommunionCount="0" />
+		<잇태원 CommunionCount="2" />
+		<연금술 CommunionCount="0" />
+		<중력의_계단 CommunionCount="1" />
 	</만남>
 	<연결>
-		<대지의공기 CommunionCount="70" />
-		<나무 CommunionCount="63" />
-		<달의_이면 CommunionCount="59" />
-		<우리_나라 CommunionCount="57" />
-		<디에고_좌상 CommunionCount="38" />
-		<마크로스코-무제 CommunionCount="65" />
-		<일련의_의도된_전개 CommunionCount="64" />
-		<픽셀-중첩된_사슴_6 CommunionCount="65" />
-		<q0 CommunionCount="56" />
-		<고려청자_유약_12 CommunionCount="67" />
-		<심비오인테스튜브타임 CommunionCount="56" />
-		<F_단조_실험 CommunionCount="51" />
-		<데모_스테이션_No.5 CommunionCount="55" />
-		<추상적_움직임 CommunionCount="56" />
-		<카펫_위의_머리카락 CommunionCount="68" />
-		<잇태원 CommunionCount="63" />
-		<연금술 CommunionCount="62" />
-		<중력의_계단 CommunionCount="56" />
+		<대지의공기 CommunionCount="0" />
+		<나무 CommunionCount="0" />
+		<달의_이면 CommunionCount="1" />
+		<우리_나라 CommunionCount="1" />
+		<디에고_좌상 CommunionCount="0" />
+		<마크로스코-무제 CommunionCount="1" />
+		<일련의_의도된_전개 CommunionCount="0" />
+		<픽셀-중첩된_사슴_6 CommunionCount="1" />
+		<q0 CommunionCount="0" />
+		<고려청자_유약_1 CommunionCount="0" />
+		<심비오인테스튜브타임 CommunionCount="1" />
+		<F_단조_실험 CommunionCount="0" />
+		<데모_스테이션_No.5 CommunionCount="1" />
+		<추상적_움직임 CommunionCount="0" />
+		<카펫_위의_머리카락 CommunionCount="1" />
+		<잇태원 CommunionCount="0" />
+		<연금술 CommunionCount="2" />
+		<중력의_계단 CommunionCount="1" />
 	</연결>
 	<대화>
-		<대지의공기 CommunionCount="65" />
-		<나무 CommunionCount="52" />
-		<달의_이면 CommunionCount="58" />
-		<우리_나라 CommunionCount="61" />
-		<디에고_좌상 CommunionCount="63" />
-		<마크로스코-무제 CommunionCount="72" />
-		<일련의_의도된_전개 CommunionCount="60" />
-		<픽셀-중첩된_사슴_6 CommunionCount="77" />
-		<q0 CommunionCount="55" />
-		<고려청자_유약_12 CommunionCount="61" />
-		<심비오인테스튜브타임 CommunionCount="69" />
-		<F_단조_실험 CommunionCount="69" />
-		<데모_스테이션_No.5 CommunionCount="67" />
-		<추상적_움직임 CommunionCount="57" />
-		<카펫_위의_머리카락 CommunionCount="60" />
-		<잇태원 CommunionCount="61" />
-		<연금술 CommunionCount="63" />
-		<중력의_계단 CommunionCount="57" />
+		<대지의공기 CommunionCount="1" />
+		<나무 CommunionCount="0" />
+		<달의_이면 CommunionCount="0" />
+		<우리_나라 CommunionCount="0" />
+		<디에고_좌상 CommunionCount="1" />
+		<마크로스코-무제 CommunionCount="0" />
+		<일련의_의도된_전개 CommunionCount="0" />
+		<픽셀-중첩된_사슴_6 CommunionCount="0" />
+		<q0 CommunionCount="1" />
+		<고려청자_유약_1 CommunionCount="1" />
+		<심비오인테스튜브타임 CommunionCount="2" />
+		<F_단조_실험 CommunionCount="1" />
+		<데모_스테이션_No.5 CommunionCount="1" />
+		<추상적_움직임 CommunionCount="0" />
+		<카펫_위의_머리카락 CommunionCount="0" />
+		<잇태원 CommunionCount="0" />
+		<연금술 CommunionCount="1" />
+		<중력의_계단 CommunionCount="1" />
 	</대화>
 </Communions>
-<TotalUser Count="20400" />
+<TotalUser Count="250" />
+<RecentLines Index="250">
+	<_0 Feel="10" Work="30" />
+	<_1 Feel="1" Work="29" />
+	<_2 Feel="8" Work="21" />
+	<_3 Feel="14" Work="33" />
+	<_4 Feel="11" Work="24" />
+	<_5 Feel="2" Work="23" />
+	<_6 Feel="17" Work="18" />
+	<_7 Feel="7" Work="19" />
+	<_8 Feel="8" Work="33" />
+	<_9 Feel="15" Work="19" />
+	<_10 Feel="2" Work="22" />
+	<_11 Feel="0" Work="26" />
+	<_12 Feel="17" Work="30" />
+	<_13 Feel="17" Work="28" />
+	<_14 Feel="13" Work="25" />
+	<_15 Feel="15" Work="23" />
+	<_16 Feel="9" Work="32" />
+	<_17 Feel="5" Work="30" />
+	<_18 Feel="14" Work="21" />
+	<_19 Feel="13" Work="19" />
+	<_20 Feel="9" Work="20" />
+	<_21 Feel="1" Work="25" />
+	<_22 Feel="10" Work="30" />
+	<_23 Feel="4" Work="32" />
+	<_24 Feel="12" Work="20" />
+	<_25 Feel="16" Work="30" />
+	<_26 Feel="13" Work="23" />
+	<_27 Feel="11" Work="30" />
+	<_28 Feel="12" Work="32" />
+	<_29 Feel="14" Work="30" />
+	<_30 Feel="4" Work="23" />
+	<_31 Feel="13" Work="33" />
+	<_32 Feel="7" Work="27" />
+	<_33 Feel="13" Work="27" />
+	<_34 Feel="13" Work="20" />
+	<_35 Feel="13" Work="33" />
+	<_36 Feel="17" Work="35" />
+	<_37 Feel="2" Work="23" />
+	<_38 Feel="2" Work="33" />
+	<_39 Feel="9" Work="35" />
+	<_40 Feel="4" Work="28" />
+	<_41 Feel="13" Work="26" />
+	<_42 Feel="14" Work="21" />
+	<_43 Feel="4" Work="31" />
+	<_44 Feel="9" Work="28" />
+	<_45 Feel="5" Work="23" />
+	<_46 Feel="13" Work="29" />
+	<_47 Feel="8" Work="30" />
+	<_48 Feel="0" Work="29" />
+	<_49 Feel="3" Work="26" />
+	<_50 Feel="10" Work="32" />
+	<_51 Feel="13" Work="32" />
+	<_52 Feel="11" Work="19" />
+	<_53 Feel="8" Work="35" />
+	<_54 Feel="14" Work="18" />
+	<_55 Feel="3" Work="26" />
+	<_56 Feel="2" Work="35" />
+	<_57 Feel="12" Work="21" />
+	<_58 Feel="6" Work="33" />
+	<_59 Feel="4" Work="18" />
+	<_60 Feel="14" Work="35" />
+	<_61 Feel="9" Work="32" />
+	<_62 Feel="10" Work="26" />
+	<_63 Feel="8" Work="32" />
+	<_64 Feel="1" Work="27" />
+	<_65 Feel="8" Work="20" />
+	<_66 Feel="14" Work="30" />
+	<_67 Feel="8" Work="23" />
+	<_68 Feel="14" Work="33" />
+	<_69 Feel="0" Work="30" />
+	<_70 Feel="8" Work="19" />
+	<_71 Feel="8" Work="31" />
+	<_72 Feel="5" Work="33" />
+	<_73 Feel="10" Work="23" />
+	<_74 Feel="7" Work="22" />
+	<_75 Feel="6" Work="22" />
+	<_76 Feel="12" Work="35" />
+	<_77 Feel="0" Work="21" />
+	<_78 Feel="17" Work="27" />
+	<_79 Feel="15" Work="30" />
+	<_80 Feel="9" Work="27" />
+	<_81 Feel="11" Work="19" />
+	<_82 Feel="5" Work="23" />
+	<_83 Feel="1" Work="26" />
+	<_84 Feel="1" Work="26" />
+	<_85 Feel="16" Work="34" />
+	<_86 Feel="15" Work="29" />
+	<_87 Feel="9" Work="30" />
+	<_88 Feel="8" Work="24" />
+	<_89 Feel="10" Work="21" />
+	<_90 Feel="2" Work="34" />
+	<_91 Feel="13" Work="20" />
+	<_92 Feel="15" Work="33" />
+	<_93 Feel="4" Work="23" />
+	<_94 Feel="15" Work="35" />
+	<_95 Feel="13" Work="23" />
+	<_96 Feel="0" Work="34" />
+	<_97 Feel="7" Work="25" />
+	<_98 Feel="11" Work="21" />
+	<_99 Feel="1" Work="25" />
+	<_100 Feel="9" Work="35" />
+	<_101 Feel="5" Work="27" />
+	<_102 Feel="16" Work="28" />
+	<_103 Feel="9" Work="26" />
+	<_104 Feel="0" Work="27" />
+	<_105 Feel="9" Work="25" />
+	<_106 Feel="0" Work="33" />
+	<_107 Feel="5" Work="32" />
+	<_108 Feel="2" Work="33" />
+	<_109 Feel="16" Work="23" />
+	<_110 Feel="14" Work="31" />
+	<_111 Feel="4" Work="25" />
+	<_112 Feel="6" Work="26" />
+	<_113 Feel="16" Work="32" />
+	<_114 Feel="9" Work="20" />
+	<_115 Feel="10" Work="30" />
+	<_116 Feel="5" Work="22" />
+	<_117 Feel="2" Work="21" />
+	<_118 Feel="11" Work="22" />
+	<_119 Feel="14" Work="31" />
+	<_120 Feel="6" Work="29" />
+	<_121 Feel="1" Work="26" />
+	<_122 Feel="14" Work="26" />
+	<_123 Feel="13" Work="26" />
+	<_124 Feel="5" Work="19" />
+	<_125 Feel="6" Work="22" />
+	<_126 Feel="16" Work="34" />
+	<_127 Feel="3" Work="35" />
+	<_128 Feel="9" Work="35" />
+	<_129 Feel="13" Work="29" />
+	<_130 Feel="3" Work="29" />
+	<_131 Feel="7" Work="29" />
+	<_132 Feel="13" Work="20" />
+	<_133 Feel="11" Work="25" />
+	<_134 Feel="13" Work="25" />
+	<_135 Feel="13" Work="31" />
+	<_136 Feel="11" Work="24" />
+	<_137 Feel="13" Work="19" />
+	<_138 Feel="1" Work="22" />
+	<_139 Feel="7" Work="27" />
+	<_140 Feel="15" Work="28" />
+	<_141 Feel="8" Work="27" />
+	<_142 Feel="16" Work="35" />
+	<_143 Feel="12" Work="30" />
+	<_144 Feel="17" Work="34" />
+	<_145 Feel="13" Work="21" />
+	<_146 Feel="8" Work="33" />
+	<_147 Feel="13" Work="18" />
+	<_148 Feel="6" Work="35" />
+	<_149 Feel="5" Work="33" />
+	<_150 Feel="13" Work="26" />
+	<_151 Feel="12" Work="31" />
+	<_152 Feel="4" Work="28" />
+	<_153 Feel="13" Work="24" />
+	<_154 Feel="6" Work="19" />
+	<_155 Feel="1" Work="19" />
+	<_156 Feel="17" Work="28" />
+	<_157 Feel="4" Work="28" />
+	<_158 Feel="1" Work="19" />
+	<_159 Feel="16" Work="25" />
+	<_160 Feel="0" Work="25" />
+	<_161 Feel="9" Work="34" />
+	<_162 Feel="4" Work="18" />
+	<_163 Feel="14" Work="24" />
+	<_164 Feel="14" Work="32" />
+	<_165 Feel="3" Work="33" />
+	<_166 Feel="1" Work="22" />
+	<_167 Feel="4" Work="31" />
+	<_168 Feel="13" Work="28" />
+	<_169 Feel="11" Work="28" />
+	<_170 Feel="5" Work="30" />
+	<_171 Feel="10" Work="25" />
+	<_172 Feel="1" Work="23" />
+	<_173 Feel="7" Work="26" />
+	<_174 Feel="13" Work="23" />
+	<_175 Feel="15" Work="26" />
+	<_176 Feel="6" Work="24" />
+	<_177 Feel="17" Work="22" />
+	<_178 Feel="10" Work="28" />
+	<_179 Feel="0" Work="19" />
+	<_180 Feel="7" Work="28" />
+	<_181 Feel="3" Work="35" />
+	<_182 Feel="6" Work="21" />
+	<_183 Feel="4" Work="35" />
+	<_184 Feel="5" Work="21" />
+	<_185 Feel="13" Work="34" />
+	<_186 Feel="5" Work="24" />
+	<_187 Feel="17" Work="26" />
+	<_188 Feel="6" Work="31" />
+	<_189 Feel="5" Work="24" />
+	<_190 Feel="5" Work="25" />
+	<_191 Feel="14" Work="35" />
+	<_192 Feel="4" Work="26" />
+	<_193 Feel="0" Work="27" />
+	<_194 Feel="13" Work="28" />
+	<_195 Feel="15" Work="24" />
+	<_196 Feel="16" Work="21" />
+	<_197 Feel="12" Work="33" />
+	<_198 Feel="5" Work="26" />
+	<_199 Feel="3" Work="24" />
+	<_200 Feel="6" Work="28" />
+	<_201 Feel="15" Work="30" />
+	<_202 Feel="15" Work="28" />
+	<_203 Feel="7" Work="21" />
+	<_204 Feel="10" Work="26" />
+	<_205 Feel="14" Work="25" />
+	<_206 Feel="14" Work="31" />
+	<_207 Feel="3" Work="33" />
+	<_208 Feel="2" Work="31" />
+	<_209 Feel="6" Work="29" />
+	<_210 Feel="10" Work="20" />
+	<_211 Feel="3" Work="19" />
+	<_212 Feel="7" Work="20" />
+	<_213 Feel="15" Work="33" />
+	<_214 Feel="15" Work="24" />
+	<_215 Feel="0" Work="23" />
+	<_216 Feel="4" Work="27" />
+	<_217 Feel="4" Work="33" />
+	<_218 Feel="2" Work="25" />
+	<_219 Feel="0" Work="31" />
+	<_220 Feel="1" Work="35" />
+	<_221 Feel="6" Work="32" />
+	<_222 Feel="13" Work="32" />
+	<_223 Feel="14" Work="31" />
+	<_224 Feel="7" Work="33" />
+	<_225 Feel="5" Work="35" />
+	<_226 Feel="13" Work="22" />
+	<_227 Feel="10" Work="25" />
+	<_228 Feel="6" Work="24" />
+	<_229 Feel="15" Work="23" />
+	<_230 Feel="7" Work="18" />
+	<_231 Feel="0" Work="27" />
+	<_232 Feel="13" Work="18" />
+	<_233 Feel="15" Work="23" />
+	<_234 Feel="8" Work="21" />
+	<_235 Feel="8" Work="30" />
+	<_236 Feel="3" Work="21" />
+	<_237 Feel="5" Work="23" />
+	<_238 Feel="13" Work="35" />
+	<_239 Feel="17" Work="29" />
+	<_240 Feel="4" Work="23" />
+	<_241 Feel="13" Work="20" />
+	<_242 Feel="7" Work="21" />
+	<_243 Feel="2" Work="32" />
+	<_244 Feel="1" Work="19" />
+	<_245 Feel="16" Work="20" />
+	<_246 Feel="8" Work="35" />
+	<_247 Feel="11" Work="27" />
+	<_248 Feel="0" Work="22" />
+	<_249 Feel="15" Work="22" />
+	<_250 Feel="-1" Work="-1" />
+	<_251 Feel="-1" Work="-1" />
+	<_252 Feel="-1" Work="-1" />
+	<_253 Feel="-1" Work="-1" />
+	<_254 Feel="-1" Work="-1" />
+	<_255 Feel="-1" Work="-1" />
+	<_256 Feel="-1" Work="-1" />
+	<_257 Feel="-1" Work="-1" />
+	<_258 Feel="-1" Work="-1" />
+	<_259 Feel="-1" Work="-1" />
+	<_260 Feel="-1" Work="-1" />
+	<_261 Feel="-1" Work="-1" />
+	<_262 Feel="-1" Work="-1" />
+	<_263 Feel="-1" Work="-1" />
+	<_264 Feel="-1" Work="-1" />
+	<_265 Feel="-1" Work="-1" />
+	<_266 Feel="-1" Work="-1" />
+	<_267 Feel="-1" Work="-1" />
+	<_268 Feel="-1" Work="-1" />
+	<_269 Feel="-1" Work="-1" />
+	<_270 Feel="-1" Work="-1" />
+	<_271 Feel="-1" Work="-1" />
+	<_272 Feel="-1" Work="-1" />
+	<_273 Feel="-1" Work="-1" />
+	<_274 Feel="-1" Work="-1" />
+	<_275 Feel="-1" Work="-1" />
+	<_276 Feel="-1" Work="-1" />
+	<_277 Feel="-1" Work="-1" />
+	<_278 Feel="-1" Work="-1" />
+	<_279 Feel="-1" Work="-1" />
+	<_280 Feel="-1" Work="-1" />
+	<_281 Feel="-1" Work="-1" />
+	<_282 Feel="-1" Work="-1" />
+	<_283 Feel="-1" Work="-1" />
+	<_284 Feel="-1" Work="-1" />
+	<_285 Feel="-1" Work="-1" />
+	<_286 Feel="-1" Work="-1" />
+	<_287 Feel="-1" Work="-1" />
+	<_288 Feel="-1" Work="-1" />
+	<_289 Feel="-1" Work="-1" />
+	<_290 Feel="-1" Work="-1" />
+	<_291 Feel="-1" Work="-1" />
+	<_292 Feel="-1" Work="-1" />
+	<_293 Feel="-1" Work="-1" />
+	<_294 Feel="-1" Work="-1" />
+	<_295 Feel="-1" Work="-1" />
+	<_296 Feel="-1" Work="-1" />
+	<_297 Feel="-1" Work="-1" />
+	<_298 Feel="-1" Work="-1" />
+	<_299 Feel="-1" Work="-1" />
+	<_300 Feel="-1" Work="-1" />
+	<_301 Feel="-1" Work="-1" />
+	<_302 Feel="-1" Work="-1" />
+	<_303 Feel="-1" Work="-1" />
+	<_304 Feel="-1" Work="-1" />
+	<_305 Feel="-1" Work="-1" />
+	<_306 Feel="-1" Work="-1" />
+	<_307 Feel="-1" Work="-1" />
+	<_308 Feel="-1" Work="-1" />
+	<_309 Feel="-1" Work="-1" />
+	<_310 Feel="-1" Work="-1" />
+	<_311 Feel="-1" Work="-1" />
+	<_312 Feel="-1" Work="-1" />
+	<_313 Feel="-1" Work="-1" />
+	<_314 Feel="-1" Work="-1" />
+	<_315 Feel="-1" Work="-1" />
+	<_316 Feel="-1" Work="-1" />
+	<_317 Feel="-1" Work="-1" />
+	<_318 Feel="-1" Work="-1" />
+	<_319 Feel="-1" Work="-1" />
+	<_320 Feel="-1" Work="-1" />
+	<_321 Feel="-1" Work="-1" />
+	<_322 Feel="-1" Work="-1" />
+	<_323 Feel="-1" Work="-1" />
+	<_324 Feel="-1" Work="-1" />
+	<_325 Feel="-1" Work="-1" />
+	<_326 Feel="-1" Work="-1" />
+	<_327 Feel="-1" Work="-1" />
+	<_328 Feel="-1" Work="-1" />
+	<_329 Feel="-1" Work="-1" />
+	<_330 Feel="-1" Work="-1" />
+	<_331 Feel="-1" Work="-1" />
+	<_332 Feel="-1" Work="-1" />
+	<_333 Feel="-1" Work="-1" />
+	<_334 Feel="-1" Work="-1" />
+	<_335 Feel="-1" Work="-1" />
+	<_336 Feel="-1" Work="-1" />
+	<_337 Feel="-1" Work="-1" />
+	<_338 Feel="-1" Work="-1" />
+	<_339 Feel="-1" Work="-1" />
+	<_340 Feel="-1" Work="-1" />
+	<_341 Feel="-1" Work="-1" />
+	<_342 Feel="-1" Work="-1" />
+	<_343 Feel="-1" Work="-1" />
+	<_344 Feel="-1" Work="-1" />
+	<_345 Feel="-1" Work="-1" />
+	<_346 Feel="-1" Work="-1" />
+	<_347 Feel="-1" Work="-1" />
+	<_348 Feel="-1" Work="-1" />
+	<_349 Feel="-1" Work="-1" />
+	<_350 Feel="-1" Work="-1" />
+	<_351 Feel="-1" Work="-1" />
+	<_352 Feel="-1" Work="-1" />
+	<_353 Feel="-1" Work="-1" />
+	<_354 Feel="-1" Work="-1" />
+	<_355 Feel="-1" Work="-1" />
+	<_356 Feel="-1" Work="-1" />
+	<_357 Feel="-1" Work="-1" />
+	<_358 Feel="-1" Work="-1" />
+	<_359 Feel="-1" Work="-1" />
+	<_360 Feel="-1" Work="-1" />
+	<_361 Feel="-1" Work="-1" />
+	<_362 Feel="-1" Work="-1" />
+	<_363 Feel="-1" Work="-1" />
+	<_364 Feel="-1" Work="-1" />
+	<_365 Feel="-1" Work="-1" />
+	<_366 Feel="-1" Work="-1" />
+	<_367 Feel="-1" Work="-1" />
+	<_368 Feel="-1" Work="-1" />
+	<_369 Feel="-1" Work="-1" />
+	<_370 Feel="-1" Work="-1" />
+	<_371 Feel="-1" Work="-1" />
+	<_372 Feel="-1" Work="-1" />
+	<_373 Feel="-1" Work="-1" />
+	<_374 Feel="-1" Work="-1" />
+	<_375 Feel="-1" Work="-1" />
+	<_376 Feel="-1" Work="-1" />
+	<_377 Feel="-1" Work="-1" />
+	<_378 Feel="-1" Work="-1" />
+	<_379 Feel="-1" Work="-1" />
+	<_380 Feel="-1" Work="-1" />
+	<_381 Feel="-1" Work="-1" />
+	<_382 Feel="-1" Work="-1" />
+	<_383 Feel="-1" Work="-1" />
+	<_384 Feel="-1" Work="-1" />
+	<_385 Feel="-1" Work="-1" />
+	<_386 Feel="-1" Work="-1" />
+	<_387 Feel="-1" Work="-1" />
+	<_388 Feel="-1" Work="-1" />
+	<_389 Feel="-1" Work="-1" />
+	<_390 Feel="-1" Work="-1" />
+	<_391 Feel="-1" Work="-1" />
+	<_392 Feel="-1" Work="-1" />
+	<_393 Feel="-1" Work="-1" />
+	<_394 Feel="-1" Work="-1" />
+	<_395 Feel="-1" Work="-1" />
+	<_396 Feel="-1" Work="-1" />
+	<_397 Feel="-1" Work="-1" />
+	<_398 Feel="-1" Work="-1" />
+	<_399 Feel="-1" Work="-1" />
+</RecentLines>

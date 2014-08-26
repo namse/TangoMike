@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Component.h"
-
+#include "EventManager.h"
 
 Component::Component()
 	: isVisible_(true),
@@ -16,6 +16,7 @@ Component::Component()
 
 Component::~Component()
 {
+	EventManager::GetInstance()->RemoveEventListener(this);
 }
 
 void Component::Update(float dTime)

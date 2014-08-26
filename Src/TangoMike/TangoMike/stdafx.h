@@ -161,8 +161,8 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 
 #define FONTCOLOR_FEEL_FOCUS D2D1::ColorF( 0xde9658)
 #define FONTCOLOR_WORK_FOCUS D2D1::ColorF( 0x84d3a2)
-#define FONTCOLOR_FEEL_UNFOCUS D2D1::ColorF( 0xde9658, 0.35f)
-#define FONTCOLOR_WORK_UNFOCUS D2D1::ColorF( 0x84d3a2, 0.35f)
+#define FONTCOLOR_FEEL_UNFOCUS D2D1::ColorF( 0xde9658, OPACITY)
+#define FONTCOLOR_WORK_UNFOCUS D2D1::ColorF( 0x84d3a2, OPACITY)
 
 #define COLOR_FEEL FONTCOLOR_FEEL_FOCUS
 #define COLOR_WORK FONTCOLOR_WORK_FOCUS
@@ -209,10 +209,17 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 
 #define LIGHT_BALL_MAX_RADIUS 4.f
 
-#define MAX_LINE_COUNT 3
+#define MAX_LINE_COUNT 400
+
+#define LIGHT_BALL_PERIOD 1.5f
+
+#define SHUFFLE_PERIOD 5.f
+
 
 #define FEEL_COUNT 18
 #define WORK_COUNT 18
+
+
 
 #include "ringbuffer.h"
 
@@ -305,3 +312,16 @@ extern PendingAcceptList pendingAcceptList;
 extern bool isFocus[FEEL_COUNT + WORK_COUNT];
 
 float distance(D2D1_POINT_2F* a, D2D1_POINT_2F* b);
+
+extern float g_opacity;
+extern float g_lineThickness;
+
+
+#define OPACITY g_opacity
+#define LINE_THICKNESS g_lineThickness
+extern bool didDrawBackground;
+/*
+
+#define OPACITY 0.2f
+#define LINE_THICKNESS 0.3f
+*/

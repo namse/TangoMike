@@ -4,9 +4,9 @@
 #include "Relationship.h"
 
 RightSide::RightSide()
+	: isIdle(false), TimeForIdle(0.f)
 {
 	wordSpriteCollection_.InitWordSprites();
-	//wordSpriteCollection_.SetCenter(D2D1::Point2F(CIRCLE_RADIUS_TO_WORD, CIRCLE_RADIUS_TO_WORD));
 	SetPosition(CIRCLE_CENTER_POSITION);
 	AddChild(&wordSpriteCollection_);
 	AddChild(&lineCollection_);
@@ -23,7 +23,7 @@ RightSide::RightSide()
 
 RightSide::~RightSide()
 {
-
+	
 }
 
 void RightSide::Render()
@@ -35,6 +35,30 @@ void RightSide::Render()
 void RightSide::Update(float dTime)
 {
 	Component::Update(dTime);
+
+	if (isIdle == true)
+	{
+		TimeForIdle += dTime;
+		if (TimeForIdle > SHUFFLE_PERIOD)
+		{
+			TimeForIdle = 0.f;
+			Event::SelectEvent event;
+			int length = rand() % (WORK_COUNT + FEEL_COUNT);
+			event.objectLength = length;
+			bool didUse[WORK_COUNT + FEEL_COUNT];
+			memset(didUse, false, sizeof(didUse));
+			for (int i = 0; i <= length; i++)
+			{
+				int randomID = 0;
+				do{
+					randomID = rand() % (WORK_COUNT + FEEL_COUNT);
+				} while (didUse[randomID] != false);
+				didUse[randomID] = true;
+				event.object[i] = randomID;
+			}
+			EventManager::GetInstance()->Notify(&event);
+		}
+	}
 }
 
 void RightSide::SetArrange()
@@ -56,7 +80,7 @@ void RightSide::SetArrange()
 
 		if (wordSprite->IsFeel())
 		{
-			angle = M_PI * 2.f * 0.75f - (dAngle * (wordSprite->GetId() + 0.5f));
+			angle = M_PI * 2.f * 0.75f - (dAngle * (wordSprite->GetId()));
 			wordAngle = angle - M_PI;
 			float maxWidth = wordSprite->GetMaxWidth();
 			x = (CIRCLE_RADIUS_TO_WORD + maxWidth) * cos(angle);
@@ -65,7 +89,7 @@ void RightSide::SetArrange()
 		}
 		else
 		{
-			angle = M_PI * 2.f * 0.75f + (dAngle * (wordSprite->GetId() - FEEL_COUNT + 0.5f));
+			angle = M_PI * 2.f * 0.75f + (dAngle * (wordSprite->GetId() - FEEL_COUNT + 1.f));
 			wordAngle = angle;
 			x = CIRCLE_RADIUS_TO_WORD * cos(angle);
 			y = CIRCLE_RADIUS_TO_WORD * sin(angle);
@@ -75,47 +99,12 @@ void RightSide::SetArrange()
 		wordSprite->SetShuffle(false);
 		wordSprite->DoAnimate(POSITION, &(D2D1::Point2F(x, y)), 2.f);
 		wordSprite->SetRotation(wordAngle);
-		//wordSprite->DoAnimate(ROTATION, &(wordAngle), 10.f);
 	}
-	/*
-	for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
-	{
-		angle += dAngle;
-
-		x = CIRCLE_RADIUS_TO_WORD * cos(angle + initAngle);
-		y = CIRCLE_RADIUS_TO_WORD * sin(angle + initAngle);
-
-
-		wordAngle = angle - M_PI_2;
-
-		if (angle > M_PI)
-		{
-			wordAngle += M_PI;
-			wordSprite->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
-		}
-		else
-		{
-			float maxWidth = wordSprite->GetMaxWidth();
-			x += maxWidth * cos(angle + initAngle);
-			y += maxWidth * sin(angle + initAngle);
-			wordSprite->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_TRAILING);
-		}
-
-		wordSprite->SetShuffle(false);
-		wordSprite->DoAnimate(POSITION, &(D2D1::Point2F(x, y)), 10.f);
-		wordSprite->DoAnimate(ROTATION, &(wordAngle), 10.f);
-	}*/
 }
 
 void RightSide::SetIdle()
 {
-	OffFocus();
-	for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
-	{
-		float wordAngle = 0.f;// M_PI_2;
-		wordSprite->SetShuffle(true);
-		wordSprite->DoAnimate(ROTATION, &(wordAngle), 2.f);
-	}
+	isIdle = true;
 }
 
 
@@ -128,23 +117,6 @@ void RightSide::SetFocus()
 			wordSprite->SetFocus(true);
 		}
 	}
-/*
-	for (auto &SelectdObject : SelectdObjects_)
-	{
-		WordSprite* SelectdWordSprite = nullptr;
-		for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
-		{
-			if (wordSprite->GetKoreanWord()->GetContents().compare(SelectdObject->GetName()) == 0)
-			{
-				SelectdWordSprite = wordSprite;
-				break;
-			}
-		}
-		if (SelectdWordSprite != nullptr)
-		{
-			SelectdWordSprite->SetFocus(true);
-		}
-	}*/
 }
 
 
@@ -158,58 +130,26 @@ void RightSide::OffFocus()
 		}
 	}
 	memset(isFocus, false, sizeof(isFocus));
-
-	/*for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
-	{
-		wordSprite->SetFocus(false);
-	}*/
 }
-/*
-	for (auto &SelectdObject : SelectdObjects_)
-	{
-		WordSprite* SelectdWordSprite = nullptr;
-		for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
-		{
-			if (wordSprite->GetKoreanWord()->GetContents().compare(SelectdObject->GetName()) == 0)
-			{
-				SelectdWordSprite = wordSprite;
-				break;
-			}
-		}
-		if (SelectdWordSprite != nullptr)
-		{
-			SelectdWordSprite->SetFocus(false);
-		}
-	}*/
+
 void RightSide::Notify(EventHeader* event)
 {
 	switch (event->event_type_)
 	{
 	case EVENT_FIRST_CLICK:
 	{
+		OffShuffle();
+		OffFocus();
 		SetArrange();
 	}break;
 
 	case EVENT_VOTE_COMPLETE:
 	{
+		OffShuffle();
 		Event::VoteCompleteEvent* recvEvent = (Event::VoteCompleteEvent*)event;
 		OffFocus();
 		for (int i = 0; i < recvEvent->objectLength; i++)
 		{
-			/*for (auto &object : Relationship::GetInstance()->GetFeels())
-			{
-				if (object->GetId() == recvEvent->object[i])
-				{
-					SelectdObjects_.push_back(object);
-				}
-			}
-			for (auto &object : Relationship::GetInstance()->GetWorks())
-			{
-				if (object->GetId() == recvEvent->object[i])
-				{
-					SelectdObjects_.push_back(object);
-				}
-			}*/
 			isFocus[recvEvent->object[i]] = true;
 		}
 		SetFocus();
@@ -217,26 +157,11 @@ void RightSide::Notify(EventHeader* event)
 
 	case EVENT_SELECT:
 	{
+		OffShuffle();
 		Event::SelectEvent* recvEvent = (Event::SelectEvent*)event;
-		/*SelectdObjects_.clear();
-		*/
 		OffFocus();
 		for (int i = 0; i < recvEvent->objectLength; i++)
 		{
-			/*for (auto &object : Relationship::GetInstance()->GetFeels())
-			{
-				if (object->GetId() == recvEvent->object[i])
-				{
-					SelectdObjects_.push_back(object);
-				}
-			}
-			for (auto &object : Relationship::GetInstance()->GetWorks())
-			{
-				if (object->GetId() == recvEvent->object[i])
-				{
-					SelectdObjects_.push_back(object);
-				}
-			}*/
 			isFocus[recvEvent->object[i]] = true;
 		}
 		SetFocus();
@@ -253,4 +178,10 @@ void RightSide::Notify(EventHeader* event)
 		break;
 	}
 	}
+}
+
+void RightSide::OffShuffle()
+{
+	isIdle = false;
+	TimeForIdle = 0.f;
 }

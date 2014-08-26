@@ -12,11 +12,19 @@ public:
 	void Render();
 	void Update(float dTime);
 
+	void LightBallOn();
+	bool IsLightBallOn(){
+		return !(lightBall_->IsMovingDone());
+	}
+
+	bool IsFocus(){
+		return (isFocus[feelID_] == true && isFocus[workID_] == true);
+	}
 private:
 	void CalcBezier();
 private:
 	int feelID_, workID_;
-	bool didDrawBackground;
+	//bool didDrawBackground;
 	D2D1_POINT_2F * point1_;
 	D2D1_POINT_2F * point2_;
 
@@ -27,4 +35,11 @@ private:
 
 
 	LightBall* lightBall_;
+
+	float lineThickness;
+	Animation<float> lineThicknessAnimation;
+	bool isFirstTimeFromFocus;
+	bool isFirstTimeFromUnFocus;
+
+	float timeForFadeOut;
 };

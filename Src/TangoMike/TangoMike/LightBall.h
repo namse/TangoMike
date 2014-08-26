@@ -12,6 +12,13 @@ public:
 	void Render();
 	void Update(float dTime);
 
+	bool IsMovingDone(){ return isMovingDone_; }
+
+	void SetMoveOn(bool isMove){
+		Reset();
+		isMovingDone_ = !isMove;
+	}
+	void Reset();
 private:
 	D2D_POINT_2F point_start;
 	D2D_POINT_2F point_bezier;
@@ -24,5 +31,12 @@ private:
 
 	ID2D1GradientStopCollection* stops_;
 	ID2D1RadialGradientBrush* brush_;
+
+
+	float velocity;
+	float d;
+
+	bool isMovingDone_;
+	
 };
 

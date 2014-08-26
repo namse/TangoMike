@@ -16,8 +16,6 @@ private:
 	void LoadTextFromXml();
 
 private:
-	Word word1_, word2_, word3_;
-
 	IWICFormatConverter* mFmtConverter;
 	ID2D1Bitmap* mD2DBitmap;
 };

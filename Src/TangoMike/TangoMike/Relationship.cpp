@@ -161,9 +161,37 @@ Object* Relationship::FindObjectById(int id)
 	return nullptr;
 }
 
-void Relationship::LoadDataFromXMLBackup(pugi::xml_document* doc)
+void Relationship::LoadDataFromXMLBackup()
 {
+	pugi::xml_document* doc = XMLBackup::GetInstance()->GetXML();
 	auto communions = doc->child(L"Communions");
+	auto tcFeel = communions.attribute(L"TC_Feel").as_int();
+	auto tcWork = communions.attribute(L"TC_Work").as_int();
+	tc_com = std::make_pair(FindFeelById(tcFeel),FindWorkById(tcWork));
+	tc_com_count = communions.attribute(L"TC_Count").as_int();
+	tp_feel = FindFeelById(communions.attribute(L"TP_Feel").as_int());
+	tp_work = FindWorkById(communions.attribute(L"TP_Work").as_int());
+	tp_feel_count = communions.attribute(L"TP_Feel_Count").as_int();
+	tp_work_count = communions.attribute(L"TP_Work_Count").as_int();
+
+
+	Event::TopPickFeelUpdateEvent event_tpf;
+	event_tpf.tp_feel = tp_feel;
+	event_tpf.tp_feel_count = tp_feel_count;
+	EventManager::GetInstance()->Notify(&event_tpf);
+
+
+	Event::TopPickWorkUpdateEvent event_tpw;
+	event_tpw.tp_work = tp_work;
+	event_tpw.tp_work_count = tp_work_count;
+	EventManager::GetInstance()->Notify(&event_tpw);
+
+	Event::TopCommunionUpdateEvent event_tc;
+	event_tc.tc_com = tc_com;
+	event_tc.tc_com_count = tc_com_count;
+	EventManager::GetInstance()->Notify(&event_tc);
+
+
 
 	for (auto& feel : feels_)
 	{
@@ -174,4 +202,8 @@ void Relationship::LoadDataFromXMLBackup(pugi::xml_document* doc)
 		}
 	}
 	totalUser = doc->child(L"TotalUser").attribute(L"Count").as_int();
+
+	Event::UserCountUpdateEvent event_tot;
+	event_tot.userCount = totalUser;
+	EventManager::GetInstance()->Notify(&event_tot);
 }

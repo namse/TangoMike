@@ -161,7 +161,6 @@ void TotalCount::Notify(EventHeader* event)
 	case EVENT_SHOW_DATA:
 	{
 		// Start Animation
-		//animatingWordGroup.DoAnimate(POSITION, &D2D1::Point2F(0.f, 0.f), 2.f);
 		opacity = 0.f;
 		tpFCount_ani = 0;
 		tpWCount_ani = 0;
@@ -175,7 +174,6 @@ void TotalCount::Notify(EventHeader* event)
 	case EVENT_HIDE_DATA:
 	{
 		// Fade Off this.
-		//animatingWordGroup.DoAnimate(POSITION, &D2D1::Point2F(0.f, 25.f), 2.f);
 		opacityAnimation.DoAnimate(0.f, 1.f);
 	}break;
 	}

@@ -2,11 +2,9 @@
 #include "MainTitle.h"
 
 
-MainTitle::MainTitle()
-	:word1_(), word2_(), word3_(), mD2DBitmap(nullptr)
+MainTitle::MainTitle() : mD2DBitmap(nullptr)
 {
 	SetPosition(TITLE_POSTION);
-	//LoadTextFromXml();
 }
 
 
@@ -62,47 +60,4 @@ void MainTitle::Render()
 	m_pBackBufferRT->DrawBitmap(mD2DBitmap, TITLE_RECT);
 	HRESULT hr = m_pBackBufferRT->EndDraw();
 	
-}
-
-void MainTitle::LoadTextFromXml()
-{
-	pugi::xml_document doc;
-	auto result = doc.load_file(XML_FILE_NAME);
-	
-
-	if (result)
-	{
-		std::cout << "Success description: " << result.description() << "\n";
-
-		auto xmlMainTitle = doc.child(L"ShowItems").child(L"MainTitle");
-
-		auto xmlWord1 = xmlMainTitle.child(L"Word1");
-		word1_.SetContents(xmlWord1.attribute(L"Contents").value());
-		word1_.SetPosition(
-			D2D1::Point2F(xmlWord1.attribute(L"Left").as_int(), xmlWord1.attribute(L"Top").as_int()));
-		word1_.SetFontSize(xmlWord1.attribute(L"FontSize").as_float());
-		word1_.SetMaxWidthAndHeight(D2D1::Point2F(1000.f, 1000.f));
-
-		auto xmlWord2 = xmlMainTitle.child(L"Word2");
-		word2_.SetContents(xmlWord2.attribute(L"Contents").value());
-		word2_.SetPosition(
-			D2D1::Point2F(xmlWord2.attribute(L"Left").as_int(), xmlWord2.attribute(L"Top").as_int()));
-		word2_.SetFontSize(xmlWord2.attribute(L"FontSize").as_float());
-		word2_.SetMaxWidthAndHeight(D2D1::Point2F(1000.f, 1000.f));
-
-		auto xmlWord3 = xmlMainTitle.child(L"Word3");
-		word3_.SetContents(xmlWord3.attribute(L"Contents").value());
-		word3_.SetPosition(
-			D2D1::Point2F(xmlWord3.attribute(L"Left").as_int(), xmlWord3.attribute(L"Top").as_int()));
-		word3_.SetFontSize(xmlWord3.attribute(L"FontSize").as_float());
-		word3_.SetMaxWidthAndHeight(D2D1::Point2F(1000.f, 1000.f));
-
-	}
-	else
-	{
-		std::cout << "Error description: " << result.description() << "\n";
-		std::cout << "Error offset: " << result.offset << " (error at [..." << (XML_FILE_NAME + result.offset) << "]\n\n";
-		Assert("error load xml");
-	}
-
 }

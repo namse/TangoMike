@@ -26,7 +26,7 @@ public:
 	}
 
 	bool LoadMetaDataFromFile(std::string filename);
-	void LoadDataFromXMLBackup(pugi::xml_document* doc);
+	void LoadDataFromXMLBackup();
 
 	std::vector<Feel*> GetFeels()		{ return feels_; }
 	std::vector<Work*> GetWorks()		{ return works_; }

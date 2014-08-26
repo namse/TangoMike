@@ -25,7 +25,10 @@ public:
 	virtual void Notify(EventHeader* event);
 	void LoadData();
 	void Backup();
-
+	pugi::xml_document* GetXML() {
+		return &xml_doc;
+	}
+	std::list<std::pair<int, int>> LoadLines();
 private:
 	XMLBackup();
 	~XMLBackup();
@@ -37,6 +40,8 @@ private:
 
 
 	pugi::xml_document xml_doc;
+
+	int circular_index;
 };
 
 inline bool IsFileExist(const std::wstring& name) {

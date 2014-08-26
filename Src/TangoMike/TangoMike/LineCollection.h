@@ -18,11 +18,7 @@ public:
 	
 	void MakeLine(int feelId, int workId);
 	void RemoveLine(Line* line);
-
-	std::queue<Line*> GetLines(int feelID, int workID)
-	{
-		return lines_FW[feelID][workID - FEEL_COUNT];
-	}
+	void LineLoadFromBackup();
 
 private:
 	void InitLinePoints();
@@ -35,8 +31,9 @@ private:
 	ID2D1SolidColorBrush* pointBrush_work_;
 	ID2D1SolidColorBrush* pointBrush_feel_;
 	
-	std::queue<Line*> lines_FW[FEEL_COUNT][WORK_COUNT];
 	ID2D1Bitmap * bitmap_line;
+
+	float lightballTiming;
 
 };
 

@@ -31,5 +31,7 @@ private:
 	WordSpriteCollection wordSpriteCollection_;
 	LineCollection lineCollection_;/*
 	std::vector<Object*> SelectdObjects_;*/
+	bool isIdle;
+	float TimeForIdle;
 };
 

@@ -70,8 +70,8 @@ bool ClientSession::PostRecv()
 	DWORD recvbytes = 0 ;
 	DWORD flags = 0 ;
 	WSABUF buf ;
-	buf.len = (ULONG)mRecvBuffer.GetFreeSpaceSize() ;
-	buf.buf = (char*)mRecvBuffer.GetBuffer() ;
+	buf.len = BUFSIZE - recvLength;// (ULONG)mRecvBuffer->GetFreeSpaceSize();
+	buf.buf = this->buf + recvLength; //(char*)mRecvBuffer->GetBuffer() ;
 
 	memset(&mOverlappedRecv, 0, sizeof(OverlappedIO)) ;
 	mOverlappedRecv.mObject = this ;
@@ -116,29 +116,39 @@ void ClientSession::Disconnect()
 
 void ClientSession::OnRead(size_t len)
 {
-	mRecvBuffer.Commit(len) ;
+/*
+	mRecvBuffer->Commit(len);
+*/
+	recvLength += len;
 
 	/// 패킷 파싱하고 처리
 	while ( true )
 	{
 		/// 패킷 헤더 크기 만큼 읽어와보기
-		PacketHeader header ;
-		if ( false == mRecvBuffer.Peek((char*)&header, sizeof(PacketHeader)) )
+		PacketHeader* header ;
+/*
+
+		if ( false == mRecvBuffer->Peek((char*)&header, sizeof(PacketHeader)) )
 			return ;
+*/
+		header = (PacketHeader*)buf;
 
 		/// 패킷 완성이 되는가? 
-		if ( mRecvBuffer.GetStoredSize() < header.mSize )
+		if ( recvLength < header->mSize )
 			return ;
 
 		
-		if (header.mType >= PKT_MAX || header.mType <= PKT_NONE)
+		if (header->mType >= PKT_MAX || header->mType <= PKT_NONE)
 		{
 			Disconnect();
 			return;
 		}
-		std::cout << header.mType << std::endl;
+		std::cout << header->mType << std::endl;
 		/// packet dispatch...
-		HandlerTable[header.mType](this, header);
+		HandlerTable[header->mType](this, *header);
+
+		recvLength -= header->mSize;
+		memmove(buf, buf + recvLength + header->mSize, recvLength);
 	}
 }
 
@@ -146,9 +156,10 @@ bool ClientSession::SendRequest(PacketHeader* pkt)
 {
 	if ( !IsConnected() )
 		return false ;
+/*
 
 	/// Send 요청은 버퍼에 쌓아놨다가 한번에 보낸다.
-	if ( false == mSendBuffer.Write((char*)pkt, pkt->mSize) )
+	if ( false == mSendBuffer->Write((char*)pkt, pkt->mSize) )*/
 	{
 		/// 버퍼 용량 부족인 경우는 끊어버림
 		Disconnect() ;
@@ -161,19 +172,19 @@ bool ClientSession::SendRequest(PacketHeader* pkt)
 
 bool ClientSession::SendFlush()
 {
-	if (!IsConnected())
+	/*if (!IsConnected())
 		return false;
 
-	/// 보낼 데이터가 없으면 그냥 리턴
-	if (mSendBuffer.GetContiguiousBytes() == 0)
-		return true;
+	/ * /// 보낼 데이터가 없으면 그냥 리턴
+	if (mSendBuffer->GetContiguiousBytes() == 0)
+		return true;* /
 
 	DWORD sendbytes = 0;
 	DWORD flags = 0;
 
 	WSABUF buf;
-	buf.len = (ULONG)mSendBuffer.GetContiguiousBytes();
-	buf.buf = (char*)mSendBuffer.GetBufferStart();
+	buf.len = (ULONG)mSendBuffer->GetContiguiousBytes();
+	buf.buf = (char*)mSendBuffer->GetBufferStart();
 
 	memset(&mOverlappedSend, 0, sizeof(OverlappedIO));
 	mOverlappedSend.mObject = this;
@@ -187,7 +198,7 @@ bool ClientSession::SendFlush()
 
 	IncOverlappedRequest();
 
-	//assert(buf.len == sendbytes);
+	//assert(buf.len == sendbytes);*/
 
 	return true;
 }
@@ -195,7 +206,6 @@ bool ClientSession::SendFlush()
 void ClientSession::OnWriteComplete(size_t len)
 {
 	/// 보내기 완료한 데이터는 버퍼에서 제거
-	mSendBuffer.Remove(len) ;
 }
 
 bool ClientSession::Broadcast(PacketHeader* pkt)
@@ -279,7 +289,6 @@ REGISTER_HANDLER(PKT_FIRST_CLICK)
 }
 void ClientSession::HandleFirstClickRequest(Packet::FirstClickRequest& inPacket)
 {
-	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
 	Event::FirstClickEvent event;
 	EventManager::GetInstance()->Notify(&event);
 }
@@ -291,7 +300,6 @@ REGISTER_HANDLER(PKT_VOTE_COMPLETE)
 }
 void ClientSession::HandleVoteCompleteRequest(Packet::VoteCompleteRequest& inPacket)
 {
-	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
 	Event::VoteCompleteEvent event;
 	memcpy(&(event.objectLength),
 		&(inPacket.objectLength),
@@ -306,7 +314,6 @@ REGISTER_HANDLER(PKT_SELECT)
 }
 void ClientSession::HandleSelectRequest(Packet::SelectRequest& inPacket)
 {
-	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
 	Event::SelectEvent event;
 	memcpy(&(event.objectLength),
 		&(inPacket.objectLength),
@@ -322,7 +329,6 @@ REGISTER_HANDLER(PKT_SHUFFLE)
 }
 void ClientSession::HandleShuffleRequest(Packet::ShuffleRequest& inPacket)
 {
-	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
 	Event::ShuffleEvent event;
 	EventManager::GetInstance()->Notify(&event);
 }
@@ -334,8 +340,6 @@ REGISTER_HANDLER(PKT_SHOW_DATA)
 }
 void ClientSession::HandleShowDataRequest(Packet::ShowDataRequest& inPacket)
 {
-	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
-
 	Event::ShowDataEvent event;
 	EventManager::GetInstance()->Notify(&event);
 
@@ -348,7 +352,6 @@ REGISTER_HANDLER(PKT_HIDE_DATA)
 }
 void ClientSession::HandleHideDataRequest(Packet::HideDataRequest& inPacket)
 {
-	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
 	Event::HideDataEvent event;
 	EventManager::GetInstance()->Notify(&event);
 

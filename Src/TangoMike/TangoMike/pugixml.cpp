@@ -13,6 +13,8 @@
 
 #include "stdafx.h"
 
+#undef new
+
 #ifndef SOURCE_PUGIXML_CPP
 #define SOURCE_PUGIXML_CPP
 

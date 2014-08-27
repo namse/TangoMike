@@ -7,7 +7,7 @@
 #include "CircularBuffer.h"
 #include "ObjectPool.h"
 
-#define BUFSIZE	(1024*10)
+#define BUFSIZE	(128)
 
 class ClientSession ;
 class ClientManager ;
@@ -21,17 +21,19 @@ struct OverlappedIO : public OVERLAPPED
 	ClientSession* mObject ;
 } ;
 
-class ClientSession : public ObjectPool<ClientSession>
+class ClientSession// : public ObjectPool<ClientSession>
 {
 public:
 	ClientSession(SOCKET sock)
-		: mConnected(false), mLogon(false), mSocket(sock), mPlayerId(-1), mSendBuffer(BUFSIZE), mRecvBuffer(BUFSIZE), mOverlappedRequested(0)
-		, mPosX(0), mPosY(0), mPosZ(0), mDbUpdateCount(0)
+		: mConnected(false), mLogon(false), mSocket(sock), mPlayerId(-1), mOverlappedRequested(0)
+		, mPosX(0), mPosY(0), mPosZ(0), mDbUpdateCount(0), recvLength(0)
 	{
 		memset(&mClientAddr, 0, sizeof(SOCKADDR_IN)) ;
 		memset(mPlayerName, 0, sizeof(mPlayerName)) ;
 	}
-	~ClientSession() {}
+	~ClientSession()
+	{
+	}
 
 
 	
@@ -91,8 +93,6 @@ private:
 	int				mPlayerId ;
 	SOCKADDR_IN		mClientAddr ;
 
-	CircularBuffer	mSendBuffer ;
-	CircularBuffer	mRecvBuffer ;
 
 	OverlappedIO	mOverlappedSend ;
 	OverlappedIO	mOverlappedRecv ;
@@ -101,6 +101,9 @@ private:
 	int				mDbUpdateCount ; ///< DB에 주기적으로 업데이트 하기 위한 변수
 
 	friend class ClientManager ;
+
+	char buf[BUFSIZE];
+	int recvLength;
 } ;
 
 

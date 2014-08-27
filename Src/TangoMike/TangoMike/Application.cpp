@@ -174,6 +174,8 @@ HRESULT Application::Initialize()
 			if (SUCCEEDED(hr))
 			{
 				ShowWindow(m_hwnd, SW_MAXIMIZE);
+				//ShowWindow(m_hwnd, SW_SHOW);
+
 				UpdateWindow(m_hwnd);
 			}
 		}
@@ -577,6 +579,11 @@ void Application::RunMessageLoop()
 			{
 				TranslateMessage(&msg);
 				DispatchMessage(&msg);
+
+				if (msg.message == WM_QUIT)
+				{
+					break;
+				}
 			}
 			else
 			{
@@ -1106,18 +1113,18 @@ void Application::OnKeyDown(SHORT vkey)
 	case 'D':
 	{
 		Event::SelectEvent event;
-		int length = rand() % (WORK_COUNT + FEEL_COUNT);
-		event.objectLength = length;
-		bool didUse[WORK_COUNT + FEEL_COUNT];
-		memset(didUse, false, sizeof(didUse));
-		for (int i = 0; i <= length; i++)
-		{
-			int randomID = 0;
-			do{
-				randomID = rand() % (WORK_COUNT + FEEL_COUNT);
-			} while (didUse[randomID] != false);
-			didUse[randomID] = true;
-			event.object[i] = randomID;
+			int length = rand() % (WORK_COUNT + FEEL_COUNT);
+			event.objectLength = length;
+			bool didUse[WORK_COUNT + FEEL_COUNT];
+			memset(didUse, false, sizeof(didUse));
+			for (int i = 0; i <= length; i++)
+			{
+				int randomID = 0;
+				do{
+					randomID = rand() % (WORK_COUNT + FEEL_COUNT);
+				} while (didUse[randomID] != false);
+				didUse[randomID] = true;
+				event.object[i] = randomID;
 		}
 		EventManager::GetInstance()->Notify(&event);
 	}break;
@@ -1427,7 +1434,6 @@ void Application::Reset()
 
 	m_LeftSide = new LeftSide();
 	m_RightSide = new RightSide();
-
 	this->AddChild(m_LeftSide);
 	this->AddChild(m_RightSide);
 	Relationship::GetInstance()->LoadDataFromXMLBackup();

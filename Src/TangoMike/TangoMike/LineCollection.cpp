@@ -123,6 +123,8 @@ void LineCollection::Render()
 		m_pBackBufferRT->FillEllipse(ellipse, pointBrush_work_);
 	}
 	hr = m_pBackBufferRT->EndDraw();
+
+	pBitmapBrush->Release();
 }
 
 void LineCollection::InitLinePoints()

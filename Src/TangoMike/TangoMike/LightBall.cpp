@@ -16,6 +16,15 @@ LightBall::LightBall(D2D1_POINT_2F ps, D2D1_POINT_2F pb, D2D1_POINT_2F pe)
 
 LightBall::~LightBall()
 {
+	if (stops_ != nullptr)
+	{
+		stops_->Release();
+	}
+	if (brush_ != nullptr)
+	{
+		brush_->Release();
+	}
+
 }
 
 void LightBall::Render()
@@ -23,28 +32,32 @@ void LightBall::Render()
 	if (isMovingDone_ == false)
 	{
 		Component::Render();
-		HRESULT hr;
+		HRESULT hr = S_OK;
 		if (stops_ == nullptr)
 		{
-			hr = m_pBackBufferRT->CreateGradientStopCollection(
-				lightBallStops,
-				ARRAYSIZE(lightBallStops),
-				&stops_
-				);
+			if (hr == S_OK){
+				hr = m_pBackBufferRT->CreateGradientStopCollection(
+					lightBallStops,
+					ARRAYSIZE(lightBallStops),
+					&stops_
+					);
+			}
 		}
 
 		if (brush_ == nullptr)
 		{
-			hr = m_pBackBufferRT->CreateRadialGradientBrush(
-				D2D1::RadialGradientBrushProperties(
-				D2D1::Point2F(0, 0),
-				D2D1::Point2F(0, 0),
-				LIGHT_BALL_MAX_RADIUS,
-				LIGHT_BALL_MAX_RADIUS),
-				D2D1::BrushProperties(),
-				stops_,
-				&brush_
-				);
+			if (hr == S_OK){
+				hr = m_pBackBufferRT->CreateRadialGradientBrush(
+					D2D1::RadialGradientBrushProperties(
+					D2D1::Point2F(0, 0),
+					D2D1::Point2F(0, 0),
+					LIGHT_BALL_MAX_RADIUS,
+					LIGHT_BALL_MAX_RADIUS),
+					D2D1::BrushProperties(),
+					stops_,
+					&brush_
+					);
+			}
 		}
 
 		m_pBackBufferRT->BeginDraw();

@@ -7,11 +7,15 @@
 
 #pragma warning(disable : 4018)
 
-#include "targetver.h"
+#include "targetver.h"f
+
+/*
+
 
 #ifdef _DEBUG
 #define new new(_CLIENT_BLOCK, __FILE__, __LINE__)
-#endif
+#endif*/
+
 
 
 // Modify the following defines if you have to target a platform prior to the ones specified below.

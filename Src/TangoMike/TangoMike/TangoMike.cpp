@@ -39,7 +39,7 @@ int WINAPI WinMain(
 	std::srand(unsigned(std::time(0)));
 	// Ignoring the return value because we want to continue running even in the
 	// unlikely event that HeapSetInformation fails.
-	HeapSetInformation(NULL, HeapEnableTerminationOnCorruption, NULL, 0);
+	//HeapSetInformation(NULL, HeapEnableTerminationOnCorruption, NULL, 0);
 
 	if (SUCCEEDED(CoInitialize(NULL)))
 	{
@@ -55,7 +55,9 @@ int WINAPI WinMain(
 		}
 		CoUninitialize();
 	}
-
+	Relationship::FreeInstance();
+	XMLBackup::FreeInstance();
+	EasyServer::FreeInstance();
 	return 0;
 }
 void DevConsoleCreate(){

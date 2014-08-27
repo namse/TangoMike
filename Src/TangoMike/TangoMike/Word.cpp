@@ -34,42 +34,46 @@ void Word::Render()
 {
 	Component::Render();
 
-	HRESULT hr;
-
-	hr = m_pDWriteFactory->CreateTextFormat(
-		fontName_,
-		NULL,
-		DWRITE_FONT_WEIGHT_NORMAL,
-		DWRITE_FONT_STYLE_NORMAL,
-		DWRITE_FONT_STRETCH_NORMAL,
-		fontSize_,
-		L"", // locale
-		&m_pTextFormat
-		);
-
-	//hr = m_pTextFormat->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
-	hr = m_pTextFormat->SetTextAlignment(textAlignment_);
+	HRESULT hr = S_OK;
 
 
+	if (hr == S_OK){
+		hr = m_pDWriteFactory->CreateTextFormat(
+			fontName_,
+			NULL,
+			DWRITE_FONT_WEIGHT_NORMAL,
+			DWRITE_FONT_STYLE_NORMAL,
+			DWRITE_FONT_STRETCH_NORMAL,
+			fontSize_,
+			L"", // locale
+			&m_pTextFormat
+			);
+	}
+	if (hr == S_OK){
+		hr = m_pTextFormat->SetTextAlignment(textAlignment_);
+	}
 
-	m_pBackBufferRT->BeginDraw();
+	if (hr == S_OK){
+		m_pBackBufferRT->BeginDraw();
 
-	m_pBackBufferRT->SetTransform(matrix_);
+		m_pBackBufferRT->SetTransform(matrix_);
 
-	m_pBackBufferRT->CreateSolidColorBrush(
-		fontColor_, &m_pTextBrush);
+		m_pBackBufferRT->CreateSolidColorBrush(
+			fontColor_, &m_pTextBrush);
 
 
-	m_pBackBufferRT->DrawText(
-		contents_.c_str(),
-		contents_.length(),
-		m_pTextFormat,
-		D2D1::RectF(0.f, 0.f, maxWidthAndHeight.x, maxWidthAndHeight.y),
-		m_pTextBrush,
-		D2D1_DRAW_TEXT_OPTIONS_NONE
-		);
-
+		m_pBackBufferRT->DrawText(
+			contents_.c_str(),
+			contents_.length(),
+			m_pTextFormat,
+			D2D1::RectF(0.f, 0.f, maxWidthAndHeight.x, maxWidthAndHeight.y),
+			m_pTextBrush,
+			D2D1_DRAW_TEXT_OPTIONS_NONE
+			);
+	}
 	hr = m_pBackBufferRT->EndDraw();
+	SafeRelease(&m_pTextBrush);
+	SafeRelease(&m_pTextFormat);
 
 
 }

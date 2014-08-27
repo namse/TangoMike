@@ -56,12 +56,13 @@ bool EasyServer::Run()
 			client->Disconnect();
 		}
 
-		return true; ///< 다시 대기로
-	}
+//		return true; ///< 다시 대기로
+	}	
 
 	/// APC Queue에 쌓인 작업들 처리
 	SleepEx(1, TRUE);
 
+	GClientManager->OnPeriodWork();
 	return true;
 }
 

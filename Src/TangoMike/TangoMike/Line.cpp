@@ -35,56 +35,69 @@ void Line::CalcBezier()
 
 Line::~Line()
 {
+	if (geometry_ != nullptr)
+	{
+		geometry_->Release();
+	}
+	delete lightBall_;
 }
 
 void Line::Render()
 {
 	Component::Render();
-	HRESULT hr;
+	HRESULT hr = S_OK;
 	if (geometry_ == nullptr)
 	{
-		hr = m_pD2DFactory->CreatePathGeometry(&geometry_);
+		if (hr == S_OK){
+			hr = m_pD2DFactory->CreatePathGeometry(&geometry_);
+		}
+		if (hr == S_OK){
+			hr = geometry_->Open(&sink_);
+		}
+		if (hr == S_OK){
+			sink_->BeginFigure(
+				D2D1::Point2F(point1_->x, point1_->y),
+				D2D1_FIGURE_BEGIN_HOLLOW);
 
-		hr = geometry_->Open(&sink_);
+			float radius, angle;
+			float length = sqrt(pow(point1_->x - point2_->x, 2) + pow(point1_->y - point2_->y, 2));
+			float factor = 0.5f;//(float)(std::rand() % 10) / 100.f;
+			radius = length * factor;
+			angle = 1.5f;//(float)((float)std::rand() / (float)RAND_MAX) * M_PI * 2.0f;
 
-		sink_->BeginFigure(
-			D2D1::Point2F(point1_->x, point1_->y),
-			D2D1_FIGURE_BEGIN_HOLLOW);
+			sink_->AddBezier(
+				D2D1::BezierSegment(
+				*point1_,
+				point_bezier_, //D2D1::Point2F( point1_->x + radius * cos(angle), point1_->y + radius * sin(angle)),
+				*point2_)
+				);
 
-		float radius, angle;
-		float length = sqrt(pow(point1_->x - point2_->x, 2) + pow(point1_->y - point2_->y, 2));
-		float factor = 0.5f;//(float)(std::rand() % 10) / 100.f;
-		radius = length * factor;
-		angle = 1.5f;//(float)((float)std::rand() / (float)RAND_MAX) * M_PI * 2.0f;
-
-		sink_->AddBezier(
-			D2D1::BezierSegment(
-			*point1_,
-			point_bezier_, //D2D1::Point2F( point1_->x + radius * cos(angle), point1_->y + radius * sin(angle)),
-			*point2_)
-			);
-
-		sink_->EndFigure(D2D1_FIGURE_END_OPEN);
-		hr = sink_->Close();
+			sink_->EndFigure(D2D1_FIGURE_END_OPEN);
+			hr = sink_->Close();
+			SafeRelease(&sink_);
+		}
 	}
 	if (didDrawBackground == false)
 	{
-		pCompatibleRenderTarget->BeginDraw();
-		pCompatibleRenderTarget->SetTransform(matrix_);
-		pCompatibleRenderTarget->DrawGeometry(geometry_, GetLineBrush_Background(feelID_, workID_), LINE_THICKNESS);
-		pCompatibleRenderTarget->EndDraw();
+		if (hr == S_OK){
+			pCompatibleRenderTarget->BeginDraw();
+			pCompatibleRenderTarget->SetTransform(matrix_);
+			pCompatibleRenderTarget->DrawGeometry(geometry_, GetLineBrush_Background(feelID_, workID_), LINE_THICKNESS);
+			pCompatibleRenderTarget->EndDraw();
+		}
 		
 	}
 	if (IsFocus())
 	{
 
 	// ÃÖÀûÈ­ : http://msdn.microsoft.com/ko-kr/library/windows/desktop/ee719658(v=vs.85).aspx
-	
-		m_pBackBufferRT->BeginDraw(); m_pBackBufferRT->SetAntialiasMode(D2D1_ANTIALIAS_MODE_PER_PRIMITIVE);
-		m_pBackBufferRT->SetTransform(matrix_);
-		m_pBackBufferRT->DrawGeometry(geometry_,
-			GetLineBrush(feelID_, workID_), lineThickness);
-		hr = m_pBackBufferRT->EndDraw();
+		if (hr == S_OK){
+			m_pBackBufferRT->BeginDraw(); m_pBackBufferRT->SetAntialiasMode(D2D1_ANTIALIAS_MODE_PER_PRIMITIVE);
+			m_pBackBufferRT->SetTransform(matrix_);
+			m_pBackBufferRT->DrawGeometry(geometry_,
+				GetLineBrush(feelID_, workID_), lineThickness);
+			hr = m_pBackBufferRT->EndDraw();
+		}
 
 	}
 	else
@@ -93,11 +106,13 @@ void Line::Render()
 
 		if (timeForFadeOut > 0.f)
 		{
-			m_pBackBufferRT->BeginDraw(); m_pBackBufferRT->SetAntialiasMode(D2D1_ANTIALIAS_MODE_PER_PRIMITIVE);
-			m_pBackBufferRT->SetTransform(matrix_);
-			m_pBackBufferRT->DrawGeometry(geometry_,
-				GetLineBrush(feelID_, workID_), lineThickness);
-			hr = m_pBackBufferRT->EndDraw();
+			if (hr == S_OK){
+				m_pBackBufferRT->BeginDraw(); m_pBackBufferRT->SetAntialiasMode(D2D1_ANTIALIAS_MODE_PER_PRIMITIVE);
+				m_pBackBufferRT->SetTransform(matrix_);
+				m_pBackBufferRT->DrawGeometry(geometry_,
+					GetLineBrush(feelID_, workID_), lineThickness);
+				hr = m_pBackBufferRT->EndDraw();
+			}
 		}
 	}
 }

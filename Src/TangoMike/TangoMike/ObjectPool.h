@@ -1,3 +1,4 @@
+/*
 #pragma once
 #include "stdafx.h"
 
@@ -7,6 +8,7 @@ class ObjectPool
 {
 public:
 
+#undef new
 	static void* operator new(size_t objSize)
 	{
 		if (!mFreeList)
@@ -65,3 +67,4 @@ template <class TOBJECT, int ALLOC_COUNT>
 int ObjectPool<TOBJECT, ALLOC_COUNT>::mCurrentUseCount = 0 ;
 
 
+*/

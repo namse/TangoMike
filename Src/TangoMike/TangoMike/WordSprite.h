@@ -37,13 +37,6 @@ public:
 
 	int GetId(){ return id_; }
 
-	void SetFocus(bool isFocus){
-		isFocus_ = isFocus;
-		if (isFocus == true)
-			OnFocus();
-		else
-			OffFocus();
-	}
 	bool IsFocus(){ return isFocus_; }
 
 	bool IsFeel()
@@ -58,7 +51,6 @@ public:
 private:
 	void OnShuffle();
 	void OnFocus();
-	void OffFocus();
 private:
 	Word koreanWord_;
 	Word englishWord_;

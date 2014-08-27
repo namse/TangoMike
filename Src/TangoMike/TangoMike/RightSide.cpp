@@ -34,19 +34,16 @@ void RightSide::Render()
 
 void RightSide::Update(float dTime)
 {
-	Component::Update(dTime);
-
 	if (isIdle == true)
 	{
 		TimeForIdle += dTime;
 		if (TimeForIdle > SHUFFLE_PERIOD)
 		{
 			TimeForIdle = 0.f;
-			Event::SelectEvent event;
 			int length = rand() % (WORK_COUNT + FEEL_COUNT);
-			event.objectLength = length;
 			bool didUse[WORK_COUNT + FEEL_COUNT];
 			memset(didUse, false, sizeof(didUse));
+			memset(isFocus, false, sizeof(isFocus));
 			for (int i = 0; i <= length; i++)
 			{
 				int randomID = 0;
@@ -54,11 +51,14 @@ void RightSide::Update(float dTime)
 					randomID = rand() % (WORK_COUNT + FEEL_COUNT);
 				} while (didUse[randomID] != false);
 				didUse[randomID] = true;
-				event.object[i] = randomID;
+
+				isFocus[randomID] = true;
 			}
-			EventManager::GetInstance()->Notify(&event);
+
 		}
 	}
+	Component::Update(dTime);
+
 }
 
 void RightSide::SetArrange()
@@ -97,7 +97,7 @@ void RightSide::SetArrange()
 		}
 
 		wordSprite->SetShuffle(false);
-		wordSprite->DoAnimate(POSITION, &(D2D1::Point2F(x, y)), 2.f);
+		wordSprite->SetPosition((D2D1::Point2F(x, y)));
 		wordSprite->SetRotation(wordAngle);
 	}
 }
@@ -108,27 +108,8 @@ void RightSide::SetIdle()
 }
 
 
-void RightSide::SetFocus()
-{
-	for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
-	{
-		if (isFocus[wordSprite->GetId()] == true)
-		{
-			wordSprite->SetFocus(true);
-		}
-	}
-}
-
-
 void RightSide::OffFocus()
 {
-	for (auto &wordSprite : wordSpriteCollection_.GetWordSprites())
-	{
-		if (isFocus[wordSprite->GetId()] == true)
-		{
-			wordSprite->SetFocus(false);
-		}
-	}
 	memset(isFocus, false, sizeof(isFocus));
 }
 
@@ -152,19 +133,17 @@ void RightSide::Notify(EventHeader* event)
 		{
 			isFocus[recvEvent->object[i]] = true;
 		}
-		SetFocus();
 	}break;
 
 	case EVENT_SELECT:
 	{
 		OffShuffle();
 		Event::SelectEvent* recvEvent = (Event::SelectEvent*)event;
-		OffFocus();
+		memset(isFocus, false, sizeof(isFocus));
 		for (int i = 0; i < recvEvent->objectLength; i++)
 		{
 			isFocus[recvEvent->object[i]] = true;
 		}
-		SetFocus();
 	}break;
 
 	case EVENT_SHUFFLE:

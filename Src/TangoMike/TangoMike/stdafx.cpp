@@ -48,3 +48,23 @@ float distance(D2D1_POINT_2F* a, D2D1_POINT_2F* b)
 bool didDrawBackground = false;
 float g_opacity = 0.3f;
 float g_lineThickness = 0.3f;
+
+
+void LoadOpacityAndLineThickness()
+{
+	std::ifstream ifs("opacitySetting.txt");
+	if (ifs.good())
+	{
+		ifs >> g_opacity >> g_lineThickness;
+		ifs.close();
+	}
+}
+void SaveOpacityAndLineThickness()
+{
+	std::ofstream ofs("opacitySetting.txt");
+	if (ofs.good())
+	{
+		ofs << g_opacity << std::endl << g_lineThickness;
+		ofs.close();
+	}
+}

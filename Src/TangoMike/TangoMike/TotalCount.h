@@ -33,7 +33,7 @@ private:
 	Word word_TCEnglish_Work;
 	Word word_TCCount;
 
-	Component animatingWordGroup;
+	std::vector<Word*> animatingWordGroup;
 
 	float opacity;
 	int tpFCount;

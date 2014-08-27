@@ -10,6 +10,10 @@
 #include "Relationship.h"
 #include "EasyServer.h"
 #include "XMLBackup.h"
+#include <Windows.h>
+#include <stdio.h>
+#include <tchar.h>
+#include <shellapi.h>
 
 /******************************************************************
 *                                                                 *
@@ -27,8 +31,11 @@ int WINAPI WinMain(
 	int /* nCmdShow */
 	)
 {
+	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	EasyServer::GetInstance();
-	DevConsoleCreate();
+	//DevConsoleCreate();
+	//ShellExecute(NULL, L"open", L"C:\\Users\\Administrator\\Documents\\TangoMike\\Src\\TangoMike\\Release\\TangoMike.exe", NULL, NULL, SW_SHOWNORMAL);
+
 	std::srand(unsigned(std::time(0)));
 	// Ignoring the return value because we want to continue running even in the
 	// unlikely event that HeapSetInformation fails.

@@ -136,7 +136,7 @@ void ClientSession::OnRead(size_t len)
 			Disconnect();
 			return;
 		}
-
+		std::cout << header.mType << std::endl;
 		/// packet dispatch...
 		HandlerTable[header.mType](this, header);
 	}
@@ -353,45 +353,3 @@ void ClientSession::HandleHideDataRequest(Packet::HideDataRequest& inPacket)
 	EventManager::GetInstance()->Notify(&event);
 
 }
-
-/*
-REGISTER_HANDLER(PKT_CS_LOGIN)
-{
-	LoginRequest inPacket = static_cast<LoginRequest&>(pktBase) ;
-	session->HandleLoginRequest(inPacket);
-}
-
-void ClientSession::HandleLoginRequest(LoginRequest& inPacket)
-{
-	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
-
-/ *
-	/// 로그인은 DB 작업을 거쳐야 하기 때문에 DB 작업 요청한다.
-	LoadPlayerDataContext* newDbJob = new LoadPlayerDataContext(mSocket, inPacket.mPlayerId);
-	GDatabaseJobManager->PushDatabaseJobRequest(newDbJob);* /
-}
-
-REGISTER_HANDLER(PKT_CS_CHAT)
-{
-	ChatBroadcastRequest inPacket = static_cast<ChatBroadcastRequest&>(pktBase) ;
-	session->HandleChatRequest(inPacket);
-}
-
-void ClientSession::HandleChatRequest(ChatBroadcastRequest& inPacket)
-{
-	mRecvBuffer.Read((char*)&inPacket, inPacket.mSize);
-
-	ChatBroadcastResult outPacket;
-	outPacket.mPlayerId = inPacket.mPlayerId;
-	strcpy_s(outPacket.mName, mPlayerName);
-	strcpy_s(outPacket.mChat, inPacket.mChat);
-
-	/// 채팅은 바로 방송 하면 끝
-	if (!Broadcast(&outPacket))
-	{
-		Disconnect();
-	}
-}
-
-*/
-

@@ -9,7 +9,7 @@ LightBall::LightBall()
 
 LightBall::LightBall(D2D1_POINT_2F ps, D2D1_POINT_2F pb, D2D1_POINT_2F pe)
 	:Component(), point_start(ps), point_bezier(pb), point_end(pe), brush_(nullptr), stops_(nullptr), currentTime(0.f)
-	, d(0.f), isMovingDone_(true)
+	, d(0.f), isMovingDone_(true), radius_(0.f)
 {
 
 }
@@ -84,8 +84,10 @@ void LightBall::Update(float dTime)
 		{
 			radius_ = LIGHT_BALL_MAX_RADIUS * (T - currentTime) / (T*0.2f);
 		}
-		else
+		else if (currentTime <= T)
 			radius_ = LIGHT_BALL_MAX_RADIUS;
+		else
+			radius_ = 0.f;
 
 		SetPosition(position);
 

@@ -15,7 +15,6 @@ public:
 	void Update(float dTime);
 
 	void SetArrange();
-	void SetFocus();
 	void SetIdle();
 
 

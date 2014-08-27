@@ -9,6 +9,10 @@
 
 #include "targetver.h"
 
+#ifdef _DEBUG
+#define new new(_CLIENT_BLOCK, __FILE__, __LINE__)
+#endif
+
 
 // Modify the following defines if you have to target a platform prior to the ones specified below.
 // Refer to MSDN for the latest info on corresponding values for different platforms.
@@ -159,8 +163,8 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 #define POINT_RADIUS_FOCUS 5.5f
 #define POINT_RADIUS_UNFOCUS 2.f
 
-#define FONTCOLOR_FEEL_FOCUS D2D1::ColorF( 0xde9658)
-#define FONTCOLOR_WORK_FOCUS D2D1::ColorF( 0x84d3a2)
+#define FONTCOLOR_FEEL_FOCUS D2D1::ColorF( 0xde9658, 1.f)
+#define FONTCOLOR_WORK_FOCUS D2D1::ColorF( 0x84d3a2, 1.f)
 #define FONTCOLOR_FEEL_UNFOCUS D2D1::ColorF( 0xde9658, OPACITY)
 #define FONTCOLOR_WORK_UNFOCUS D2D1::ColorF( 0x84d3a2, OPACITY)
 
@@ -286,11 +290,6 @@ static const D2D1_GRADIENT_STOP lineStops[] =
 	{ 0.f, { ((float)0xde / (float)0xFF), ((float)0x96 / (float)0xFF), ((float)0x58 / (float)0xFF), 1.f } },
 	{ 1.f, { ((float)0x84 / (float)0xFF), ((float)0xD3 / (float)0xFF), ((float)0xA2 / (float)0xFF), 1.f } },
 };
-static const D2D1_GRADIENT_STOP lineStops_background[] =
-{
-	{ 0.f, { ((float)0xde / (float)0xFF), ((float)0x96 / (float)0xFF), ((float)0x58 / (float)0xFF), 0.15f } },
-	{ 1.f, { ((float)0x84 / (float)0xFF), ((float)0xD3 / (float)0xFF), ((float)0xA2 / (float)0xFF), 0.15f } },
-};
 static const D2D1_GRADIENT_STOP lightBallStops[] =
 {
 	{ 0.f, { 1.f, 1.f, 1.f, 1.f } },
@@ -325,3 +324,12 @@ extern bool didDrawBackground;
 #define OPACITY 0.2f
 #define LINE_THICKNESS 0.3f
 */
+void LoadOpacityAndLineThickness();
+void SaveOpacityAndLineThickness();
+
+
+static const D2D1_GRADIENT_STOP lineStops_background[] =
+{
+	{ 0.f, { ((float)0xde / (float)0xFF), ((float)0x96 / (float)0xFF), ((float)0x58 / (float)0xFF), OPACITY } },
+	{ 1.f, { ((float)0x84 / (float)0xFF), ((float)0xD3 / (float)0xFF), ((float)0xA2 / (float)0xFF), OPACITY } },
+};

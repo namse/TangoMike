@@ -75,6 +75,7 @@ m_logZoom(sc_loupeDefaultLogZoom*WHEEL_DELTA)
 
 	m_timeDelta = -time.QuadPart;
 
+	LoadOpacityAndLineThickness();
 	m_LeftSide = new LeftSide();
 	m_RightSide = new RightSide();
 
@@ -132,7 +133,8 @@ HRESULT Application::Initialize()
 		wcex.cbClsExtra = 0;
 		wcex.cbWndExtra = sizeof(LONG_PTR);
 		wcex.hInstance = HINST_THISCOMPONENT;
-		wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
+		wcex.hCursor = LoadCursor(NULL, IDC_NO);
+		ShowCursor(false);
 		wcex.hbrBackground = NULL;
 		wcex.lpszMenuName = NULL;
 		wcex.lpszClassName = L"D2DApplication";
@@ -578,6 +580,10 @@ void Application::RunMessageLoop()
 			}
 			else
 			{
+
+				EasyServer::GetInstance()->Run();
+
+
 				DWORD nowTime = timeGetTime();
 				float dTime;
 				if (prevTime == NULL)
@@ -587,7 +593,6 @@ void Application::RunMessageLoop()
 				prevTime = nowTime;
 				Update(dTime);
 
-				EasyServer::GetInstance()->Run();
 
 
 
@@ -644,10 +649,10 @@ HRESULT Application::OnRender()
 
 
 
-					/*if (SUCCEEDED(hr))
+					if (SUCCEEDED(hr) && ShowText == true)
 					{
 						hr = RenderTextInfo();
-					}*/
+					}
 					/*if (m_drawLoupe)
 					{
 					hr = RenderLoupe();
@@ -1023,25 +1028,37 @@ void Application::OnKeyDown(SHORT vkey)
 	{
 	case VK_RIGHT:
 		if (g_opacity + 0.01f <= 1.f)
+		{
 			g_opacity += 0.01f;
-		Reset();
+			Reset();
+			SaveOpacityAndLineThickness();
+		}
 		break;
 
 	case VK_LEFT:
 		if (g_opacity - 0.01f >= 0.f)
+		{
 			g_opacity -= 0.01f;
-		Reset();
+			Reset();
+			SaveOpacityAndLineThickness();
+		}
 		break;
 
 	case VK_UP:
+	{
 		g_lineThickness += 0.01f;
 		Reset();
+		SaveOpacityAndLineThickness();
+	}
 		break;
 
 	case VK_DOWN:
 		if (g_lineThickness > 0.f)
+		{
 			g_lineThickness -= 0.01f;
-		Reset();
+			Reset();
+			SaveOpacityAndLineThickness();
+		}
 		break;
 	case VK_SPACE:
 
@@ -1168,6 +1185,11 @@ void Application::OnKeyDown(SHORT vkey)
 			EventManager::GetInstance()->Notify(&event);
 		}
 
+	}break;
+
+	case 'E':
+	{
+		ShowText = !ShowText;
 	}break;
 
 	default:

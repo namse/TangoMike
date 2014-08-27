@@ -90,5 +90,7 @@ private:
 
 	LeftSide* m_LeftSide;
 	RightSide* m_RightSide;
+
+	bool ShowText;
 };
 

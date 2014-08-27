@@ -80,30 +80,42 @@ TotalCount::TotalCount()
 	AddChild(&word_TotalUsers);
 	AddChild(&word_TotalUsersNumber);
 
-	animatingWordGroup.SetPosition(D2D1::Point2F(0.f, +25.f));
-	animatingWordGroup.AddChild(&word_TopPick);
-	animatingWordGroup.AddChild(&word_TPKorean_Feel);
-	animatingWordGroup.AddChild(&word_TPEnglish_Feel);
-	animatingWordGroup.AddChild(&word_TPCount_Feel);
-	animatingWordGroup.AddChild(&word_TPKorean_Work);
-	animatingWordGroup.AddChild(&word_TPEnglish_Work);
-	animatingWordGroup.AddChild(&word_TPCount_Work);
+	AddChild(&word_TopPick);
+	AddChild(&word_TPKorean_Feel);
+	AddChild(&word_TPEnglish_Feel);
+	AddChild(&word_TPCount_Feel);
+	AddChild(&word_TPKorean_Work);
+	AddChild(&word_TPEnglish_Work);
+	AddChild(&word_TPCount_Work);
 
-	animatingWordGroup.AddChild(&word_TopComunion);
-	animatingWordGroup.AddChild(&word_TCKorean_Feel);
-	animatingWordGroup.AddChild(&word_TCKorean_Work);
-	animatingWordGroup.AddChild(&word_TCEnglish_Feel);
-	animatingWordGroup.AddChild(&word_TCEnglish_Work);
-	animatingWordGroup.AddChild(&word_TCCount);
+	AddChild(&word_TopComunion);
+	AddChild(&word_TCKorean_Feel);
+	AddChild(&word_TCKorean_Work);
+	AddChild(&word_TCEnglish_Feel);
+	AddChild(&word_TCEnglish_Work);
+	AddChild(&word_TCCount);
 
-	AddChild(&animatingWordGroup);
+	animatingWordGroup.push_back(&word_TopPick);
+	animatingWordGroup.push_back(&word_TPKorean_Feel);
+	animatingWordGroup.push_back(&word_TPEnglish_Feel);
+	animatingWordGroup.push_back(&word_TPCount_Feel);
+	animatingWordGroup.push_back(&word_TPKorean_Work);
+	animatingWordGroup.push_back(&word_TPEnglish_Work);
+	animatingWordGroup.push_back(&word_TPCount_Work);
+
+	animatingWordGroup.push_back(&word_TopComunion);
+	animatingWordGroup.push_back(&word_TCKorean_Feel);
+	animatingWordGroup.push_back(&word_TCKorean_Work);
+	animatingWordGroup.push_back(&word_TCEnglish_Feel);
+	animatingWordGroup.push_back(&word_TCEnglish_Work);
+	animatingWordGroup.push_back(&word_TCCount);
 
 	for (auto& child : childs_)
 	{
 		Word* word = (Word*)child;
 		word->SetMaxWidthAndHeight(D2D1::Point2F(1000.f, 1000.f));
 	}
-	for (auto& child : animatingWordGroup.GetChildern())
+	for (auto& child : animatingWordGroup)
 	{
 		Word* word = (Word*)child;
 		word->SetMaxWidthAndHeight(D2D1::Point2F(1000.f, 1000.f));
@@ -186,14 +198,14 @@ void TotalCount::Render()
 	word_TCCount.SetContents(std::to_wstring(tcCount_ani));
 
 	int i = 0;
-	for (auto& child : animatingWordGroup.GetChildern())
+	for (auto& child : animatingWordGroup)
 	{
 		Word* word = (Word*)child;
 		auto fontcolor = word->Getfontcolor();
 		fontcolor.a = opacity;
 		word->SetFontColor(fontcolor);
 
-		word->SetPosition(originPosition[i] + D2D1::Point2F(0.f, - opacity * 25.f));
+		word->SetPosition(originPosition[i] + D2D1::Point2F(0.f, - opacity * 25.f + 25.f));
 
 		i++;
 	}

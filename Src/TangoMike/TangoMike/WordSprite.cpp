@@ -57,6 +57,7 @@ void WordSprite::Render()
 void WordSprite::Update(float dTime)
 {
 	Component::Update(dTime);
+	OnFocus();
 	OnShuffle();
 }
 
@@ -80,9 +81,11 @@ void WordSprite::OnShuffle()
 
 void WordSprite::OnFocus()
 {
-	OffFocus();
-	if (isFocus_ == true)
+	if (isFocus[GetId()] == true
+		&& isFocus_ == false)
 	{
+		isFocus_ = true;
+
 		if (IsFeel() == true)
 		{
 			koreanWord_.DoFontColorAnimate(FONTCOLOR_FEEL_FOCUS, 0.3f);
@@ -94,18 +97,19 @@ void WordSprite::OnFocus()
 			englishWord_.DoFontColorAnimate(FONTCOLOR_WORK_FOCUS, 0.3f);
 		}
 	}
-}
-
-void WordSprite::OffFocus()
-{
-	if (IsFeel() == true)
+	else if (isFocus[GetId()] == false
+		&& isFocus_ == true)
 	{
-		koreanWord_.DoFontColorAnimate(FONTCOLOR_FEEL_UNFOCUS, 0.3f);
-		englishWord_.DoFontColorAnimate(FONTCOLOR_FEEL_UNFOCUS, 0.3f);
-	}
-	else
-	{
-		koreanWord_.DoFontColorAnimate(FONTCOLOR_WORK_UNFOCUS, 0.3f);
-		englishWord_.DoFontColorAnimate(FONTCOLOR_WORK_UNFOCUS, 0.3f);
+		isFocus_ = false;
+		if (IsFeel() == true)
+		{
+			koreanWord_.DoFontColorAnimate(FONTCOLOR_FEEL_UNFOCUS, 0.3f);
+			englishWord_.DoFontColorAnimate(FONTCOLOR_FEEL_UNFOCUS, 0.3f);
+		}
+		else
+		{
+			koreanWord_.DoFontColorAnimate(FONTCOLOR_WORK_UNFOCUS, 0.3f);
+			englishWord_.DoFontColorAnimate(FONTCOLOR_WORK_UNFOCUS, 0.3f);
+		}
 	}
 }
